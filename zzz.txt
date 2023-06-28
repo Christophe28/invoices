@@ -1,0 +1,23 @@
+Début du projet: 
+- Après l'initialisation du projet il faut se décider sur le commencement.
+
+A. Installer Redux //
+B. Regarder un peu comment fonctionne le state manager //
+
+- Récolter les informations sur le figma
+
+A. Il y'a 6 pages: invoices, invoicesEmpty, viewInvoices, editInvoices, createInvoices, deleteInvoices 
+B. Les factures stockent les informations suivantes :
+---1. Numéro de référence #ab1234
+---2. La date
+---3. Le Nom
+---4. La somme
+---5. Si c'est payé ou pas
+
+
+
+
+3. Se renseigner sur useQuerry
+4. Commencer la page d'accueil.
+5. Utiliser le cach pour sauvegarder les factures.
+6. Prévenir avec un popup que j'utilise le cach pour l'exercice et que si le projet était destinné à quelque chose de pro il faudrait une db

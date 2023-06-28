@@ -3,6 +3,7 @@
 Le projet invoices à vu le jour car je devais exposer un projet plus concret que le reste de mon Github. En ce qui concerne le visuel, je le dois à ce figma proposé par un compère [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0].
 
 ## Technology
+// AJouter image VueJs
 // Ajouter image React
 // Ajouter image Typescript
 // Ajouter image reduxe
