@@ -1,0 +1,38 @@
+//========== 1. Colors ligth mode ==========//
+// 1A. Buttons bg
+$buttonAddNewItem__default: #F9FAFE;
+$buttonAddNewItem__hover: #DFE3FA;
+$buttonEdit__default--ligth: #F9FAFE;
+$buttonEdit__hover--ligth: #252945;
+
+$buttonDelete__default--ligth: #EC5757;
+$buttonDelete__hover--ligth: #FF9797;
+
+$buttonMarkAsPaid__default--ligth: #7C5DFA;
+$buttonMarkAsPaid__hover--ligth: #9277FF;
+
+$buttonNewInvoice__default--ligth: #7C5DFA;
+$buttonNewInvoice__hover--ligth: #9277FF;
+
+$buttonSaveAsDraft__default--ligth: #373B53;
+$buttonSaveAsDraft__hover--ligth: #0C0E16;
+
+// 1B. Buttons text
+$button_text__default: #FFFFFF;
+
+$buttonAddNewItem_text__default: #7E88C3;
+
+$buttonEdit_text__default--ligth: #DFE3FA;
+
+$buttonSaveAsDraft_text__default--ligth: #888EB0;
+
+//========== 2. Colors dark mode ==========//
+// 2A. Buttons bg
+$buttonEdit__default--dark: #DFE3FA;
+$buttonEdit__hover--dark: #FFFFFF;
+
+$buttonSaveAsDraft__default--dark: #373B53;
+$buttonSaveAsDraft__hover--dark: #1E2139;
+
+// 2B. Buttons text
+$buttonSaveAsDraft-text__default--dark: #DFE3FA;

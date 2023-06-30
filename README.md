@@ -1,6 +1,6 @@
 # Invoices
 
-Le projet invoices à vu le jour car je devais exposer un projet plus concret que le reste de mon Github. En ce qui concerne le visuel, je le dois à ce figma proposé par un compère [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0].
+Le projet invoices à vu le jour car je devais exposer un projet plus concret que le reste de mon Github. En ce qui concerne le visuel, je le dois à ce figma proposé par un compère [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]. Je suis partie sur une structure BEM pour le css et j'ai fais le projet en react typescript et redux. Le challenge était d'apprendre les bases de typescript et de redux.
 
 ## Technology
 // AJouter image VueJs
@@ -8,6 +8,7 @@ Le projet invoices à vu le jour car je devais exposer un projet plus concret qu
 // Ajouter image Typescript
 // Ajouter image reduxe
 // Ajouter image gh-pages
+// Ajouter image sass
 
 ## Description
 

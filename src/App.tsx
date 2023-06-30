@@ -1,14 +1,23 @@
 import { Routes, Route } from "react-router-dom";
-import Invoices from "./components/invoices/Invoices";
+import Invoices from "./components/globalInvoices/Invoices";
+import { Provider } from "react-redux";
+import { myStore } from "./redux";
+
+import Wrapper from "./components/viewWrapper/Wrapper";
+import SideBar from "./components/viewWrapper/sideBar/SideBar";
 
 function App() {
-
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Invoices />} />
-      </Routes>
-    </>
+    <Provider store={myStore}>
+      <>
+        <Wrapper>
+          <SideBar />
+          <Routes>
+            <Route path="/" element={<Invoices />} />
+          </Routes>
+        </Wrapper>
+      </>
+    </Provider>
   )
 }
 

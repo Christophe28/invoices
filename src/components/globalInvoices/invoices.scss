@@ -1,0 +1,14 @@
+.containerInvoices {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .containerInvoices__page {
+    text-align: center;
+
+    div {
+      display: flex;
+    }
+  }
+}
+
