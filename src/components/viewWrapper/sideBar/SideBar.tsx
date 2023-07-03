@@ -14,7 +14,7 @@ const SideBar = () => {
       />
       <section className="sideBar__containerBottom">
         <SideBarIcone
-          classNameContainer="sideBar__icone--translate sideBar__iconeMoon"
+          classNameContainer="sideBar__icone--translate sideBar__iconeDarkMode"
           classNameImg="sideBar__containerBottom__img"
           img={iconMoon}
           alt="Lune grise"

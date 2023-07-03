@@ -1,0 +1,60 @@
+.filter {
+  position: relative;
+  
+  .filter__containerOption {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: absolute;
+    left: -25px;
+
+    border: 1px solid grey;
+    width: 130px;
+    padding: 12px;
+    margin-top: 18px;
+    background-color: red;
+  }
+  .display {
+    display: "";
+  }
+  .displayNone {
+    display: none;
+  }
+
+  .filter__filteredByStatus {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.filter div:nth-child(1) {
+  cursor: pointer;
+  user-select: none;
+}
+
+.rotateDown {
+  animation: rotate-animation-down 1s forwards;
+}
+
+.rotateUp {
+  animation: rotate-animation-up 1s forwards;
+}
+
+@keyframes rotate-animation-down {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+} 
+
+@keyframes rotate-animation-up {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

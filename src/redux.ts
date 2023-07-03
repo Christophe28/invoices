@@ -1,4 +1,4 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, configureStore, createSlice } from "@reduxjs/toolkit";
 // import { BillFrom, BillTo, ItemList, CompleteInvoice } from "./type/typeInvoices";
 
 const billsFrom = createSlice({
@@ -61,6 +61,7 @@ const billsTo = createSlice({
   }
 });
 
+// Example
 const itemsList = createSlice({
   name: "itemsList",
   initialState: [
@@ -87,54 +88,28 @@ const itemsList = createSlice({
   }
 })
 
-const todoSlice = createSlice({
-  name: "todoSlice",
-  initialState: [
-    {
-      id: 1,
-      text: "text1",
-      done: false
-    },
-    {
-      id: 2,
-      text: "text2",
-      done: true
-    }
-  ],
+const selectedOption = createSlice({
+  name: "selectedOption",
+  initialState: null,
   reducers: {
-    addTask: (state, action) => {
-      const newTask = {
-        id: state.length + 1,
-        done: false,
-        text: action.payload
-      }
-      state.push(newTask);
-    },
-    toggleTask: (state, action) => {
-      // const task = state.find(t => t.id === action.payload);
-      // console.log(task);
-      const index:number = action.payload;
-      const stateClone = JSON.parse(JSON.stringify(state));
-      console.log(stateClone[index])
-    },
-    deleteTask: (state, action) => {
-      state = state.filter(t => t.id !== action.payload);
-      return state
+    handleOptionChange: (state, action) => {
+      if(action.payload != state) {return action.payload}
+      if(action.payload === state) {return null}
     }
   }
 })
 
-export const {addTask, toggleTask, deleteTask } = todoSlice.actions;
 export const {consoleBillsFrom} = billsFrom.actions;
 export const {consoleBillsTo} = billsTo.actions;
 export const {consoleItemsList} = itemsList.actions;
+export const {handleOptionChange} = selectedOption.actions;
 
 export const myStore = configureStore({
   reducer: {
-    todoSlice: todoSlice.reducer,
     billsFrom: billsFrom.reducer,
     billsTo: billsTo.reducer,
-    itemsList: itemsList.reducer
+    itemsList: itemsList.reducer,
+    selectedOption: selectedOption.reducer
   }
 })
 

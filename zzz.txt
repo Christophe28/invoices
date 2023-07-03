@@ -1,3 +1,7 @@
 Structure pour le css nomDuContenaire__nomItem--action
 
-1. Il faut récolter les images destiné à la side bar. faire le style de la sidebar
+1.La sidebar est finito ! Next step ==> 
+
+2.Le bouton new Invoice est finito
+
+3. Attaquer le style du titre invoices ainsi que son sous-texte

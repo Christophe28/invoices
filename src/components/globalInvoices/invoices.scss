@@ -1,13 +1,66 @@
 .containerInvoices {
   width: 100%;
+  margin-top: 40px;
+
   display: flex;
   justify-content: center;
-
+  
   .containerInvoices__page {
-    text-align: center;
+    width: 60%;
 
-    div {
+    display: flex;
+    flex-direction: column;
+
+    .containerInvoices__header {
+      width: 100%;
+
       display: flex;
+      justify-content: space-between;
+
+      h1 {
+        margin: 0;
+        font-size: 32px;
+      }
+
+      p {
+        margin: 0;
+        color: $text_lessOpacity;
+      }
+    }
+
+    .containerInvoices__containerButtons {
+      display: flex;
+      width: 50%;
+      gap: 20px;
+    }
+
+    .containerInvoices__containerButtons__buttonNewInvoice {
+      width: 150px;
+      height: 50px;
+      border-radius: 30px;
+
+      background-color: $buttonNewInvoice__default--ligth;
+      color: white;
+      font-weight: bolder;
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: none;
+
+      &:hover {
+        background-color: $buttonNewInvoice__hover--ligth;
+      }
+
+      span {
+        width: 30px;
+        border-radius: 50%;
+
+        font-size: 24px;
+        background-color: white;
+
+        color: $buttonNewInvoice__default--ligth;
+      }
     }
   }
 }

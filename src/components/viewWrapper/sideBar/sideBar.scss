@@ -31,7 +31,7 @@
   .sideBar__iconePacman {
     width: 100%;
     height: 80px;
-    border-radius: 0 20px 0 0;
+    border-radius: 0 $sideBar_radius_top 0 0;
   
     background: rgb(124,93,250);
     background: linear-gradient(180deg, rgba(124,93,250,1) 50%, rgba(146,119,255,1) 50%);
@@ -62,7 +62,7 @@
     top: 0px;
   }
   
-  .sideBar__iconeMoon {
+  .sideBar__iconeDarkMode {
     cursor: pointer;
   }
 }
