@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Roostate, consoleBillsTo } from '../../redux';
-import { searchBill } from '../../functions/invoices/searchBill';
+import { Roostate } from '../../redux';
+// import { searchBill } from '../../functions/invoices/searchBill';
 
-import Button from '../buttons/Button';
 import Filter from '../filter/Filter';
+
+import logoFilter from "../../assets/logo/filter/arrow.svg";
 
 const Invoices = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
@@ -23,14 +24,19 @@ const Invoices = () => {
               <button className="containerInvoices__containerButtons__buttonNewInvoice"><span>+</span> New invoice</button>
             </div>
           </div>
-          <section>
-            {/* {
+          <section className="containerInvoices__invoices">
+            {
               billsFrom.map((elem, index) => (
-                <div key={elem.id}>
-                  {elem.id} {billsTo[index].invoiceDate} {billsTo[index].clientName} ${itemsList[index].totalPrice}
+                <div key={elem.id} className="containerInvoices__invoice">
+                  <p className="invoice__firstElem">#{elem.id}</p>
+                  <p>{billsTo[index].invoiceDate}</p>
+                  <p>{billsTo[index].clientName}</p>
+                  <p>${itemsList[index].totalPrice}</p> 
+                  <p>{billsTo[index].paid}</p> 
+                  <img className="invoice__lastElem" src={logoFilter} alt="Flèche directionnelle" />
                 </div>
               ))
-            } */}
+            }
           </section>
         </div>
     </div>

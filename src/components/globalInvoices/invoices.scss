@@ -62,6 +62,36 @@
         color: $buttonNewInvoice__default--ligth;
       }
     }
+
+    .containerInvoices__invoices {
+      width: 80%;
+      margin-top: 40px;
+      border: 3px solid green;
+
+      .containerInvoices__invoice {
+        border: 1px solid yellow;
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          // text-align: end;
+          width: 100%;
+        }
+        // .invoice__paid:after {
+        //   content: url("../assets/logo/filter/arrow.svg");
+        //   display: inline-block;
+        //   margin-left: 20px;
+        //   transform: rotate(90deg);
+        // }
+        .invoice__lastElem {
+          transform: rotate(90deg);
+        }
+      }
+      // Style by 
+      // .containerInvoices__invoice p:nth-child(1) {
+      //   margin-left: 20px;
+      // }
+    }
   }
 }
 
