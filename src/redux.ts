@@ -68,9 +68,9 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "25/02/2023",
+      invoiceDate: "Due 19 Aug 2023",
       paymentTerms: "net 30 days",
-      paid: "paid"
+      paid: "Paid"
     },
     {    
       id: "0001AA",
@@ -80,9 +80,9 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "23/02/2023",
+      invoiceDate: "Due 19 Aug 2023",
       paymentTerms: "net 30 days",
-      paid: "pending"
+      paid: "Pending"
     },
     {
       id: "0002AA",
@@ -92,9 +92,9 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "23/03/2023",
+      invoiceDate: "Due 19 Aug 2023",
       paymentTerms: "net 30 days",
-      paid: "draft"
+      paid: "Draft"
     },
     {
       id: "0003AA",
@@ -104,9 +104,9 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "23/04/2023",
+      invoiceDate: "Due 19 Aug 2023",
       paymentTerms: "net 30 days",
-      paid: "paid"
+      paid: "Paid"
     },
     {
       id: "0004AA",
@@ -116,9 +116,9 @@ const billsTo = createSlice({
       city: "Shibuya",
       postCode: "796-0024",
       country: "Japan",
-      invoiceDate: "23/04/2023",
+      invoiceDate: "Due 19 Aug 2023",
       paymentTerms: "net 30 days",
-      paid: "paid"
+      paid: "Paid"
     },
     {
       id: "0005AA",
@@ -128,9 +128,9 @@ const billsTo = createSlice({
       city: "???",
       postCode: "???",
       country: "???",
-      invoiceDate: "23/05/2023",
+      invoiceDate: "Due 19 Aug 2023",
       paymentTerms: "net 30 days",
-      paid: "paid"
+      paid: "Paid"
     },
     {
       id: "0006AA",
@@ -140,9 +140,9 @@ const billsTo = createSlice({
       city: "Bangkok",
       postCode: "1030",
       country: "Thaïland",
-      invoiceDate: "23/05/2023",
+      invoiceDate: "Due 19 Aug 2023",
       paymentTerms: "net 30 days",
-      paid: "paid"
+      paid: "Paid"
     },
   ],
   reducers: {

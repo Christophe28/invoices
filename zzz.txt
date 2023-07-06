@@ -1,7 +1,3 @@
 Structure pour le css nomDuContenaire__nomItem--action
 
-1.La sidebar est finito ! Next step ==> 
-
-2.Le bouton new Invoice est finito
-
-3. Attaquer le style du titre invoices ainsi que son sous-texte
+1. Faire le style de chaque invoice dans le tableau invoices

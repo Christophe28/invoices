@@ -1,23 +1,21 @@
 .containerInvoices {
   width: 100%;
   margin-top: 40px;
-
   display: flex;
   justify-content: center;
   
   .containerInvoices__page {
-    width: 60%;
-
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     .containerInvoices__header {
-      width: 100%;
-
       display: flex;
       justify-content: space-between;
 
       h1 {
+        width: 600px;
         margin: 0;
         font-size: 32px;
       }
@@ -38,11 +36,9 @@
       width: 150px;
       height: 50px;
       border-radius: 30px;
-
       background-color: $buttonNewInvoice__default--ligth;
       color: white;
       font-weight: bolder;
-
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -55,43 +51,89 @@
       span {
         width: 30px;
         border-radius: 50%;
-
         font-size: 24px;
         background-color: white;
-
         color: $buttonNewInvoice__default--ligth;
       }
     }
+    
+    //Config scrollbar
+    .containerInvoices__invoices::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    .containerInvoices__invoices::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    
+    .containerInvoices__invoices::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
 
     .containerInvoices__invoices {
-      width: 80%;
-      margin-top: 40px;
+      max-width: 900px;
+      width: 100%;
+      height: 100%;
+      margin-top: 80px;
       border: 3px solid green;
+      overflow-y: scroll;
+      scrollbar-width: thin;
+      -ms-overflow-style: none;
 
       .containerInvoices__invoice {
         border: 1px solid yellow;
+        height: 72px;
+        margin-bottom: 40px;
         display: flex;
         justify-content: space-between;
 
         p {
-          // text-align: end;
           width: 100%;
+          display: flex;
+          align-items: center;
+          font-size: 1.2rem;
         }
-        // .invoice__paid:after {
-        //   content: url("../assets/logo/filter/arrow.svg");
-        //   display: inline-block;
-        //   margin-left: 20px;
-        //   transform: rotate(90deg);
-        // }
-        .invoice__lastElem {
+        .invoice__point {
+          width: 8px;
+          height: 8px;
+          display: inline-block;
+          border-radius: 50%;
+          background-color: red;
+        }
+        .invoice__paid--center {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          font-size: 16px;
+        }
+        // Style invoice__point by type
+        .paid {
+          background-color: blue;
+        }
+        .pending {
+          background-color: yellow;
+        }
+        .draft {
+          background-color: purple;
+        }
+        .invoice__arrow {
           transform: rotate(90deg);
         }
       }
-      // Style by 
-      // .containerInvoices__invoice p:nth-child(1) {
-      //   margin-left: 20px;
-      // }
     }
   }
 }
 
+// Config by child
+.containerInvoices__invoice p:nth-child(1) {
+  padding-left: 40px;
+}
+
+#lessWidth--endText {
+  // width: 100px;
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}

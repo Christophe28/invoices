@@ -28,12 +28,16 @@ const Invoices = () => {
             {
               billsFrom.map((elem, index) => (
                 <div key={elem.id} className="containerInvoices__invoice">
-                  <p className="invoice__firstElem">#{elem.id}</p>
+                  <p className="fwbold"><span>#</span>{elem.id}</p>
                   <p>{billsTo[index].invoiceDate}</p>
                   <p>{billsTo[index].clientName}</p>
-                  <p>${itemsList[index].totalPrice}</p> 
-                  <p>{billsTo[index].paid}</p> 
-                  <img className="invoice__lastElem" src={logoFilter} alt="Flèche directionnelle" />
+                  <p id="lessWidth--endText" className="invoice__price fwbold">${itemsList[index].totalPrice}</p> 
+                  <p className="invoice__paid--center fwbold fs12">
+                    <span className={`invoice__point ${billsTo[index].paid.toLowerCase()}`}>
+                    </span>
+                    {billsTo[index].paid}
+                    <img className="invoice__arrow txtEnd" src={logoFilter} alt="Flèche directionnelle" />
+                  </p> 
                 </div>
               ))
             }
