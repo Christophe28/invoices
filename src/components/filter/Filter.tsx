@@ -20,7 +20,7 @@ const Filter = () => {
 
   return (
     <div className="filter">
-      <div onClick={() => setIsDisplay(!isDisplay)} className="filter__filteredByStatus fs12 fwbold">
+      <div onClick={() => setIsDisplay(!isDisplay)} className="filter__filteredByStatus fs16 fwbold">
         Filtered by status 
         <img src={arrow} alt="Flèche directionnelle" className={`filter__filteredByStatus__img ${isDisplay ? "rotateDown" : "rotateUp"}`}/>
       </div>

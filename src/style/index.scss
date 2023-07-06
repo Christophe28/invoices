@@ -4,10 +4,11 @@
 // Couleur
 
 // 1. Config
-@import "./config/baseBody";
+@import "./config/colors_bg";
+@import "./config/colors_buttons.scss";
 @import "./config/colors_sideBar";
 @import "./config/colors_text";
-@import "./config/colors_buttons.scss";
+@import "./config/baseBody";
 
 // 2. Components styles
 // 2A. wrapper

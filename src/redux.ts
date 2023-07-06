@@ -196,8 +196,8 @@ const itemsList = createSlice({
       id: "0005AA",
       itemName: "Taho bottle",
       quantity: 1,
-      price: 100000,
-      totalPrice: 1 * 100000
+      price: 10000000,
+      totalPrice: 1 * 10000000
     },
     {
       id: "0006AA",
