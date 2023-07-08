@@ -5,6 +5,7 @@ import { Roostate, handleOptionChange } from "../../redux";
 import { Option } from "../../type/typeOption";
 
 import arrow from "../../assets/logo/filter/arrow.svg";
+import Checkbox from "../buttons/Checkbox";
 
 const options:Option[] = [
   {id: 1, label: "Draft"},
@@ -27,20 +28,24 @@ const Filter = () => {
       <div className={isDisplay ? "filter__containerOption display" : "filter__containerOption displayNone"}>
         {
           options.map(option => (
-            <div className="filter__customCheckbox">
-              <input
-                className="filter__option"
-                type="checkbox"
-                checked={selectedOption === option.id}
-                onChange={() => dispatch({
-                  type: "selectedOption/handleOptionChange",
-                  payload: option.id
-                })}
-              />
-              <label key={option.id} className="fwbold">
-                {option.label}
-              </label>
-            </div>
+            <section key={option.id}>
+              <div>
+                <Checkbox
+                  classWrapper={selectedOption === option.id ? "checkBg" : "uncheckBg"}
+                  check={selectedOption === option.id} 
+                  label={option.label}
+                  onChange={() => dispatch({
+                    type: "selectedOption/handleOptionChange",
+                    payload: option.id
+                  })}
+                  classLogo={selectedOption === option.id ? "checked" : "unchecked"}
+                  onClickLabel={() => dispatch({
+                    type: "selectedOption/handleOptionChange",
+                    payload: option.id
+                  })}
+                />
+              </div>
+            </section>
           ))
         }
       </div>
