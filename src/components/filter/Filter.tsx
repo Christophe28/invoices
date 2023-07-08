@@ -27,17 +27,20 @@ const Filter = () => {
       <div className={isDisplay ? "filter__containerOption display" : "filter__containerOption displayNone"}>
         {
           options.map(option => (
-            <label key={option.id}>
-              <input 
+            <div className="filter__customCheckbox">
+              <input
+                className="filter__option"
                 type="checkbox"
                 checked={selectedOption === option.id}
                 onChange={() => dispatch({
                   type: "selectedOption/handleOptionChange",
                   payload: option.id
-                })} 
+                })}
               />
+              <label key={option.id} className="fwbold">
                 {option.label}
-            </label>
+              </label>
+            </div>
           ))
         }
       </div>
