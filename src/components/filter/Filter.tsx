@@ -1,11 +1,19 @@
+// React / Redux
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Roostate, handleOptionChange } from "../../redux";
+import { Roostate } from "../../redux";
 
+// Type
 import { Option } from "../../type/typeOption";
 
-import arrow from "../../assets/logo/filter/arrow.svg";
+// Functions
+import { darkmode } from "../../functions/classe/darkmode";
+
+// Components
 import Checkbox from "../buttons/Checkbox";
+
+// Img
+import arrow from "../../assets/logo/filter/arrow.svg";
 
 const options:Option[] = [
   {id: 1, label: "Draft"},
@@ -14,9 +22,9 @@ const options:Option[] = [
 ]
 
 const Filter = () => {
-  const selectedOption = useSelector((state:Roostate) => state.selectedOption)
+  const selectedOption = useSelector((state:Roostate) => state.selectedOption);
+  const isDarkmode = useSelector((state: Roostate) => state.isDarkmode);
   const [isDisplay, setIsDisplay] = useState<boolean>(false);
-
   const dispatch = useDispatch();
 
   return (
@@ -25,13 +33,13 @@ const Filter = () => {
         Filtered by status 
         <img src={arrow} alt="Flèche directionnelle" className={`filter__filteredByStatus__img ${isDisplay ? "rotateDown" : "rotateUp"}`}/>
       </div>
-      <div className={isDisplay ? "filter__containerOption display" : "filter__containerOption displayNone"}>
+      <div className={darkmode(isDarkmode, isDisplay ? "filter__containerOption display" : "filter__containerOption displayNone")}>
         {
           options.map(option => (
             <section key={option.id}>
               <div>
                 <Checkbox
-                  classWrapper={selectedOption === option.id ? "checkBg" : "uncheckBg"}
+                  classWrapper={darkmode(isDarkmode, selectedOption === option.id ? "checkBg" : "uncheckBg")}
                   check={selectedOption === option.id} 
                   label={option.label}
                   onChange={() => dispatch({

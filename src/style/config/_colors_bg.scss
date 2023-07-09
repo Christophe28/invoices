@@ -1,8 +1,18 @@
 $primary_bg: #F8F8FB;
+$primary_bg_darkmode: #141625;
 
 $invoiceArray_bg: #FFF;
+$invoiceArray_bg_darkmode: #1E2139;
+
 $filter_bg: #FFF;
+$filter_bg_darkmode: #252945;
+$filter_checkbox_bg: #7C5DFA;
 
 $paid_bg: #F3FDFA;
+$paid_bg_darkmode: rgb(0 159 112 / 20%);
 $pending_bg: #FFF9F0;
+$pending_bg_darkmode: rgb(255 154 1 / 10%);
 $draft_bg: #F4F4F5;
+$draft_bg_darkmode: rgb(244 244 245 / 10%);
+
+$circle_draft_bg_darkmode: #FFF;

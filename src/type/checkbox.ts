@@ -4,4 +4,5 @@ export type CheckboxProps = {
   onChange:() => void
   label:string
   classLogo:string
+  onClickLabel:() => void
 }

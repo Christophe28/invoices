@@ -1,7 +1,21 @@
+@mixin darkmode($background-color, $color) {
+  background-color: $background-color;
+  color: $color;
+}
+.div1 {
+  &.darkmode {
+    @include darkmode(yellow, green)
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
   background-color: $primary_bg;
+
+  &.darkmode {
+    @include darkmode(black, red)
+  }
 }
 
 button {
@@ -27,4 +41,3 @@ button {
 .lessOpacity {
   color: $text_lessOpacity;
 }
-

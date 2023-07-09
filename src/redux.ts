@@ -226,17 +226,29 @@ const selectedOption = createSlice({
   }
 })
 
+const isDarkmode = createSlice({
+  name: "isDarkmode",
+  initialState: true,
+  reducers: {
+    changeMode: (state, action) => {
+      return action.payload
+    }
+  }
+})
+
 export const {consoleBillsFrom} = billsFrom.actions;
 export const {consoleBillsTo} = billsTo.actions;
 export const {consoleItemsList} = itemsList.actions;
 export const {handleOptionChange} = selectedOption.actions;
+export const {changeMode} = isDarkmode.actions;
 
 export const myStore = configureStore({
   reducer: {
     billsFrom: billsFrom.reducer,
     billsTo: billsTo.reducer,
     itemsList: itemsList.reducer,
-    selectedOption: selectedOption.reducer
+    selectedOption: selectedOption.reducer,
+    isDarkmode: isDarkmode.reducer
   }
 })
 

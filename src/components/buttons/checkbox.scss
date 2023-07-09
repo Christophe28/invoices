@@ -5,17 +5,30 @@
   font-size: 18px;
   font-weight: bold;
   
-  .checkBg {background-color: #7C5DFA;}
-  .unCheckBg {background-color: #7C5DFA;}
+  .checkBg {
+    background-color: $filter_checkbox_bg;
+
+    &.darkmode {
+      @include darkmode($filter_checkbox_bg, "");
+    }
+  }
+  .unCheckBg {
+    background-color: $filter_checkbox_bg;
+  }
+
   section {
     position: relative;
-    border: 2px solid #7C5DFA;
+    border: 2px solid $filter_checkbox_bg;
     background-color: #DFE3FA;
     border-radius: 8px;
     width: 30px;
     height: 30px;
     margin: 0px;
     padding: 0px;
+
+    &.darkmode {
+      @include darkmode(#1E2139, "");
+    }
 
     .container-checkbox__checkbox {
       margin: 0px;

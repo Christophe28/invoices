@@ -81,21 +81,26 @@
       scrollbar-width: thin;
       -ms-overflow-style: none;
 
-
       .containerInvoices__invoice {
         height: 72px;
         margin-bottom: 40px;
+        border-radius: 10px;
         display: flex;
         justify-content: space-between;
         cursor: pointer;
         box-shadow: 0px 10px 10px -15px rgba(0, 0, 0, 0.5), 0px -10px 10px -15px rgba(0, 0, 0, 0.5);
         background-color: $invoiceArray_bg;
 
+        &.darkmode {
+          @include darkmode($invoiceArray_bg_darkmode, $text_primaryColor_darkmode)
+        }
+
         p {
           width: 100%;
           display: flex;
           align-items: center;
           font-size: 1.2rem;
+          border-radius: 10px;
         }
         .invoice__point {
           width: 8px;
@@ -119,18 +124,31 @@
         }
         .circleDraft {
           background-color: $text_draft;
+
+          &.darkmode {
+            @include darkmode($circle_draft_bg_darkmode, "");
+          }
         }
         .textPaid {
           color: $text_paid;
           background-color: $paid_bg;
+          &.darkmode {
+            @include darkmode($paid_bg_darkmode, $text_paid);
+          }
         }
         .textPending {
           color: $text_pending;
           background-color: $pending_bg;
+          &.darkmode {
+            @include darkmode($pending_bg_darkmode, $text_pending);
+          }
         }
         .textDraft {
           color: $text_draft;
           background-color: $draft_bg;
+          &.darkmode {
+            @include darkmode($draft_bg_darkmode, white);
+          }
         }
         .invoice__arrow {
           width: 12px;

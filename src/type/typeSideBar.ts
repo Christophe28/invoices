@@ -3,4 +3,5 @@ export type SideBarIconeProps = {
   classNameImg?:string
   img:string
   alt:string
+  onClick?:() => {type:string, payload:boolean}
 }
