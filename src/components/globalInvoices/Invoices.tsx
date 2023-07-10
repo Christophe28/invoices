@@ -42,7 +42,7 @@ const Invoices = () => {
             {
               billsFrom.length > 0 ? (
                 billsFrom.map((elem, index) => (
-                  <NavLink key={elem.id} to={`./invoiceDetals/${elem.id}`} onClick={() => dispatch({
+                  <NavLink key={elem.id} to={`./invoiceDetails/${elem.id}`} onClick={() => dispatch({
                     type: "rooter/changeRoot",
                     payload: elem.id 
                   })}>

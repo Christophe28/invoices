@@ -2,7 +2,7 @@
   display: flex;
   height: 100vh;
   min-width: 1000px;
-
+  
   &.darkmode {
     @include darkmode($primary_bg_darkmode, $text_primaryColor_darkmode)
   }

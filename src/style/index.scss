@@ -13,8 +13,12 @@
 // 2. Components styles
 // 2A. wrapper
 @import "../components/viewWrapper/wrapper.scss";
-
 @import "../components/viewWrapper/sideBar/sideBar.scss";
+
+// 2B. Home page "/"
 @import "../components/filter/filter.scss";
 @import "../components/globalInvoices/invoices.scss";
 @import "../components/buttons/checkbox.scss";
+
+// 2C. detail invoice
+@import "../components/invoiceDetails/invoiceDetails.scss";
