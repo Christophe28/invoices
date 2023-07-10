@@ -1,4 +1,4 @@
-import { PayloadAction, configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 // import { BillFrom, BillTo, ItemList, CompleteInvoice } from "./type/typeInvoices";
 
 const billsFrom = createSlice({
@@ -215,6 +215,7 @@ const itemsList = createSlice({
   }
 })
 
+// Update options to filter
 const selectedOption = createSlice({
   name: "selectedOption",
   initialState: null,
@@ -226,21 +227,31 @@ const selectedOption = createSlice({
   }
 })
 
+// Check darkmode and return it
 const isDarkmode = createSlice({
   name: "isDarkmode",
   initialState: true,
   reducers: {
-    changeMode: (state, action) => {
-      return action.payload
-    }
+    changeMode: (state, action) => { return action.payload }
   }
 })
+
+// Rooter
+const rooter = createSlice({
+  name: "rooter",
+  initialState: "",
+  reducers: {
+    changeRoot: (state, action) => { return action.payload }
+  }
+})
+
 
 export const {consoleBillsFrom} = billsFrom.actions;
 export const {consoleBillsTo} = billsTo.actions;
 export const {consoleItemsList} = itemsList.actions;
 export const {handleOptionChange} = selectedOption.actions;
 export const {changeMode} = isDarkmode.actions;
+export const {changeRoot} = rooter.actions;
 
 export const myStore = configureStore({
   reducer: {
@@ -248,8 +259,9 @@ export const myStore = configureStore({
     billsTo: billsTo.reducer,
     itemsList: itemsList.reducer,
     selectedOption: selectedOption.reducer,
-    isDarkmode: isDarkmode.reducer
+    isDarkmode: isDarkmode.reducer,
+    rooter: rooter.reducer
   }
-})
+});
 
 export type Roostate = ReturnType<typeof myStore.getState>

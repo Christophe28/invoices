@@ -1,5 +1,5 @@
 // React / Redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Roostate } from '../../redux';
 
 // Functions
@@ -14,6 +14,7 @@ import Invoice from './Invoice';
 import logoFilter from "../../assets/logo/filter/arrow.svg";
 import imgEmptyInvoice from "../../assets/logo/globalInvoices/empty_invoice.svg";
 import imgEmptyInvoiceDarkmode from "../../assets/logo/globalInvoices/empty_invoice_darkmode.svg";
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -22,7 +23,8 @@ const Invoices = () => {
   const billsTo = useSelector((state:Roostate) => state.billsTo);
   const itemsList = useSelector((state:Roostate) => state.itemsList);
   const isDarkmode = useSelector((state: Roostate) => state.isDarkmode);
-  
+  const dispatch = useDispatch();
+
   return (
     <div className={darkmode(isDarkmode, "containerInvoices")}>
         <div className="containerInvoices__page">
@@ -40,18 +42,23 @@ const Invoices = () => {
             {
               billsFrom.length > 0 ? (
                 billsFrom.map((elem, index) => (
-                  <Invoice
-                    id={elem.id}
-                    isDarkmode={isDarkmode}
-                    invoiceDate={billsTo[index].invoiceDate}
-                    clientName={billsTo[index].clientName}
-                    totalPrice={itemsList[index].totalPrice}
-                    paid={billsTo[index].paid}
-                    logoFilter={logoFilter}
-                  />
+                  <NavLink key={elem.id} to={`./invoiceDetals/${elem.id}`} onClick={() => dispatch({
+                    type: "rooter/changeRoot",
+                    payload: elem.id 
+                  })}>
+                    <Invoice
+                      id={elem.id}
+                      isDarkmode={isDarkmode}
+                      invoiceDate={billsTo[index].invoiceDate}
+                      clientName={billsTo[index].clientName}
+                      totalPrice={itemsList[index].totalPrice}
+                      paid={billsTo[index].paid}
+                      logoFilter={logoFilter}
+                    />
+                  </NavLink>
                 ))
               ) : (
-                <img src={isDarkmode ? imgEmptyInvoiceDarkmode : imgEmptyInvoice} alt="Vous n'avez pas de facture" className="test"/>
+                <img src={isDarkmode ? imgEmptyInvoiceDarkmode : imgEmptyInvoice} alt="Vous n'avez pas de facture" className="noInvoices"/>
               )
             }
           </section>

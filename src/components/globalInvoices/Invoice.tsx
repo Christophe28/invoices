@@ -22,8 +22,9 @@ function formatNumber(number:number) {
 }
 
 const Invoice:React.FC<InvoiceProps> = ({id, isDarkmode, invoiceDate, clientName, totalPrice, paid, logoFilter}) => {
+
   return (
-    <div key={id} className={darkmode(isDarkmode, "containerInvoices__invoice")}>
+    <div className={darkmode(isDarkmode, "containerInvoices__invoice")}>
       <p className="fwbold"><span className="fs12 lessOpacity">#</span>{id}</p>
       <p className="lessOpacity">{invoiceDate}</p>
       <p className="lessOpacity">{clientName}</p>
