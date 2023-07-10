@@ -7,29 +7,15 @@ import { darkmode } from '../../functions/classe/darkmode';
 
 // Components
 import Filter from '../filter/Filter';
+// Update logic of component. Need filter
+import Invoice from './Invoice';
 
 // Img
 import logoFilter from "../../assets/logo/filter/arrow.svg";
+import imgEmptyInvoice from "../../assets/logo/globalInvoices/empty_invoice.svg";
+import imgEmptyInvoiceDarkmode from "../../assets/logo/globalInvoices/empty_invoice_darkmode.svg";
 
-// move the function
-function formatNumber(number:number) {
-  const integerPart = Math.floor(number);
-  const decimalPart = (number % 1) !== 0 ? (number % 1).toFixed(2) : '';
-  const numberString = integerPart.toString();
-  const formattedNumber = [];
-  
-  if (integerPart.toString().length <= 4) {
-    return number;
-  }
-  for (let i = 0; i < numberString.length; i++) {
-    if (i > 0 && (numberString.length - i) % 3 === 0) {
-      formattedNumber.push(' ');
-    }
-    formattedNumber.push(numberString[i]);
-  }
 
-  return formattedNumber.join('') + decimalPart;
-}
 
 const Invoices = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
@@ -52,20 +38,21 @@ const Invoices = () => {
           </div>
           <section className={darkmode(isDarkmode, "containerInvoices__invoices")}>
             {
-              billsFrom.map((elem, index) => (
-                <div key={elem.id} className={darkmode(isDarkmode, "containerInvoices__invoice")}>
-                  <p className="fwbold"><span className="fs12 lessOpacity">#</span>{elem.id}</p>
-                  <p className="lessOpacity">{billsTo[index].invoiceDate}</p>
-                  <p className="lessOpacity">{billsTo[index].clientName}</p>
-                  <p id="lessWidth--endText" className="invoice__price fwbold">${formatNumber(itemsList[index].totalPrice)}</p> 
-                  <p id="invoice__lastElem--lessWidth" className={darkmode(isDarkmode, `invoice__paid--center fwbold fs12 text${billsTo[index].paid}`)}>
-                    <span className={darkmode(isDarkmode, `invoice__point circle${billsTo[index].paid}`)}>
-                    </span>
-                    {billsTo[index].paid}
-                  </p> 
-                  <img className="invoice__arrow" src={logoFilter} alt="Flèche directionnelle" />
-                </div>
-              ))
+              billsFrom.length > 0 ? (
+                billsFrom.map((elem, index) => (
+                  <Invoice
+                    id={elem.id}
+                    isDarkmode={isDarkmode}
+                    invoiceDate={billsTo[index].invoiceDate}
+                    clientName={billsTo[index].clientName}
+                    totalPrice={itemsList[index].totalPrice}
+                    paid={billsTo[index].paid}
+                    logoFilter={logoFilter}
+                  />
+                ))
+              ) : (
+                <img src={isDarkmode ? imgEmptyInvoiceDarkmode : imgEmptyInvoice} alt="Vous n'avez pas de facture" className="test"/>
+              )
             }
           </section>
         </div>

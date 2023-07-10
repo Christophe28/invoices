@@ -18,3 +18,10 @@
 @import "../components/filter/filter.scss";
 @import "../components/globalInvoices/invoices.scss";
 @import "../components/buttons/checkbox.scss";
+
+.test {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -13,6 +13,7 @@ import { darkmode } from "../../../functions/classe/darkmode";
 //Img
 import iconPacman from "../../../assets/logo/sideBar/pacman.svg";
 import iconMoon from "../../../assets/logo/sideBar/moon.svg";
+import iconSun from "../../../assets/logo/sideBar/sun.svg";
 import iconPp from "../../../assets/logo/sideBar/pp.svg";
 
 
@@ -30,8 +31,8 @@ const SideBar = () => {
         <SideBarIcone
           classNameContainer="sideBar__icone--translate sideBar__iconeDarkMode"
           classNameImg="sideBar__containerBottom__img"
-          img={iconMoon}
-          alt="Lune grise"
+          img={isDarkmode ? iconSun : iconMoon}
+          alt={isDarkmode ? "Sun" : "Moon"}
           onClick={() => dispatch({
             type: "isDarkmode/changeMode",
             payload: !isDarkmode
