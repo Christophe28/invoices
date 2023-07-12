@@ -1,12 +1,56 @@
-.test {
-  background-color: red;
-  width: 100%;
+.invoiceDetails {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Navlink go back
+  .invoiceDetails__navlink {
+    margin-top: 40px;
+    width: 70%;
+    display: flex;
+
+    .invoiceDetails__goBack {
+      width: 130px;
+      color: black;
+
+      .invoiceDetails__arrow {
+        transform: rotate(-90deg);
+        margin-right: 20px;
+      }
+
+      &.darkmode {
+        @include darkmode("", $text_lessOpacity);
+      }
+    }
+  }
   
-  h2 {
-    background-color: navy;
+  // Header
+  .invoiceDetails__header {
+    .edit {
+      background-color: $buttonEdit__default--ligth;
+      color: $buttonEdit_text__default--ligth;
+      width: 75px;
+      &.darkmode {
+        @include darkmode($buttonEdit__default--dark, "")
+      }
+
+      &:hover {
+        background-color: $buttonEdit__hover--ligth;
+      }
+    }
+    .delete {
+      background-color: #EC5757;
+      width: 100px;
+
+      &:hover {
+        background-color: $buttonDelete__hover--ligth;
+
+      }
+    }
   }
 
-  p {
-    background-color: black;
+  .invoiceDetails__body {
+    border: 2px solid yellow;
   }
 }

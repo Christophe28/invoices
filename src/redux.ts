@@ -258,7 +258,6 @@ const rooter = createSlice({
   }
 })
 
-
 export const {consoleBillsFrom} = billsFrom.actions;
 export const {consoleBillsTo} = billsTo.actions;
 export const {consoleItemsList} = itemsList.actions;

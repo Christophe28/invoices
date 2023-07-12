@@ -2,8 +2,9 @@
 // 1A. Buttons bg
 $buttonAddNewItem__default: #F9FAFE;
 $buttonAddNewItem__hover: #DFE3FA;
+
 $buttonEdit__default--ligth: #F9FAFE;
-$buttonEdit__hover--ligth: #252945;
+$buttonEdit__hover--ligth: #DFE3FA;
 
 $buttonDelete__default--ligth: #EC5757;
 $buttonDelete__hover--ligth: #FF9797;
@@ -22,13 +23,13 @@ $button_text__default: #FFFFFF;
 
 $buttonAddNewItem_text__default: #7E88C3;
 
-$buttonEdit_text__default--ligth: #DFE3FA;
+$buttonEdit_text__default--ligth: #7E88C3;
 
 $buttonSaveAsDraft_text__default--ligth: #888EB0;
 
 //========== 2. Colors dark mode ==========//
 // 2A. Buttons bg
-$buttonEdit__default--dark: #DFE3FA;
+$buttonEdit__default--dark: #252945;
 $buttonEdit__hover--dark: #FFFFFF;
 
 $buttonSaveAsDraft__default--dark: #373B53;

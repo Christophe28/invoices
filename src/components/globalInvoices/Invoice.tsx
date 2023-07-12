@@ -1,5 +1,6 @@
 import { darkmode } from "../../functions/classe/darkmode";
 import { InvoiceProps } from "../../type/invoice";
+import Status from "../buttons/Status";
 
 // move the function
 function formatNumber(number:number) {
@@ -29,11 +30,7 @@ const Invoice:React.FC<InvoiceProps> = ({id, isDarkmode, invoiceDate, clientName
       <p className="lessOpacity">{invoiceDate}</p>
       <p className="lessOpacity">{clientName}</p>
       <p id="lessWidth--endText" className="invoice__price fwbold">${formatNumber(totalPrice)}</p> 
-      <p id="invoice__lastElem--lessWidth" className={darkmode(isDarkmode, `invoice__paid--center fwbold fs12 text${paid}`)}>
-        <span className={darkmode(isDarkmode, `invoice__point circle${paid}`)}>
-        </span>
-        {paid}
-      </p> 
+      <Status paid={paid} />
       <img className="invoice__arrow" src={logoFilter} alt="Flèche directionnelle" />
     </div>
   );

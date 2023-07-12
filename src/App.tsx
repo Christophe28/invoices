@@ -17,13 +17,12 @@ function App() {
   // Navigation with url
   useEffect(() => {
     if(location.pathname.split("/").length > 2) {
-      console.log('Je suis dans la condition ==>', location.pathname.split("/"));
       dispatch({
         type: "rooter/changeRoot",
         payload: location.pathname.split("/")[2]
       });
     }
-  }, [location])
+  }, [location, dispatch])
 
   return (
     <>

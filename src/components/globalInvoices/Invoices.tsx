@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom';
 
 // Functions
 import { darkmode } from '../../functions/classe/darkmode';
-import { filters } from '../../functions/array/filters';
+import { filters, filtersByFilters } from '../../functions/array/filters';
 
 // Type
-import { BillTo } from '../../type/typeInvoices';
+import { BillTo, ItemList } from '../../type/typeInvoices';
 
 // Components
 import Filter from '../filter/Filter';
@@ -24,13 +24,15 @@ const Invoices = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
   const billsTo = useSelector((state:Roostate) => state.billsTo);
   const itemsList = useSelector((state:Roostate) => state.itemsList);
-  const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
   const filterInvoice = useSelector((state:Roostate) => state.filterInvoice);
+  const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
 
   const dispatch = useDispatch();
 
   const billsToFilterByPayment = filters<BillTo>(billsTo, "paid", filterInvoice);
+  const itemsToFilterByPayment = filtersByFilters<ItemList, BillTo>(itemsList, billsToFilterByPayment);
   const invoices = filterInvoice === "all" ? billsTo : billsToFilterByPayment;
+  const items = filterInvoice === "all" ? itemsList : itemsToFilterByPayment;
 
   return (
     <div className={darkmode(isDarkmode, "containerInvoices")}>
@@ -42,7 +44,7 @@ const Invoices = () => {
             </div>
             <div className="containerInvoices__containerButtons">
               <Filter />
-              <button className="containerInvoices__containerButtons__buttonNewInvoice"><span>+</span> New invoice</button>
+              <button className="defaultButton"><span>+</span> New invoice</button>
             </div>
           </div>
           <section className={darkmode(isDarkmode, "containerInvoices__invoices")}>
@@ -59,7 +61,7 @@ const Invoices = () => {
                         isDarkmode={isDarkmode}
                         invoiceDate={elem.invoiceDate}
                         clientName={elem.clientName}
-                        totalPrice={itemsList[index].totalPrice}
+                        totalPrice={items[index].totalPrice}
                         paid={elem.paid}
                         logoFilter={logoFilter}
                       />

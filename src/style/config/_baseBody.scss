@@ -20,7 +20,6 @@ body {
 
 a {
   text-decoration: none;
-  
 }
 
 button {
@@ -45,4 +44,88 @@ button {
 
 .lessOpacity {
   color: $text_lessOpacity;
+}
+
+// ===================== General style for status paid, pending, draft
+p {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+.invoice__point {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.invoice__paid--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+// Style invoice paid / pending / draft ==> circle, text, bg
+.circlePaid {
+  background-color: $text_paid;
+}
+.circlePending {
+  background-color: $text_pending;
+}
+.circleDraft {
+  background-color: $text_draft;
+
+  &.darkmode {
+    @include darkmode($circle_draft_bg_darkmode, "");
+  }
+}
+.textPaid {
+  color: $text_paid;
+  background-color: $paid_bg;
+  &.darkmode {
+    @include darkmode($paid_bg_darkmode, $text_paid);
+  }
+}
+.textPending {
+  color: $text_pending;
+  background-color: $pending_bg;
+  &.darkmode {
+    @include darkmode($pending_bg_darkmode, $text_pending);
+  }
+}
+.textDraft {
+  color: $text_draft;
+  background-color: $draft_bg;
+  &.darkmode {
+    @include darkmode($draft_bg_darkmode, white);
+  }
+}
+
+// Buttons
+.defaultButton {
+  width: 150px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: $buttonNewInvoice__default--ligth;
+  color: white;
+  font-weight: bolder;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: none;
+
+  &:hover {
+    background-color: $buttonNewInvoice__hover--ligth;
+  }
+
+  span {
+    width: 30px;
+    border-radius: 50%;
+    font-size: 24px;
+    background-color: white;
+    color: $buttonNewInvoice__default--ligth;
+  }
 }

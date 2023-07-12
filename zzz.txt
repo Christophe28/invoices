@@ -1,1 +1,1 @@
-Logique pour trier le tableau par catégorie dans globalInvoices
+Faire le squelette de la page invoiceDetail
