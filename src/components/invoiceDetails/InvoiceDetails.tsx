@@ -1,15 +1,18 @@
 import { useSelector } from "react-redux";
 import { Roostate } from "../../redux";
 
+import { filters } from '../../functions/array/filters';
+
 const InvoiceDetails = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
   const billsTo = useSelector((state:Roostate) => state.billsTo);
   const itemsList = useSelector((state:Roostate) => state.itemsList);
   const root = useSelector((state:Roostate) => state.rooter);
 
-  const filterBillsFrom = billsFrom.filter(e => e.id === root);
-  const filterBillsTo = billsTo.filter(e => e.id === root);
-  const filterItemsList = itemsList.filter(e => e.id === root);  
+  const filterBillsFrom = filters(billsFrom, "id", root);
+  const filterBillsTo = filters(billsTo, "id", root);
+  const filterItemsList = filters(itemsList, "id", root);
+  
   const completeInvoice = {
     fCbillsFrom: Object.assign({}, filterBillsFrom),
     fCbillsTo: Object.assign({}, filterBillsTo),

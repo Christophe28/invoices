@@ -21,30 +21,35 @@ const billsFrom = createSlice({
     {
       id: "0002AA",
       streetAddress: "rue bibou",
+      city: "Mons",
       postCode: "2222",
       country: "Belgium"
     },
     {
       id: "0003AA",
       streetAddress: "rue de la feuille",
+      city: "Mons",
       postCode: "3333",
       country: "Belgium"
     },
     {
       id: "0004AA",
       streetAddress: "rue de la feuille",
+      city: "Mons",
       postCode: "3333",
       country: "Belgium"
     },
     {
       id: "0005AA",
       streetAddress: "rue de la feuille",
+      city: "Mons",
       postCode: "3333",
       country: "Belgium"
     },
     {
       id: "0006AA",
       streetAddress: "rue de la feuille",
+      city: "Mons",
       postCode: "3333",
       country: "Belgium"
     },
@@ -236,6 +241,14 @@ const isDarkmode = createSlice({
   }
 })
 
+const filterInvoice = createSlice({
+  name: "filterInvoice",
+  initialState: "all",
+  reducers: {
+    setFilterInvoice: (state, action) => { return action.payload }
+  }
+})
+
 // Rooter
 const rooter = createSlice({
   name: "rooter",
@@ -252,6 +265,7 @@ export const {consoleItemsList} = itemsList.actions;
 export const {handleOptionChange} = selectedOption.actions;
 export const {changeMode} = isDarkmode.actions;
 export const {changeRoot} = rooter.actions;
+export const {setFilterInvoice} = filterInvoice.actions;
 
 export const myStore = configureStore({
   reducer: {
@@ -260,6 +274,7 @@ export const myStore = configureStore({
     itemsList: itemsList.reducer,
     selectedOption: selectedOption.reducer,
     isDarkmode: isDarkmode.reducer,
+    filterInvoice: filterInvoice.reducer,
     rooter: rooter.reducer
   }
 });

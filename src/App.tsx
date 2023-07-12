@@ -10,9 +10,11 @@ import InvoiceDetails from "./components/invoiceDetails/InvoiceDetails";
 
 function App() {
   const rootInvoiceDetals = useSelector((state:Roostate) => state.rooter);
+
   const location = useLocation();
   const dispatch = useDispatch();
 
+  // Navigation with url
   useEffect(() => {
     if(location.pathname.split("/").length > 2) {
       console.log('Je suis dans la condition ==>', location.pathname.split("/"));

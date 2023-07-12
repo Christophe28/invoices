@@ -1,5 +1,5 @@
 // React / Redux
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Roostate } from "../../redux";
 
@@ -23,9 +23,24 @@ const options:Option[] = [
 
 const Filter = () => {
   const selectedOption = useSelector((state:Roostate) => state.selectedOption);
-  const isDarkmode = useSelector((state: Roostate) => state.isDarkmode);
+  const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
   const [isDisplay, setIsDisplay] = useState<boolean>(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(selectedOption != null) {
+      dispatch({
+        type: "filterInvoice/setFilterInvoice",
+        payload: options[selectedOption - 1].label
+      })
+    }
+    if(selectedOption === null) {
+      dispatch({
+        type: "filterInvoice/setFilterInvoice",
+        payload: "all"
+      })
+    }
+  }, [selectedOption, dispatch])
 
   return (
     <div className="filter">

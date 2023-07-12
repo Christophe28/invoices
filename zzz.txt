@@ -1,7 +1,1 @@
-Plusieurs possibilités.
-
-- 1 Faire la logique qui va avec le contenu déjà créé
-- 2 Poursuivre avec les formulaires 
-- 3 Créer la page détail invoice 
-
-- Priorité  ==> Créer la page détail invoice
+Logique pour trier le tableau par catégorie dans globalInvoices

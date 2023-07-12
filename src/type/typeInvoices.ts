@@ -19,6 +19,7 @@ export type BillTo = {
   country:string
   invoiceDate:string
   paymentTerms:string
+  paid:string
 }
 
 export type ItemList = {
@@ -44,30 +45,30 @@ type InvoicesState = {
   itemList:ItemList
 }
 
-const initialInvoice:InvoicesState = {
-  billFrom: {
-    id: "",
-    streetAddress: '',
-    city: '',
-    postCode: '',
-    country: '',
-  },
-  billTo: {
-    id: "",
-    clientName: '',
-    clientMail: '',
-    streetAddress: '',
-    city: '',
-    postCode: '',
-    country: '',
-    invoiceDate: "",
-    paymentTerms: '',
-  },
-  itemList: {
-    id: "",
-    itemName: "",
-    quantity: 1,
-    price: 1,
-    totalPrice: 1
-  },
-}
+// const initialInvoice:InvoicesState = {
+//   billFrom: {
+//     id: "",
+//     streetAddress: '',
+//     city: '',
+//     postCode: '',
+//     country: '',
+//   },
+//   billTo: {
+//     id: "",
+//     clientName: '',
+//     clientMail: '',
+//     streetAddress: '',
+//     city: '',
+//     postCode: '',
+//     country: '',
+//     invoiceDate: "",
+//     paymentTerms: '',
+//   },
+//   itemList: {
+//     id: "",
+//     itemName: "",
+//     quantity: 1,
+//     price: 1,
+//     totalPrice: 1
+//   },
+// }

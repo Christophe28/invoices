@@ -1,9 +1,14 @@
 // React / Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { Roostate } from '../../redux';
+import { NavLink } from 'react-router-dom';
 
 // Functions
 import { darkmode } from '../../functions/classe/darkmode';
+import { filters } from '../../functions/array/filters';
+
+// Type
+import { BillTo } from '../../type/typeInvoices';
 
 // Components
 import Filter from '../filter/Filter';
@@ -14,16 +19,18 @@ import Invoice from './Invoice';
 import logoFilter from "../../assets/logo/filter/arrow.svg";
 import imgEmptyInvoice from "../../assets/logo/globalInvoices/empty_invoice.svg";
 import imgEmptyInvoiceDarkmode from "../../assets/logo/globalInvoices/empty_invoice_darkmode.svg";
-import { NavLink } from 'react-router-dom';
-
-
 
 const Invoices = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
   const billsTo = useSelector((state:Roostate) => state.billsTo);
   const itemsList = useSelector((state:Roostate) => state.itemsList);
-  const isDarkmode = useSelector((state: Roostate) => state.isDarkmode);
+  const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
+  const filterInvoice = useSelector((state:Roostate) => state.filterInvoice);
+
   const dispatch = useDispatch();
+
+  const billsToFilterByPayment = filters<BillTo>(billsTo, "paid", filterInvoice);
+  const invoices = filterInvoice === "all" ? billsTo : billsToFilterByPayment;
 
   return (
     <div className={darkmode(isDarkmode, "containerInvoices")}>
@@ -40,23 +47,25 @@ const Invoices = () => {
           </div>
           <section className={darkmode(isDarkmode, "containerInvoices__invoices")}>
             {
-              billsFrom.length > 0 ? (
-                billsFrom.map((elem, index) => (
-                  <NavLink key={elem.id} to={`./invoiceDetails/${elem.id}`} onClick={() => dispatch({
-                    type: "rooter/changeRoot",
-                    payload: elem.id 
-                  })}>
-                    <Invoice
-                      id={elem.id}
-                      isDarkmode={isDarkmode}
-                      invoiceDate={billsTo[index].invoiceDate}
-                      clientName={billsTo[index].clientName}
-                      totalPrice={itemsList[index].totalPrice}
-                      paid={billsTo[index].paid}
-                      logoFilter={logoFilter}
-                    />
-                  </NavLink>
-                ))
+              invoices.length > 0 ? (
+                invoices.map((elem, index) => {
+                  return (
+                    <NavLink key={elem.id} to={`./invoiceDetails/${elem.id}`} onClick={() => dispatch({
+                      type: "rooter/changeRoot",
+                      payload: elem.id 
+                    })}>
+                      <Invoice
+                        id={elem.id}
+                        isDarkmode={isDarkmode}
+                        invoiceDate={elem.invoiceDate}
+                        clientName={elem.clientName}
+                        totalPrice={itemsList[index].totalPrice}
+                        paid={elem.paid}
+                        logoFilter={logoFilter}
+                      />
+                    </NavLink>
+                  )
+                })
               ) : (
                 <img src={isDarkmode ? imgEmptyInvoiceDarkmode : imgEmptyInvoice} alt="Vous n'avez pas de facture" className="noInvoices"/>
               )
