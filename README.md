@@ -9,6 +9,7 @@ Le projet invoices à vu le jour car je devais exposer un projet plus concret qu
 // Ajouter image reduxe
 // Ajouter image gh-pages
 // Ajouter image sass
+// Ajouter image Date object
 
 ## Description
 

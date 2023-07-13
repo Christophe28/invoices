@@ -12,13 +12,14 @@ import { BillTo, ItemList } from '../../type/typeInvoices';
 
 // Components
 import Filter from '../filter/Filter';
-// Update logic of component. Need filter
 import Invoice from './Invoice';
+import NewInvoice from './newInvoice/NewInvoice';
 
 // Img
 import logoFilter from "../../assets/logo/filter/arrow.svg";
 import imgEmptyInvoice from "../../assets/logo/globalInvoices/empty_invoice.svg";
 import imgEmptyInvoiceDarkmode from "../../assets/logo/globalInvoices/empty_invoice_darkmode.svg";
+import { useState } from 'react';
 
 const Invoices = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
@@ -34,6 +35,8 @@ const Invoices = () => {
   const invoices = filterInvoice === "all" ? billsTo : billsToFilterByPayment;
   const items = filterInvoice === "all" ? itemsList : itemsToFilterByPayment;
 
+  const [test, setTest] = useState("newInvoice");
+
   return (
     <div className={darkmode(isDarkmode, "containerInvoices")}>
         <div className="containerInvoices__page">
@@ -44,7 +47,14 @@ const Invoices = () => {
             </div>
             <div className="containerInvoices__containerButtons">
               <Filter />
-              <button className="defaultButton"><span>+</span> New invoice</button>
+              <button className="defaultButton" onClick={() => {
+                if(test === "newInvoice" || test === "newInvoice leaveTo") {
+                  setTest(`newInvoice moveTo`);
+                }
+                if(test === "newInvoice moveTo") {
+                  setTest(`newInvoice leaveTo`)
+                }
+              }}><span>+</span> New invoice</button>
             </div>
           </div>
           <section className={darkmode(isDarkmode, "containerInvoices__invoices")}>
@@ -74,6 +84,9 @@ const Invoices = () => {
             }
           </section>
         </div>
+        <NewInvoice
+          className={test}
+        />
     </div>
   );
 };

@@ -1,0 +1,37 @@
+.newInvoice {
+  position: absolute;
+  width: 500px;
+  left: -500px;
+}
+
+.moveTo {
+  animation: moveTo 3s;
+  animation-fill-mode: both;
+}
+
+.leaveTo {
+  animation: leaveTo 3s;
+  animation-fill-mode: both;
+}
+
+@keyframes moveTo {
+  0% {
+    left: -500px;
+    opacity: 0;
+  }
+  100% {
+    left: 60px;
+    opacity: 1;
+  }
+}
+
+@keyframes leaveTo {
+  0% {
+    left: 60px;
+    opacity:1;
+  }
+  100% {
+    left: -500px;
+    opacity: 0;
+  }
+}

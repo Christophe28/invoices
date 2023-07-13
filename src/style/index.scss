@@ -19,7 +19,8 @@
 // 2B. Home page "/"
 @import "../components/filter/filter.scss";
 @import "../components/globalInvoices/invoices.scss";
-@import "../components/buttons/checkbox.scss";
+@import "../components/buttons/checkbox.scss";  
+@import "../components/globalInvoices/newInvoice/newInvoice.scss";
 
 // 2C. detail invoice
 @import "../components/invoiceDetails/invoiceDetails.scss";
