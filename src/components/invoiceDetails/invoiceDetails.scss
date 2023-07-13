@@ -2,13 +2,12 @@
   width: 80%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  margin-left: 17%;
 
   // Navlink go back
   .invoiceDetails__navlink {
     margin: 40px 0;
-    min-width: 600px;
-    max-width: 800px;
     display: flex;
 
     .invoiceDetails__goBack {
@@ -31,13 +30,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    max-width: 800px;
-    min-width: 600px;
     background-color: $invoiceArray_bg;
     box-shadow: $boxShadow;
     border-radius: 10px;
-    height: 200px;
-
+    margin-bottom: 40px;
     &.darkmode {
       @include darkmode($invoiceArray_bg_darkmode, "")
     }
@@ -48,6 +44,7 @@
       justify-content: flex-start;
       width: 80%;
       height: 88px;
+      max-height: 88px;
       gap: 10px;
 
       .invoiceDetails__header__status {
@@ -66,7 +63,6 @@
       width: 90.83px;
       height: 40px;
     }
-
 
     // Container buttons
     .invoiceDetails__header__containerButtons {
@@ -99,4 +95,128 @@
     }
   }
 
+  // Body
+  .invoiceDetails__body {
+    display: flex;
+    flex-direction: column;
+    box-shadow: $boxShadow;
+    &.darkmode {
+      @include darkmode($invoiceArray_bg_darkmode, white)
+    }
+    .invoiceDetails__body__top {
+      display: flex;
+      padding: 20px;
+      
+      .invoiceDetails__body__top__id {
+        margin-top: 4px;
+        display: flex;
+        align-items: start;
+        margin-left: 15px;
+        span {
+          color: $text_lessOpacity;
+        }
+      }
+
+      .invoiceDetails__billFrom {
+        width: 100%;
+        p {
+          display: block;
+          text-align: end;
+          font-size: 14px;
+          margin: 4px 0;
+        }
+      }
+    }
+
+    .invoiceDetails__body__middle {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .invoiceDetails__body__dates {
+        margin-left: 15px;
+        span, p {
+          width: 100%;
+        }
+        p {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          font-weight: bold;
+          margin-top: 0;
+          span {
+            font-weight: lighter;
+            margin-bottom: 7px;
+          }
+        }
+      }
+      .invoiceDetails__body__dates p:nth-child(1) {
+        margin-bottom: 40px;
+      }
+
+      .invoiceDetails__middle__billTo {
+        width: 15%;
+        p {
+          margin: 4px 0;
+        }
+      }
+      .invoiceDetails__middle__billTo p:nth-child(1) {
+        margin: 0 0 7px;
+      }
+      .invoiceDetails__middle__mailTo {
+        width: 40%;
+
+        p {
+          margin: 4px 0;
+        }
+      }
+      .invoiceDetails__middle__mailTo p:nth-child(1) {
+        margin: 0 0 7px;
+      }
+    }
+
+    .invoiceDetails__body__bottom {
+      background-color: #f5f7ff;
+      border-radius: 10px 10px 0 0;
+      padding: 20px;
+      width: 85%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      // box-shadow: $boxShadow;
+      &.darkmode {
+        @include darkmode(#252945, "");
+      }
+      p {
+        display: block;
+        text-align: center;
+      }
+    }
+    .invoiceDetails__body__bottom section:nth-child(1) {
+      width: 300px;
+    }
+
+    .amountDue {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: auto;
+      padding: 20px;
+      width: 85%;
+      background-color: $sideBar_bg;
+      color: $text_primaryColor_darkmode;
+      border-radius: 0 0 10px 10px;
+      margin-bottom: 30px;
+      &.darkmode {
+        @include darkmode(#0C0E16, $text_primaryColor_darkmode);
+      }
+    }
+  }
+}
+
+// Cofig size
+.invoiceDetails__navlink, .invoiceDetails__header, .invoiceDetails__body {
+  width: 100%;
+  min-width: 600px;
+  max-width: 850px;
 }

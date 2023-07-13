@@ -54,6 +54,7 @@ const InvoiceDetails = () => {
           </div>
         </NavLink>
       </div>
+      
       <section className={darkmode(isDarkmode, "invoiceDetails__header")}>
         <div className="invoiceDetails__header__containerStatus">
           <p className={darkmode(isDarkmode, "invoiceDetails__header__status")}>Status</p>
@@ -66,51 +67,60 @@ const InvoiceDetails = () => {
         </div>
       </section>
 
-      CARTE 
-      <section className="invoiceDetails__body">
-        ______________________Haut de la carte__________________________
-        <div>
-          <p>Id:{id}</p>
-          <p>StreetAdress:{streetAddress}</p>
+      <section className={darkmode(isDarkmode, "invoiceDetails__body")}>
+        {/* header card  */}
+        <div className="invoiceDetails__body__top">
+          <p className="invoiceDetails__body__top__id fwbold fs18"><span>#</span>{id}</p>
+          <div className="invoiceDetails__billFrom lessOpacity">
+            <p>{streetAddress}</p>
+            <p>{city}</p>
+            <p>{postCode}</p>
+            <p>{country}</p>
+          </div>
         </div>
-        ______________________Centre de la carte_______________________
-        <div>
-          <section>
-            <p>InvoiceDate:{invoiceDate}</p>
-            <p>Payment due:{paymentTerms}</p>
+        
+        {/* body card */}
+        <div className="invoiceDetails__body__middle">
+          <section className="invoiceDetails__body__dates">
+            <p><span className="fs12 lessOpacity">InvoiceDate</span> {invoiceDate}</p>
+            <p><span className="fs12 lessOpacity">Payment due</span> {paymentTerms}</p>
           </section>
-          <section>
-            <p>Billto</p>
-            <p>{clientName}</p>
-            <p>{streetAddressClient}</p>
-            <p>{cityClient}</p>
-            <p>{postCodeClient}</p>
-            <p>{countryClient}</p>
+          <section className="invoiceDetails__middle__billTo">
+            <p className="fs12 lessOpacity">Billto</p>
+            <p className="fs18 fwbold">{clientName}</p>
+            <p className="lessOpacity fs12">{streetAddressClient}</p>
+            <p className="lessOpacity fs12">{cityClient}</p>
+            <p className="lessOpacity fs12">{postCodeClient}</p>
+            <p className="lessOpacity fs12">{countryClient}</p>
           </section>
-          <section>
-            <p>Sent to</p>
-            <p>{clientMail}</p>
-          </section>
-        </div>
-        ____________________Bas de la carte_____________________________
-        <div>
-          <section>
-            <p>Item Name</p>
-            <p>{itemName}</p>
-          </section>
-          <section>
-            <p>QTY.</p>
-            <p>{quantity}</p>
-          </section>
-          <section>
-            <p>Price</p>
-            <p>{price}</p>
-          </section>
-          <section>
-            <p>total</p>
-            <p>{totalPrice}</p>
+          <section className="invoiceDetails__middle__mailTo">
+            <p className="lessOpacity fs12">Sent to</p>
+            <p className="fwbold">{clientMail}</p>
           </section>
         </div>
+        {/* footer card  */}
+        <div className={darkmode(isDarkmode, "invoiceDetails__body__bottom")}>
+          <section>
+            <p id="txtStart" className="lessOpacity fs12">Item Name</p>
+            <p id="txtStart" className="fwbold fs14">{itemName}</p>
+          </section>
+          <section>
+            <p className="lessOpacity fs12">QTY.</p>
+            <p className="fwbold fs14">{quantity}</p>
+          </section>
+          <section>
+            <p id="txtEnd" className="lessOpacity fs12">Price</p>
+            <p id="txtEnd" className="fwbold fs14">${price}</p>
+          </section>
+          <section>
+            <p id="txtEnd" className="lessOpacity fs12">Total</p>
+            <p id="txtEnd" className="fwbold fs14">${totalPrice}</p>
+          </section>
+        </div>
+        <section className={darkmode(isDarkmode, "amountDue")}>
+            <p>Amount due</p>
+            <p id="txtEnd">${totalPrice}</p>
+        </section>
       </section>
     </div>
   );

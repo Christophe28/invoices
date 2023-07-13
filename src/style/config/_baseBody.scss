@@ -26,24 +26,37 @@ button {
   cursor: pointer;
 }
 
+// Size
 .fs12 {
   font-size: 12px;
 }
-
 .fs14 {
   font-size: 14px;
 }
-
 .fs16 {
   font-size: 16px;
+}
+.fs18 {
+  font-size: 18px;
 }
 
 .fwbold {
   font-weight: bold;
 }
 
+// Colors
 .lessOpacity {
   color: $text_lessOpacity;
+}
+
+// Positions
+#txtEnd {
+  display: block;
+  text-align: end;
+}
+#txtStart {
+  display: block;
+  text-align: start;
 }
 
 //general style for status paid, pending, draft
