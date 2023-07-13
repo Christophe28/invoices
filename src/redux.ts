@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { dateInvoice } from "./functions/date/dateInvoice";
 // import { BillFrom, BillTo, ItemList, CompleteInvoice } from "./type/typeInvoices";
 
 const billsFrom = createSlice({
@@ -73,8 +74,8 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "Due 19 Aug 2023",
-      paymentTerms: "net 30 days",
+      invoiceDate: dateInvoice("01 January 2023", "DD MMM YYYY"),
+      paymentTerms: dateInvoice("01 April 2023", "DD MMM YYY"),
       paid: "Paid"
     },
     {    
@@ -85,8 +86,8 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "Due 19 Aug 2023",
-      paymentTerms: "net 30 days",
+      invoiceDate: dateInvoice("01 February 2023", "DD MMM YYYY"),
+      paymentTerms: dateInvoice("01 May 2023", "DD MMM YYYY"),
       paid: "Pending"
     },
     {
@@ -97,8 +98,8 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "Due 19 Aug 2023",
-      paymentTerms: "net 30 days",
+      invoiceDate: dateInvoice("01 March 2023", "DD MMM YYYY"),
+      paymentTerms: dateInvoice("01 June 2023", "DD MMM YYYY"),
       paid: "Draft"
     },
     {
@@ -109,8 +110,8 @@ const billsTo = createSlice({
       city: "Konoha",
       postCode: "5000",
       country: "China",
-      invoiceDate: "Due 19 Aug 2023",
-      paymentTerms: "net 30 days",
+      invoiceDate: dateInvoice("01 April 2023", "DD MMM YYYY"),
+      paymentTerms: dateInvoice("01 July 2023", "DD MMM YYYY"),
       paid: "Paid"
     },
     {
@@ -121,8 +122,8 @@ const billsTo = createSlice({
       city: "Shibuya",
       postCode: "796-0024",
       country: "Japan",
-      invoiceDate: "Due 19 Aug 2023",
-      paymentTerms: "net 30 days",
+      invoiceDate: dateInvoice("01 May 2023", "DD MMM YYYY"),
+      paymentTerms: dateInvoice("01 August 2023", "DD MMM YYYY"),
       paid: "Paid"
     },
     {
@@ -133,8 +134,8 @@ const billsTo = createSlice({
       city: "???",
       postCode: "???",
       country: "???",
-      invoiceDate: "Due 19 Aug 2023",
-      paymentTerms: "net 30 days",
+      invoiceDate: dateInvoice("01 Jun 2023", "DD MMM YYYY"),
+      paymentTerms: dateInvoice("01 September 2023", "DD MMM YYYY"),
       paid: "Paid"
     },
     {
@@ -145,8 +146,8 @@ const billsTo = createSlice({
       city: "Bangkok",
       postCode: "1030",
       country: "Thaïland",
-      invoiceDate: "Due 19 Aug 2023",
-      paymentTerms: "net 30 days",
+      invoiceDate: dateInvoice("01 July 2023", "DD MMM YYYY"),
+      paymentTerms: dateInvoice("01 October 2023", "DD MMM YYYY"),
       paid: "Paid"
     },
   ],
@@ -234,7 +235,7 @@ const selectedOption = createSlice({
 // Check darkmode and return it
 const isDarkmode = createSlice({
   name: "isDarkmode",
-  initialState: false,
+  initialState: true,
   reducers: {
     changeMode: (state, action) => { return action.payload }
   }

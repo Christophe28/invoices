@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Roostate } from "./redux";
-
 import { useEffect } from "react";
+
 import Wrapper from "./components/viewWrapper/Wrapper";
 import SideBar from "./components/viewWrapper/sideBar/SideBar";
 import Invoices from "./components/globalInvoices/Invoices";
@@ -22,12 +22,12 @@ function App() {
         payload: location.pathname.split("/")[2]
       });
     }
-  }, [location, dispatch])
+  }, [location, dispatch]);
 
   return (
     <>
       <Wrapper>
-        <SideBar />
+        <SideBar />      
         <Routes>
           <Route path="/" element={<Invoices />} />
           <Route path={`invoiceDetails/${rootInvoiceDetals}`} element={<InvoiceDetails />} />

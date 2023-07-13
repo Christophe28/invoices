@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import { filters } from '../../functions/array/filters';
 import { darkmode } from "../../functions/classe/darkmode";
+import { formatNumber } from "../../functions/invoices/formatNumber";
 
 import Status from "../buttons/Status";
 
@@ -106,20 +107,20 @@ const InvoiceDetails = () => {
           </section>
           <section>
             <p className="lessOpacity fs12">QTY.</p>
-            <p className="fwbold fs14">{quantity}</p>
+            <p className="fwbold fs14">{formatNumber(quantity)}</p>
           </section>
           <section>
             <p id="txtEnd" className="lessOpacity fs12">Price</p>
-            <p id="txtEnd" className="fwbold fs14">${price}</p>
+            <p id="txtEnd" className="fwbold fs14">${formatNumber(price)}</p>
           </section>
           <section>
             <p id="txtEnd" className="lessOpacity fs12">Total</p>
-            <p id="txtEnd" className="fwbold fs14">${totalPrice}</p>
+            <p id="txtEnd" className="fwbold fs14">${formatNumber(totalPrice)}</p>
           </section>
         </div>
         <section className={darkmode(isDarkmode, "amountDue")}>
             <p>Amount due</p>
-            <p id="txtEnd">${totalPrice}</p>
+            <p id="txtEnd">${formatNumber(totalPrice)}</p>
         </section>
       </section>
     </div>

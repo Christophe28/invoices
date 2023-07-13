@@ -1,1 +1,2 @@
-Faire le squelette de la page invoiceDetail
+Faire le refracto des Objets billTo billForm et itemsList.
+-1 Modifier la date dans billTo (pour cela récupérer une date et voir comment la manipuler);
