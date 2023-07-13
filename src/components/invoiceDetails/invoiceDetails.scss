@@ -6,8 +6,9 @@
 
   // Navlink go back
   .invoiceDetails__navlink {
-    margin-top: 40px;
-    width: 70%;
+    margin: 40px 0;
+    min-width: 600px;
+    max-width: 800px;
     display: flex;
 
     .invoiceDetails__goBack {
@@ -27,30 +28,75 @@
   
   // Header
   .invoiceDetails__header {
-    .edit {
-      background-color: $buttonEdit__default--ligth;
-      color: $buttonEdit_text__default--ligth;
-      width: 75px;
-      &.darkmode {
-        @include darkmode($buttonEdit__default--dark, "")
-      }
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 800px;
+    min-width: 600px;
+    background-color: $invoiceArray_bg;
+    box-shadow: $boxShadow;
+    border-radius: 10px;
+    height: 200px;
 
-      &:hover {
-        background-color: $buttonEdit__hover--ligth;
+    &.darkmode {
+      @include darkmode($invoiceArray_bg_darkmode, "")
+    }
+
+    .invoiceDetails__header__containerStatus {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 80%;
+      height: 88px;
+      gap: 10px;
+
+      .invoiceDetails__header__status {
+        width: 20%;
+        color: $text_status;
+        margin-left: 20px;
+
+        &.darkmode {
+          @include darkmode("", $text_primaryColor_darkmode);
+        }
       }
     }
-    .delete {
-      background-color: #EC5757;
-      width: 100px;
+    
+    #invoice__lastElem--lessWidth {
+      margin: 0;
+      width: 90.83px;
+      height: 40px;
+    }
 
-      &:hover {
-        background-color: $buttonDelete__hover--ligth;
 
+    // Container buttons
+    .invoiceDetails__header__containerButtons {
+      display: flex;
+      gap: 10px;
+      .edit {
+        background-color: $buttonEdit__default--ligth;
+        color: $buttonEdit_text__default--ligth;
+        width: 75px;
+        &.darkmode {
+          @include darkmode($buttonEdit__default--dark, "")
+        }
+        
+        &:hover {
+          background-color: $buttonEdit__hover--ligth;
+        }
       }
+      .delete {
+        background-color: #EC5757;
+        width: 100px;
+        
+        &:hover {
+          background-color: $buttonDelete__hover--ligth;
+          
+        }
+      }
+    }
+    .invoiceDetails__header__containerButtons button:nth-last-child(1) {
+      margin-right: 20px;
     }
   }
 
-  .invoiceDetails__body {
-    border: 2px solid yellow;
-  }
 }

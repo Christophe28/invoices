@@ -54,14 +54,16 @@ const InvoiceDetails = () => {
           </div>
         </NavLink>
       </div>
-      <section className="invoiceDetails__header">
-        <div>
-          <p>Status</p>
+      <section className={darkmode(isDarkmode, "invoiceDetails__header")}>
+        <div className="invoiceDetails__header__containerStatus">
+          <p className={darkmode(isDarkmode, "invoiceDetails__header__status")}>Status</p>
           <Status paid={paid}/>
         </div>
-        <button className={darkmode(isDarkmode, "defaultButton edit")}>Edit</button>
-        <button className="defaultButton delete">Delete</button>
-        <button className="defaultButton markAsPaid">Mark as Paid</button>
+        <div className="invoiceDetails__header__containerButtons">
+          <button className={darkmode(isDarkmode, "defaultButton edit")}>Edit</button>
+          <button className="defaultButton delete">Delete</button>
+          <button className="defaultButton markAsPaid">Mark as Paid</button>
+        </div>
       </section>
 
       CARTE 
