@@ -1,0 +1,27 @@
+.itemList {
+  span, img {
+    height: 52px;
+    display: flex;
+    align-items: center;
+  }
+  img {
+    width: 13px;
+  }
+
+  .itemList__itemName {
+    max-width: 214px;
+    width: 214px;
+  }
+  .itemList__quantity {
+    max-width: 46px;
+    width: 46px;
+  }
+  .itemList__price {
+    max-width: 100px;
+    width: 100px;
+  }
+  .itemList__total {
+    max-width: 100px;
+    width: 100px;
+  }
+}

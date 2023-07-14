@@ -1,22 +1,165 @@
 .newInvoice {
+  width: 600px;
+  height: 100vh;
+  border-radius: 10px;
+  overflow-y: scroll;
+  padding: 0 40px;
   position: absolute;
-  width: 500px;
-  left: -500px;
+  left: -700px;
+  top: 0;
+  background-color: $form_bg;
+  
+  &.darkmode {
+    @include darkmode($primary_bg_darkmode, "");
+    input {
+      background-color: $invoiceArray_bg_darkmode;
+      color: $text_primaryColor_darkmode;
+      border: 1px solid $borderColor_darkmode;
+    }
+    input::placeholder {
+      color: $text_primaryColor_darkmode;
+    }
+    .addNewItem {
+      background-color: $invoiceArray_bg_darkmode;
+    }
+    .saveAsDraft {
+      background-color: $buttonSaveAsDraft__default--dark;
+      color: $buttonSaveAsDraft-text__default--dark;
+      &:hover {
+        background-color: $buttonSaveAsDraft__hover--dark;
+      }
+    }
+    .submit {
+      background-color: #7C5DFA;
+    }
+  }
+
+  h1 {
+    margin-top: 50px;
+    font-size: 46px;
+  }
+  h3 {
+    color: $h3_form;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      color: $label_form;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    input {
+      height: 48px;
+      text-indent: 20px;
+      margin-bottom: 40px;
+      border: 1px solid $borderColor;
+      // padding: 20px;
+      &:focus {
+        outline: 2px solid $borderColor_focus;
+      }
+    }
+    input[type="date"]:disabled {
+      &.darkmode {
+        @include darkmode($invoiceArray_bg_darkmode, white);
+        opacity: 1;
+      }
+    }
+    section {
+      display: flex;
+      justify-content: space-between;
+      div {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+      }
+      .calibrate {
+        width: 156px;
+      }
+    }
+    // Style buttons
+    .addNewItem {
+      width: 100%;
+      margin-bottom: 40px;
+      background-color: $buttonAddNewItem__default;
+      color: $buttonAddNewItem_text__default;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    .discard {
+      width: 96px;
+      background-color: $buttonAddNewItem__default;
+      color: $buttonAddNewItem_text__default;
+
+    }
+    .form__endButtons {
+      width: 330px;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      .saveAsDraft {
+        background-color: $buttonSaveAsDraft__default--ligth;
+        color: $buttonSaveAsDraft_text__default--ligth;
+      }
+      .saveAsDraft, .submit {
+        width: 133px;
+      }
+      .submit {
+        border: none;
+        text-indent: 0;
+      }
+    }
+  }
 }
 
+// Position itemName with width
+
+.itemList__name--calibrate {
+  width: 220px;
+}
+.itemList__quantity--calibrate {
+  width: 52px;
+}
+.itemList__price--calibrate {
+  width: 106px;
+}
+.itemList__total--calibrate {
+  width: 100px;
+}
+
+// Config scroll bar
+.newInvoice::-webkit-scrollbar {
+  width: 5px;
+}
+
+.newInvoice::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.newInvoice::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+
+// Animations
 .moveTo {
-  animation: moveTo 3s;
+  animation: moveTo 0.7s;
   animation-fill-mode: both;
 }
 
 .leaveTo {
-  animation: leaveTo 3s;
+  animation: leaveTo 0.7s;
   animation-fill-mode: both;
 }
 
 @keyframes moveTo {
   0% {
-    left: -500px;
+    left: -700px;
     opacity: 0;
   }
   100% {
@@ -31,7 +174,7 @@
     opacity:1;
   }
   100% {
-    left: -500px;
+    left: -700px;
     opacity: 0;
   }
 }

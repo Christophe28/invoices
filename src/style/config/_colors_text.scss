@@ -1,8 +1,16 @@
+//=============== 1. Darkmode ===============//
 $text_primaryColor_darkmode: #FFF;
 
+//============== 2. txt ============//
+// 2.A less Opacity
 $text_lessOpacity: #888EB0;
 $text_status: #858BB2;
 
+// 2.B Status invoices (paid, pending, draft)
 $text_paid: #33D69F;
 $text_pending: #FF8F00;
 $text_draft: #373B53;
+
+// 2.C Form
+$h3_form: #7C5DFA;
+$label_form: #7E88C3;

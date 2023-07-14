@@ -1,14 +1,10 @@
-// Dimension
-// Forme
-// Position
-// Couleur
-
 // 1. Config
 @import "./config/colors_bg";
 @import "./config/colors_buttons.scss";
 @import "./config/colors_sideBar";
 @import "./config/colors_text";
 @import "./config/boxShadox";
+@import "./config/inputTxt";
 @import "./config/baseBody";
 
 // 2. Components styles
@@ -20,7 +16,10 @@
 @import "../components/filter/filter.scss";
 @import "../components/globalInvoices/invoices.scss";
 @import "../components/buttons/checkbox.scss";  
-@import "../components/globalInvoices/newInvoice/newInvoice.scss";
 
 // 2C. detail invoice
 @import "../components/invoiceDetails/invoiceDetails.scss";
+
+// 2D. Form
+@import "../components/globalInvoices/newInvoice/newInvoice.scss";
+@import "../components/globalInvoices/newInvoice/itemList.scss";

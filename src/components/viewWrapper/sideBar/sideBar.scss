@@ -1,5 +1,6 @@
 // Behavior and style sideBar
 .sideBar {
+  z-index: 1;
   width: $sideBar_width;
   border-radius: 0 20px 20px 0;
   

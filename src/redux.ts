@@ -235,7 +235,7 @@ const selectedOption = createSlice({
 // Check darkmode and return it
 const isDarkmode = createSlice({
   name: "isDarkmode",
-  initialState: false,
+  initialState: true,
   reducers: {
     changeMode: (state, action) => { return action.payload }
   }

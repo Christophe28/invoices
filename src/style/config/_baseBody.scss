@@ -2,11 +2,6 @@
   background-color: $background-color;
   color: $color;
 }
-.div1 {
-  &.darkmode {
-    @include darkmode(yellow, green)
-  }
-}
 
 body {
   margin: 0;
@@ -18,36 +13,20 @@ body {
   }
 }
 
-a {
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-}
+a {text-decoration: none}
+button, input {cursor: pointer}
 
 // Size
-.fs12 {
-  font-size: 12px;
-}
-.fs14 {
-  font-size: 14px;
-}
-.fs16 {
-  font-size: 16px;
-}
-.fs18 {
-  font-size: 18px;
-}
+.fs12 {font-size: 12px}
+.fs14 {font-size: 14px}
+.fs16 {font-size: 16px}
+.fs18 {font-size: 18px}
 
-.fwbold {
-  font-weight: bold;
-}
+// Weigth
+.fwbold {font-weight: bold}
 
 // Colors
-.lessOpacity {
-  color: $text_lessOpacity;
-}
+.lessOpacity {color: $text_lessOpacity}
 
 // Positions
 #txtEnd {

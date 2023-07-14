@@ -85,7 +85,7 @@ const Invoices = () => {
           </section>
         </div>
         <NewInvoice
-          className={test}
+          className={darkmode(isDarkmode, test)}
         />
     </div>
   );
