@@ -22,12 +22,18 @@ export type BillTo = {
   paid:string
 }
 
-export type ItemList = {
+export type Item = {
   id:string
   itemName:string
   quantity:number
   price:number
   totalPrice:number
+}
+
+export type ItemList = {
+  id:string
+  items:Item[]
+  total:number
 }
 
 export type CompleteInvoice = [

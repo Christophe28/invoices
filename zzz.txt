@@ -1,0 +1,4 @@
+Lors du click sur newInvoice il faut générer un Id
+Créer les objets qui vont récupérer les informations générales
+
+Gérer l'action du boutton Add new item

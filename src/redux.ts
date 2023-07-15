@@ -1,6 +1,24 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { dateInvoice } from "./functions/date/dateInvoice";
-// import { BillFrom, BillTo, ItemList, CompleteInvoice } from "./type/typeInvoices";
+import { BillFrom, BillTo, Item, ItemList } from './type/typeInvoices';
+
+interface InitialState {
+  BillFromForm:BillFrom,
+  billTo:BillTo[],
+  itemsForm:Item[],
+}
+
+const initialState:InitialState = {
+  BillFromForm: {
+    id: "",
+    streetAddress: "",
+    city: "",
+    postCode: "",
+    country: ""
+  },
+  billTo:[],
+  itemsForm:[],
+}
 
 const billsFrom = createSlice({
   name: "billsFrom",
@@ -160,63 +178,142 @@ const billsTo = createSlice({
 });
 
 const itemsList = createSlice({
-  name: "itemsList",
+  name: "newitemList",
   initialState: [
     {
       id: "0000AA",
-      itemName: "Konoha headband",
-      quantity: 10,
-      price: 12.99,
-      totalPrice: 10 * 12.99
+      items: [
+        {
+          itemName: "Konoha headband",
+          quantity: 10,
+          price: 12.99,
+          totalPrice: 10 * 12.99
+        },
+        {
+          itemName: "TestItem",
+          quantity: 1,
+          price: 1,
+          totalPrice: 1 * 1
+        },
+        {
+          itemName: "Konoha headband",
+          quantity: 10,
+          price: 12.99,
+          totalPrice: 10 * 12.99
+        },
+        {
+          itemName: "TestItem",
+          quantity: 1,
+          price: 1,
+          totalPrice: 1 * 1
+        },
+        {
+          itemName: "Konoha headband",
+          quantity: 10,
+          price: 12.99,
+          totalPrice: 10
+        },
+        {
+          itemName: "TestItem",
+          quantity: 1,
+          price: 1,
+          totalPrice: 1 * 1
+        },
+        {
+          itemName: "Konoha headband",
+          quantity: 10,
+          price: 12.99,
+          totalPrice: 10 * 12.99
+        },
+        {
+          itemName: "TestItem",
+          quantity: 1,
+          price: 1,
+          totalPrice: 1 * 1
+        }
+      ],
+      total: 1 * 129.9
     },
     {
       id: "0001AA",
-      itemName: "Ramen",
-      quantity: 100,
-      price: 5,
-      totalPrice: 100 * 5
+      items: [
+        {
+          itemName: "Ramen",
+          quantity: 100,
+          price: 5,
+          totalPrice: 100 * 5
+        }
+      ],
+      total: 100 * 5
+
     },
     {
       id: "0002AA",
-      itemName: "Wood",
-      quantity: 100,
-      price: 500,
-      totalPrice: 100 * 500
+      items: [
+        {
+          itemName: "Wood",
+          quantity: 100,
+          price: 500,
+          totalPrice: 100 * 500
+        }
+      ],
+      total: 100 * 500
+
     },
     {
       id: "0003AA",
-      itemName: "Flowers kit",
-      quantity: 10,
-      price: 20,
-      totalPrice: 10 * 20
+      items: [
+        {
+          itemName: "Flowers kit",
+          quantity: 10,
+          price: 20,
+          totalPrice: 10 * 20
+        }
+      ],
+      total: 10 * 20
+
     },
     {
       id: "0004AA",
-      itemName: "Pencil",
-      quantity: 1000,
-      price: 1,
-      totalPrice: 1000 * 1
+      items: [
+        {
+          itemName: "Pencil",
+          quantity: 1000,
+          price: 1,
+          totalPrice: 1000 * 1
+        }
+      ],
+      total: 1 * 1000
+
     },
     {
       id: "0005AA",
-      itemName: "Taho bottle",
-      quantity: 1,
-      price: 10000000,
-      totalPrice: 1 * 10000000
+      items: [
+        {
+          itemName: "Taho bottle",
+          quantity: 1,
+          price: 10000000,
+          totalPrice: 1 * 10000000
+        }
+      ],
+      total: 1 * 10000000
+
     },
     {
       id: "0006AA",
-      itemName: "Scissors",
-      quantity: 4,
-      price: 14,
-      totalPrice: 4 * 14
+      items: [
+        {
+          itemName: "Scissors",
+          quantity: 4,
+          price: 14,
+          totalPrice: 4 * 14
+        }
+      ],
+      total: 4 * 14
     },
   ],
   reducers: {
-    consoleItemsList: (state, action) => {
-      const stateClone = JSON.parse(JSON.stringify(state));
-      console.log(stateClone);
-    }
+    setNewItemList: (state, action) => { return}
   }
 })
 
@@ -231,40 +328,6 @@ const selectedOption = createSlice({
     }
   }
 })
-
-// Check darkmode and return it
-const isDarkmode = createSlice({
-  name: "isDarkmode",
-  initialState: true,
-  reducers: {
-    changeMode: (state, action) => { return action.payload }
-  }
-})
-
-const disablePage = createSlice({
-  name: "disablePage",
-  initialState: false,
-  reducers: {
-    changeActive: (state, action) => { return action.payload }
-  }
-})
-
-const isOpenForm = createSlice({
-  name: "isOpenForm",
-  initialState: false,
-  reducers: {
-    moveForm: (state, action) => { return action.payload }
-  }
-})
-
-const firstLoadPage = createSlice({
-  name: "firstLoadPage",
-  initialState: true,
-  reducers: {
-    setFirstLoadPage: (state, action) => { return action.payload }
-  }
-})
-
 const filterInvoice = createSlice({
   name: "filterInvoice",
   initialState: "all",
@@ -272,6 +335,36 @@ const filterInvoice = createSlice({
     setFilterInvoice: (state, action) => { return action.payload }
   }
 })
+
+// Style controler
+const isDarkmode = createSlice({
+  name: "isDarkmode",
+  initialState: true,
+  reducers: {
+    changeMode: (state, action) => { return action.payload }
+  }
+});
+const disablePage = createSlice({
+  name: "disablePage",
+  initialState: false,
+  reducers: {
+    changeActive: (state, action) => { return action.payload }
+  }
+});
+const isOpenForm = createSlice({
+  name: "isOpenForm",
+  initialState: false,
+  reducers: {
+    moveForm: (state, action) => { return action.payload }
+  }
+});
+const firstLoadPage = createSlice({
+  name: "firstLoadPage",
+  initialState: true,
+  reducers: {
+    setFirstLoadPage: (state, action) => { return action.payload }
+  }
+});
 
 // Rooter
 const rooter = createSlice({
@@ -282,16 +375,33 @@ const rooter = createSlice({
   }
 })
 
+// Form
+const billFromForm = createSlice({
+  name: "billFromForm",
+  initialState,
+  reducers: {
+    createId: (state, action:PayloadAction<string>) => {state.BillFromForm.id = action.payload}
+  }
+})
+
+const itemsForm = createSlice({
+  name: "itemsForm",
+  initialState,
+  reducers: {
+    addItemForm: (state, action:PayloadAction<Item>) => {state.itemsForm.push(action.payload)}
+  }
+});
+
 export const {consoleBillsFrom} = billsFrom.actions;
 export const {consoleBillsTo} = billsTo.actions;
-export const {consoleItemsList} = itemsList.actions;
 export const {handleOptionChange} = selectedOption.actions;
 export const {changeMode} = isDarkmode.actions;
 export const {changeActive} = disablePage.actions;
 export const {setFirstLoadPage} = firstLoadPage.actions;
 export const {changeRoot} = rooter.actions;
 export const {setFilterInvoice} = filterInvoice.actions;
-
+export const {createId} = billFromForm.actions;
+export const {addItemForm} = itemsForm.actions;
 
 export const myStore = configureStore({
   reducer: {
@@ -304,7 +414,9 @@ export const myStore = configureStore({
     firstLoadPage: firstLoadPage.reducer,
     isOpenForm: isOpenForm.reducer,
     filterInvoice: filterInvoice.reducer,
-    rooter: rooter.reducer
+    rooter: rooter.reducer,
+    itemsForm: itemsForm.reducer,
+    billFromForm: billFromForm.reducer,
   }
 });
 

@@ -1,14 +1,21 @@
 import React from 'react';
-
-import { NewInvoiceProps } from '../../../../type/typeNewInvoice';
-import { dynamicalClass } from '../../../../functions/classe/dynamicalClass';
-
-import ItemList from './ItemList';
 import { useSelector } from 'react-redux';
 import { Roostate } from '../../../../redux';
 
+// Type
+import { NewInvoiceProps } from '../../../../type/typeNewInvoice';
+
+// Functions
+import { dynamicalClass } from '../../../../functions/classe/dynamicalClass';
+
+// Components
+import ItemList from './ItemList';
+
 const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard, clickSave, clickSubmit }) => {
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
+  const items = useSelector((state:Roostate) => state.itemsForm.itemsForm);
+  const billFromForm = useSelector((state:Roostate) => state.billFromForm.BillFromForm);
+  // console.log("billFromForm depuis le form ==>", billFromForm);
   return (
     <div className={className}>
       <h1>New invoice</h1>
@@ -75,8 +82,20 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           <div style={{width:"13px"}}></div>
         </section>
         
-        <ItemList id="coucou" />
-
+        {/* Update with dinymic Id and info */}
+        {
+          items.length > 0 ? (
+            items.map((item, index) => (
+              <React.Fragment key={`${billFromForm.id}-${index}`}>
+                <ItemList 
+                  id={`${billFromForm.id}-${items.length}`} 
+                  onClick={(e) => console.log(e.target.parentNode)}
+                />
+              </React.Fragment>
+            ))
+          ) : ""
+        }
+    
         <button className="defaultButton addNewItem" onClick={clickNewItem}>+ Add New Item</button>
 
         <section>
@@ -92,22 +111,3 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
 };
 
 export default Form;
-
-// const [formData, setFormData] = useState({
-//   firstName: '',
-//   lastName: '',
-//   email: ''
-// });
-
-// const handleChange = (e) => {
-//   setFormData({
-//     ...formData,
-//     [e.target.name]: e.target.value
-//   });
-// };
-
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-//   // Utilise les valeurs récupérées dans formData
-//   console.log(formData);
-// };

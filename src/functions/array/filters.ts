@@ -2,6 +2,7 @@ type Value = string | number | boolean
 type CompareTable = {
   id:string
 }
+
 export function filters<T>(array:T[], key:string, value:Value) {
   return array.filter((e:any | string) => e[key] === value);
 }

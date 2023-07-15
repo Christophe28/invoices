@@ -12,6 +12,7 @@ import Status from "../buttons/Status";
 
 // Img
 import arrow from "../../assets/logo/filter/arrow.svg";
+import DetailItems from "./DetailItems";
 
 const InvoiceDetails = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,9 @@ const InvoiceDetails = () => {
     paid
   } = fCbillsTo[0];
   //ItemsList
-  const {itemName, quantity, price, totalPrice} = fCitemsList[0];
+  const {itemName, quantity, price, totalPrice} = fCitemsList[0].items[0];
+  console.log(filterItemsList[0].items);
+  const items = filterItemsList[0].items;
 
   return (
     // "invoiceDetails"
@@ -115,26 +118,32 @@ const InvoiceDetails = () => {
         </div>
         {/* footer card  */}
         <div className={dynamicalClass(isDarkmode, "darkmode", "invoiceDetails__body__bottom")}>
-          <section>
-            <p id="txtStart" className="lessOpacity fs12">Item Name</p>
-            <p id="txtStart" className="fwbold fs14">{itemName}</p>
+          <section className="body__bottom__itemsLabel">
+            <div>
+              <p id="txtStart" className="lessOpacity fs12">Item Name</p>
+            </div>
+            <div>
+              <p className="lessOpacity fs12 qtyWidth">QTY.</p>
+              <p id="txtEnd" className="lessOpacity fs12 priceWidth">Price</p>
+              <p id="txtEnd" className="lessOpacity fs12 totalWidth">Total</p>
+            </div>
           </section>
-          <section>
-            <p className="lessOpacity fs12">QTY.</p>
-            <p className="fwbold fs14">{formatNumber(quantity)}</p>
-          </section>
-          <section>
-            <p id="txtEnd" className="lessOpacity fs12">Price</p>
-            <p id="txtEnd" className="fwbold fs14">${formatNumber(price)}</p>
-          </section>
-          <section>
-            <p id="txtEnd" className="lessOpacity fs12">Total</p>
-            <p id="txtEnd" className="fwbold fs14">${formatNumber(totalPrice)}</p>
-          </section>
+          {
+            items.map(item => (
+              <div key={item.itemName} className="body__bottom__items">
+                <DetailItems 
+                  name={item.itemName}
+                  quantity={formatNumber(item.quantity)}
+                  price={formatNumber(item.price)}
+                  totalPrice={formatNumber(item.totalPrice)}
+                />
+              </div>
+            ))
+          }
         </div>
         <section className={dynamicalClass(isDarkmode, "darkmode", "amountDue")}>
             <p>Amount due</p>
-            <p id="txtEnd">${formatNumber(totalPrice)}</p>e
+            <p id="txtEnd">${formatNumber(totalPrice)}</p>
         </section>
       </section>
     </div>

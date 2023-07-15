@@ -20,10 +20,19 @@ import iconPp from "../../../assets/logo/sideBar/pp.svg";
 
 const SideBar = () => {
   const isDarkmode = useSelector((state: Roostate) => state.isDarkmode);
-  
   const isOpenForm = useSelector((state:Roostate) => state.isOpenForm);
   const firstLoadPage = useSelector((state:Roostate) => state.firstLoadPage);
+  const itemsForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
+  const billFromForm = useSelector((state:Roostate) => state.billFromForm.BillFromForm);
+
   const dispatch = useDispatch();
+  const bodyItem = {
+    id: `${billFromForm.id}-${itemsForm.length}`,
+    itemName: "",
+    quantity: 10,
+    price: 10,
+    totalPrice: 10
+  }
   return (
     <div className={dynamicalClass(isDarkmode, "darkmode", "sideBar")}>
       <SideBarIcone 
@@ -53,7 +62,11 @@ const SideBar = () => {
           className={`${dynamicalClass(isDarkmode, "darkmode", "newInvoice")} ${dynamicalClass(isOpenForm, "moveTo", firstLoadPage ? "" : "leaveTo")}`}
           clickNewItem={(e) => {
             e.preventDefault();
-            console.log("coucou");
+            dispatch({
+              type: "itemsForm/addItemForm",
+              payload: bodyItem
+            });
+            console.log("itemsForm ==>", itemsForm);
           }}
           clickDiscard={(e) => {
             controlAnimForm(e, dispatch);

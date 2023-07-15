@@ -182,21 +182,25 @@
       padding: 20px;
       width: 85%;
       margin: auto;
-      display: flex;
-      justify-content: space-between;
-      // box-shadow: $boxShadow;
+
+      .body__bottom__itemsLabel, .body__bottom__items {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .body__bottom__itemsLabel div:nth-child(2), .body__bottom__items div:nth-child(2) {
+        display: flex;
+        width: 50%;
+      }
       &.darkmode {
         @include darkmode(#252945, "");
       }
       p {
         display: block;
         text-align: center;
+        font-size: 18px;
       }
     }
-    .invoiceDetails__body__bottom section:nth-child(1) {
-      width: 300px;
-    }
-
     .amountDue {
       display: flex;
       justify-content: space-between;

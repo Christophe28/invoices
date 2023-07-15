@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 // Functions
 import { dynamicalClass } from '../../functions/classe/dynamicalClass';
 import { filters, filtersByFilters } from '../../functions/array/filters';
+import { uniqueId } from '../../functions/form/uniqueId';
 
 // Type
 import { BillTo, ItemList } from '../../type/typeInvoices';
@@ -19,6 +20,7 @@ import logoFilter from "../../assets/logo/filter/arrow.svg";
 import imgEmptyInvoice from "../../assets/logo/globalInvoices/empty_invoice.svg";
 import imgEmptyInvoiceDarkmode from "../../assets/logo/globalInvoices/empty_invoice_darkmode.svg";
 
+
 const Invoices = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
   const billsTo = useSelector((state:Roostate) => state.billsTo);
@@ -30,55 +32,53 @@ const Invoices = () => {
   const dispatch = useDispatch();
 
   const billsToFilterByPayment = filters<BillTo>(billsTo, "paid", filterInvoice);
-  const itemsToFilterByPayment = filtersByFilters<ItemList, BillTo>(itemsList, billsToFilterByPayment);
+  const itemsToFilterByPayment = filtersByFilters(itemsList, billsToFilterByPayment);
   const invoices = filterInvoice === "all" ? billsTo : billsToFilterByPayment;
   const items = filterInvoice === "all" ? itemsList : itemsToFilterByPayment;
 
   return (
     <div className={`${dynamicalClass(isDarkmode, "darkmode", "containerInvoices")} ${isOpenForm ? "desactive" : ""}`}>
-        <div className="containerInvoices__page">
-          <div className="containerInvoices__header">
-            <div>
-              <h1>Invoices</h1>
-              <p>There are {billsFrom.length} total invoices</p>
-            </div>
-            <div className="containerInvoices__containerButtons">
-              <Filter />
-              <button className="defaultButton" onClick={() => {
-                dispatch({
-                  type: "isOpenForm/moveForm",
-                  payload: true
-                });
-              }}><span>+</span> New invoice</button>
-            </div>
+      <div className="containerInvoices__page">
+        <div className="containerInvoices__header">
+          <div>
+            <h1>Invoices</h1>
+            <p>There are {billsFrom.length} total invoices</p>
           </div>
-          <section className={dynamicalClass(isDarkmode, "darkmode", "containerInvoices__invoices")}>
-            {
-              invoices.length > 0 ? (
-                invoices.map((elem, index) => {
-                  return (
-                    <NavLink key={elem.id} to={`./invoiceDetails/${elem.id}`} onClick={() => dispatch({
-                      type: "rooter/changeRoot",
-                      payload: elem.id 
-                    })}>
-                      <Invoice
-                        id={elem.id}
-                        isDarkmode={isDarkmode}
-                        invoiceDate={elem.invoiceDate}
-                        clientName={elem.clientName}
-                        totalPrice={items[index].totalPrice}
-                        paid={elem.paid}
-                        logoFilter={logoFilter}
-                      />
-                    </NavLink>
-                  )
-                })
-              ) : (
-                <img src={isDarkmode ? imgEmptyInvoiceDarkmode : imgEmptyInvoice} alt="Vous n'avez pas de facture" className="noInvoices"/>
-              )
-            }
-          </section>
+          <div className="containerInvoices__containerButtons">
+            <Filter />
+            <button className="defaultButton" onClick={() => {
+              dispatch({type: "isOpenForm/moveForm",payload: true});
+              dispatch({type: "billFromForm/createId", payload:uniqueId()});
+            }}><span>+</span> New invoice</button>
+          </div>
         </div>
+        <section className={dynamicalClass(isDarkmode, "darkmode", "containerInvoices__invoices")}>
+          {
+            invoices.length > 0 ? (
+              invoices.map((elem, index) => {
+                return (
+                  <NavLink key={elem.id} to={`./invoiceDetails/${elem.id}`} onClick={() => dispatch({
+                    type: "rooter/changeRoot",
+                    payload: elem.id 
+                  })}>
+                    <Invoice
+                      id={elem.id}
+                      isDarkmode={isDarkmode}
+                      invoiceDate={elem.invoiceDate}
+                      clientName={elem.clientName}
+                      totalPrice={items[index].total}
+                      paid={elem.paid}
+                      logoFilter={logoFilter}
+                    />
+                  </NavLink>
+                )
+              })
+            ) : (
+              <img src={isDarkmode ? imgEmptyInvoiceDarkmode : imgEmptyInvoice} alt="Vous n'avez pas de facture" className="noInvoices"/>
+            )
+          }
+        </section>
+      </div>
     </div>
   );
 };
