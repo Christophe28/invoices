@@ -6,10 +6,11 @@ import { Roostate } from "../../../redux";
 
 //Components
 import SideBarIcone from "./SideBarIcone";
+import Form from "./form/Form";
 
 //Functions
-import { darkmode } from "../../../functions/classe/darkmode";
-
+import { dynamicalClass } from "../../../functions/classe/dynamicalClass";
+import { controlAnimForm } from "../../../functions/form/controlAnimForm";
 //Img
 import iconPacman from "../../../assets/logo/sideBar/pacman.svg";
 import iconMoon from "../../../assets/logo/sideBar/moon.svg";
@@ -19,9 +20,12 @@ import iconPp from "../../../assets/logo/sideBar/pp.svg";
 
 const SideBar = () => {
   const isDarkmode = useSelector((state: Roostate) => state.isDarkmode);
+  
+  const isOpenForm = useSelector((state:Roostate) => state.isOpenForm);
+  const firstLoadPage = useSelector((state:Roostate) => state.firstLoadPage);
   const dispatch = useDispatch();
   return (
-    <div className={darkmode(isDarkmode, "sideBar")}>
+    <div className={dynamicalClass(isDarkmode, "darkmode", "sideBar")}>
       <SideBarIcone 
         img={iconPacman}
         classNameContainer="sideBar__icone--translate sideBar__iconePacman"
@@ -45,6 +49,22 @@ const SideBar = () => {
           alt="photo de profil"
         />
       </section>
+      <Form
+          className={`${dynamicalClass(isDarkmode, "darkmode", "newInvoice")} ${dynamicalClass(isOpenForm, "moveTo", firstLoadPage ? "" : "leaveTo")}`}
+          clickNewItem={(e) => {
+            e.preventDefault();
+            console.log("coucou");
+          }}
+          clickDiscard={(e) => {
+            controlAnimForm(e, dispatch);
+          }}
+          clickSave={(e) => {
+            controlAnimForm(e, dispatch);
+          }}
+          clickSubmit={(e) => {
+            controlAnimForm(e, dispatch)
+          }}
+        />
     </div>
   );
 };

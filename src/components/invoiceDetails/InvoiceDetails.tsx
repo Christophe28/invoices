@@ -1,21 +1,26 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Roostate } from "../../redux";
 import { NavLink } from "react-router-dom";
 
+// Functions
 import { filters } from '../../functions/array/filters';
-import { darkmode } from "../../functions/classe/darkmode";
+import { dynamicalClass } from "../../functions/classe/dynamicalClass";
 import { formatNumber } from "../../functions/invoices/formatNumber";
 
+// Components
 import Status from "../buttons/Status";
 
+// Img
 import arrow from "../../assets/logo/filter/arrow.svg";
 
 const InvoiceDetails = () => {
+  const dispatch = useDispatch();
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
   const billsTo = useSelector((state:Roostate) => state.billsTo);
   const itemsList = useSelector((state:Roostate) => state.itemsList);
   const root = useSelector((state:Roostate) => state.rooter);
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
+  const isOpenForm = useSelector((state:Roostate) => state.isOpenForm);
 
   const filterBillsFrom = filters(billsFrom, "id", root);
   const filterBillsTo = filters(billsTo, "id", root);
@@ -45,10 +50,11 @@ const InvoiceDetails = () => {
   const {itemName, quantity, price, totalPrice} = fCitemsList[0];
 
   return (
-    <div className="invoiceDetails">
+    // "invoiceDetails"
+    <div className={dynamicalClass(isOpenForm, "desactive", "invoiceDetails")}>
       <div className="invoiceDetails__navlink">
         <NavLink to="/">
-          <div className={darkmode(isDarkmode, "invoiceDetails__goBack fwbold")}>
+          <div className={dynamicalClass(isDarkmode, "darkmode", "invoiceDetails__goBack fwbold")}>
             <img src={arrow} alt="Arrow" className="invoiceDetails__arrow" />
             Go back
             <div></div>
@@ -56,19 +62,27 @@ const InvoiceDetails = () => {
         </NavLink>
       </div>
       
-      <section className={darkmode(isDarkmode, "invoiceDetails__header")}>
+      <section className={dynamicalClass(isDarkmode, "darkmode", "invoiceDetails__header")}>
         <div className="invoiceDetails__header__containerStatus">
-          <p className={darkmode(isDarkmode, "invoiceDetails__header__status")}>Status</p>
+          <p className={dynamicalClass(isDarkmode, "darkmode", "invoiceDetails__header__status")}>Status</p>
           <Status paid={paid}/>
         </div>
         <div className="invoiceDetails__header__containerButtons">
-          <button className={darkmode(isDarkmode, "defaultButton edit")}>Edit</button>
+          <button 
+            className={dynamicalClass(isDarkmode, "darkmode", "defaultButton edit")}
+            onClick={() => {
+              dispatch({
+                type: "isOpenForm/moveForm",
+                payload: true
+              });
+            }}
+          >Edit</button>
           <button className="defaultButton delete">Delete</button>
           <button className="defaultButton markAsPaid">Mark as Paid</button>
         </div>
       </section>
 
-      <section className={darkmode(isDarkmode, "invoiceDetails__body")}>
+      <section className={dynamicalClass(isDarkmode, "darkmode", "invoiceDetails__body")}>
         {/* header card  */}
         <div className="invoiceDetails__body__top">
           <p className="invoiceDetails__body__top__id fwbold fs18"><span>#</span>{id}</p>
@@ -100,7 +114,7 @@ const InvoiceDetails = () => {
           </section>
         </div>
         {/* footer card  */}
-        <div className={darkmode(isDarkmode, "invoiceDetails__body__bottom")}>
+        <div className={dynamicalClass(isDarkmode, "darkmode", "invoiceDetails__body__bottom")}>
           <section>
             <p id="txtStart" className="lessOpacity fs12">Item Name</p>
             <p id="txtStart" className="fwbold fs14">{itemName}</p>
@@ -118,9 +132,9 @@ const InvoiceDetails = () => {
             <p id="txtEnd" className="fwbold fs14">${formatNumber(totalPrice)}</p>
           </section>
         </div>
-        <section className={darkmode(isDarkmode, "amountDue")}>
+        <section className={dynamicalClass(isDarkmode, "darkmode", "amountDue")}>
             <p>Amount due</p>
-            <p id="txtEnd">${formatNumber(totalPrice)}</p>
+            <p id="txtEnd">${formatNumber(totalPrice)}</p>e
         </section>
       </section>
     </div>

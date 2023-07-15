@@ -241,6 +241,30 @@ const isDarkmode = createSlice({
   }
 })
 
+const disablePage = createSlice({
+  name: "disablePage",
+  initialState: false,
+  reducers: {
+    changeActive: (state, action) => { return action.payload }
+  }
+})
+
+const isOpenForm = createSlice({
+  name: "isOpenForm",
+  initialState: false,
+  reducers: {
+    moveForm: (state, action) => { return action.payload }
+  }
+})
+
+const firstLoadPage = createSlice({
+  name: "firstLoadPage",
+  initialState: true,
+  reducers: {
+    setFirstLoadPage: (state, action) => { return action.payload }
+  }
+})
+
 const filterInvoice = createSlice({
   name: "filterInvoice",
   initialState: "all",
@@ -263,8 +287,11 @@ export const {consoleBillsTo} = billsTo.actions;
 export const {consoleItemsList} = itemsList.actions;
 export const {handleOptionChange} = selectedOption.actions;
 export const {changeMode} = isDarkmode.actions;
+export const {changeActive} = disablePage.actions;
+export const {setFirstLoadPage} = firstLoadPage.actions;
 export const {changeRoot} = rooter.actions;
 export const {setFilterInvoice} = filterInvoice.actions;
+
 
 export const myStore = configureStore({
   reducer: {
@@ -273,6 +300,9 @@ export const myStore = configureStore({
     itemsList: itemsList.reducer,
     selectedOption: selectedOption.reducer,
     isDarkmode: isDarkmode.reducer,
+    disablePage: disablePage.reducer,
+    firstLoadPage: firstLoadPage.reducer,
+    isOpenForm: isOpenForm.reducer,
     filterInvoice: filterInvoice.reducer,
     rooter: rooter.reducer
   }

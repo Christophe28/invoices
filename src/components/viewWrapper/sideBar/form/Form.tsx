@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { NewInvoiceProps } from '../../../type/newInvoice';
-
-import { darkmode } from '../../../functions/classe/darkmode';
+import { NewInvoiceProps } from '../../../../type/typeNewInvoice';
+import { dynamicalClass } from '../../../../functions/classe/dynamicalClass';
 
 import ItemList from './ItemList';
 import { useSelector } from 'react-redux';
-import { Roostate } from '../../../redux';
+import { Roostate } from '../../../../redux';
 
-const NewInvoice:React.FC<NewInvoiceProps> = ({ className }) => {
+const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard, clickSave, clickSubmit }) => {
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
   return (
     <div className={className}>
@@ -52,7 +51,7 @@ const NewInvoice:React.FC<NewInvoiceProps> = ({ className }) => {
         <section>
           <div>
             <label htmlFor="invoiceDate">Invoice Date</label>
-            <input type="date" className={darkmode(isDarkmode, "")} name="invoiceDate" id="invoiceDate" placeholder={"La date du jour"} disabled />
+            <input type="date" className={dynamicalClass(isDarkmode, "darkmode", "")} name="invoiceDate" id="invoiceDate" placeholder={"La date du jour"} disabled />
           </div>
           <div>
             <label htmlFor="paymentTerms">Payment Terms</label>
@@ -78,13 +77,13 @@ const NewInvoice:React.FC<NewInvoiceProps> = ({ className }) => {
         
         <ItemList id="coucou" />
 
-        <button className="defaultButton addNewItem" onClick={(e) => {e.preventDefault()}}>+ Add New Item</button>
+        <button className="defaultButton addNewItem" onClick={clickNewItem}>+ Add New Item</button>
 
         <section>
-          <button className="defaultButton discard" onClick={(e) => e.preventDefault()}>Discard</button>
+          <button className="defaultButton discard" onClick={clickDiscard}>Discard</button>
           <div className="form__endButtons">
-            <button className="defaultButton saveAsDraft" onClick={(e) => e.preventDefault()}>Save as Draft</button>
-            <input className="defaultButton submit" type="submit" value="Save & Send" onClick={(e) => {e.preventDefault(); console.log("coucou")}}/>
+            <button className="defaultButton saveAsDraft" onClick={clickSave}>Save as Draft</button>
+            <input className="defaultButton submit" type="submit" value="Save & Send" onClick={clickSubmit}/>
           </div>
         </section>
       </form>
@@ -92,7 +91,7 @@ const NewInvoice:React.FC<NewInvoiceProps> = ({ className }) => {
   );
 };
 
-export default NewInvoice;
+export default Form;
 
 // const [formData, setFormData] = useState({
 //   firstName: '',

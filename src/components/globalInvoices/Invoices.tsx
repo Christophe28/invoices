@@ -4,7 +4,7 @@ import { Roostate } from '../../redux';
 import { NavLink } from 'react-router-dom';
 
 // Functions
-import { darkmode } from '../../functions/classe/darkmode';
+import { dynamicalClass } from '../../functions/classe/dynamicalClass';
 import { filters, filtersByFilters } from '../../functions/array/filters';
 
 // Type
@@ -13,13 +13,11 @@ import { BillTo, ItemList } from '../../type/typeInvoices';
 // Components
 import Filter from '../filter/Filter';
 import Invoice from './Invoice';
-import NewInvoice from './newInvoice/NewInvoice';
 
 // Img
 import logoFilter from "../../assets/logo/filter/arrow.svg";
 import imgEmptyInvoice from "../../assets/logo/globalInvoices/empty_invoice.svg";
 import imgEmptyInvoiceDarkmode from "../../assets/logo/globalInvoices/empty_invoice_darkmode.svg";
-import { useState } from 'react';
 
 const Invoices = () => {
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
@@ -27,6 +25,7 @@ const Invoices = () => {
   const itemsList = useSelector((state:Roostate) => state.itemsList);
   const filterInvoice = useSelector((state:Roostate) => state.filterInvoice);
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
+  const isOpenForm = useSelector((state:Roostate) => state.isOpenForm);
 
   const dispatch = useDispatch();
 
@@ -35,10 +34,8 @@ const Invoices = () => {
   const invoices = filterInvoice === "all" ? billsTo : billsToFilterByPayment;
   const items = filterInvoice === "all" ? itemsList : itemsToFilterByPayment;
 
-  const [test, setTest] = useState("newInvoice");
-
   return (
-    <div className={darkmode(isDarkmode, "containerInvoices")}>
+    <div className={`${dynamicalClass(isDarkmode, "darkmode", "containerInvoices")} ${isOpenForm ? "desactive" : ""}`}>
         <div className="containerInvoices__page">
           <div className="containerInvoices__header">
             <div>
@@ -48,16 +45,14 @@ const Invoices = () => {
             <div className="containerInvoices__containerButtons">
               <Filter />
               <button className="defaultButton" onClick={() => {
-                if(test === "newInvoice" || test === "newInvoice leaveTo") {
-                  setTest(`newInvoice moveTo`);
-                }
-                if(test === "newInvoice moveTo") {
-                  setTest(`newInvoice leaveTo`)
-                }
+                dispatch({
+                  type: "isOpenForm/moveForm",
+                  payload: true
+                });
               }}><span>+</span> New invoice</button>
             </div>
           </div>
-          <section className={darkmode(isDarkmode, "containerInvoices__invoices")}>
+          <section className={dynamicalClass(isDarkmode, "darkmode", "containerInvoices__invoices")}>
             {
               invoices.length > 0 ? (
                 invoices.map((elem, index) => {
@@ -84,9 +79,6 @@ const Invoices = () => {
             }
           </section>
         </div>
-        <NewInvoice
-          className={darkmode(isDarkmode, test)}
-        />
     </div>
   );
 };

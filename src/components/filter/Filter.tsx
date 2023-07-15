@@ -7,7 +7,7 @@ import { Roostate } from "../../redux";
 import { Option } from "../../type/typeOption";
 
 // Functions
-import { darkmode } from "../../functions/classe/darkmode";
+import { dynamicalClass } from "../../functions/classe/dynamicalClass";
 
 // Components
 import Checkbox from "../buttons/Checkbox";
@@ -48,13 +48,13 @@ const Filter = () => {
         Filtered by status 
         <img src={arrow} alt="Flèche directionnelle" className={`filter__filteredByStatus__img ${isDisplay ? "rotateDown" : "rotateUp"}`}/>
       </div>
-      <div className={darkmode(isDarkmode, isDisplay ? "filter__containerOption display" : "filter__containerOption displayNone")}>
+      <div className={dynamicalClass(isDarkmode, "darkmode", isDisplay ? "filter__containerOption display" : "filter__containerOption displayNone")}>
         {
           options.map(option => (
             <section key={option.id}>
               <div>
                 <Checkbox
-                  classWrapper={darkmode(isDarkmode, selectedOption === option.id ? "checkBg" : "uncheckBg")}
+                  classWrapper={dynamicalClass(isDarkmode, "darkmode", selectedOption === option.id ? "checkBg" : "uncheckBg")}
                   check={selectedOption === option.id} 
                   label={option.label}
                   onChange={() => dispatch({

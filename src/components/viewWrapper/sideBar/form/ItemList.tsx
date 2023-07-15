@@ -1,6 +1,6 @@
 import React from "react";
-import { ItemListProps } from "../../../type/itemListProps";
-import trash from "../../../assets/logo/form/Combined Shape.svg";
+import { ItemListProps } from "../../../../type/itemListProps";
+import trash from "../../../../assets/logo/form/Combined Shape.svg";
 
 const ItemList:React.FC<ItemListProps> = ({ id }) => {
 
