@@ -1,6 +1,8 @@
-import React from "react"
-
 export type ItemListProps = { 
-  id:string 
+  price:number 
+  quantity:number
+  onChangeName:(e:any) => void
+  onChangeQuantity:(e:any) => void
+  onChangePrice:(e:any) => void
   onClick:(e:any) => void
 }

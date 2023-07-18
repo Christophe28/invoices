@@ -129,8 +129,8 @@ const InvoiceDetails = () => {
             </div>
           </section>
           {
-            items.map(item => (
-              <div key={item.itemName} className="body__bottom__items">
+            items.map((item, index) => (
+              <div key={`${item.itemName}-${index}`} className="body__bottom__items">
                 <DetailItems 
                   name={item.itemName}
                   quantity={formatNumber(item.quantity)}

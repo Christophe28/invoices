@@ -1,7 +1,7 @@
 // React / redux
 import { useSelector, useDispatch } from "react-redux";
 
-//State
+// My Redux
 import { Roostate } from "../../../redux";
 
 //Components
@@ -11,6 +11,8 @@ import Form from "./form/Form";
 //Functions
 import { dynamicalClass } from "../../../functions/classe/dynamicalClass";
 import { controlAnimForm } from "../../../functions/form/controlAnimForm";
+import { reduxSetter } from "../../../functions/form/reduxSetter";
+
 //Img
 import iconPacman from "../../../assets/logo/sideBar/pacman.svg";
 import iconMoon from "../../../assets/logo/sideBar/moon.svg";
@@ -18,20 +20,31 @@ import iconSun from "../../../assets/logo/sideBar/sun.svg";
 import iconPp from "../../../assets/logo/sideBar/pp.svg";
 
 
+
 const SideBar = () => {
+  // Controllers
   const isDarkmode = useSelector((state: Roostate) => state.isDarkmode);
   const isOpenForm = useSelector((state:Roostate) => state.isOpenForm);
   const firstLoadPage = useSelector((state:Roostate) => state.firstLoadPage);
+  // Form
+  const billFromForm = useSelector((state:Roostate) => state.billFromForm.billFromForm);
+  const billsToForm = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const itemsForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
-  const billFromForm = useSelector((state:Roostate) => state.billFromForm.BillFromForm);
+  // Data
+  const billsFrom = useSelector((state:Roostate) => state.billsFrom);
+  const billsTo = useSelector((state:Roostate) => state.billsTo);
+  const items = useSelector((state:Roostate) => state.itemsList);
 
+  const totalItem = {id: billFromForm.id ,items:[...itemsForm], total: 100}
+  console.log("totalItem ==>", totalItem);
+  // console.log("totalItem ==>", totalItem);
   const dispatch = useDispatch();
   const bodyItem = {
     id: `${billFromForm.id}-${itemsForm.length}`,
     itemName: "",
-    quantity: 10,
-    price: 10,
-    totalPrice: 10
+    quantity: 0,
+    price: 0,
+    totalPrice: 0
   }
   return (
     <div className={dynamicalClass(isDarkmode, "darkmode", "sideBar")}>
@@ -73,11 +86,28 @@ const SideBar = () => {
           }}
           clickSave={(e) => {
             controlAnimForm(e, dispatch);
+            dispatch({
+              type: "billsFrom/pushToBillsFrom",
+              payload: billFromForm
+            });
+            dispatch({
+              type: "billsTo/pushToBillsTo",
+              payload: billsToForm
+            });
+            dispatch({
+              type: "newitemList/pushToItemList",
+              payload: totalItem
+            })
           }}
           clickSubmit={(e) => {
             controlAnimForm(e, dispatch)
           }}
         />
+        <button onClick={() => {
+          console.log("BillFrom ==> ", billsFrom);
+          console.log("BillsTo ==>", billsTo);
+          console.log("itemsList ==>", items);
+        }}>CLIQUEEEEUH</button>
     </div>
   );
 };

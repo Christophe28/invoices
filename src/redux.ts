@@ -3,21 +3,32 @@ import { dateInvoice } from "./functions/date/dateInvoice";
 import { BillFrom, BillTo, Item, ItemList } from './type/typeInvoices';
 
 interface InitialState {
-  BillFromForm:BillFrom,
-  billTo:BillTo[],
-  itemsForm:Item[],
+  billFromForm:BillFrom
+  billToForm:BillTo
+  itemsForm:Item[]
 }
 
 const initialState:InitialState = {
-  BillFromForm: {
+  billFromForm: {
     id: "",
     streetAddress: "",
     city: "",
     postCode: "",
     country: ""
   },
-  billTo:[],
-  itemsForm:[],
+  billToForm: {
+    id: "",
+    clientName: "",
+    clientMail: "",
+    streetAddress: "",
+    city: "",
+    postCode: "",
+    country: "",
+    invoiceDate: "",
+    paymentTerms: "",
+    paid: ""
+  },
+  itemsForm: [],
 }
 
 const billsFrom = createSlice({
@@ -74,9 +85,8 @@ const billsFrom = createSlice({
     },
   ],
   reducers: {
-    consoleBillsFrom: (state, action) => {
-      const stateClone = JSON.parse(JSON.stringify(state));
-      console.log(stateClone);
+    pushToBillsFrom: (state, action) => {
+      state.push(action.payload)
     }
   }
 });
@@ -170,10 +180,7 @@ const billsTo = createSlice({
     },
   ],
   reducers: {
-    consoleBillsTo: (state, action) => {
-      const stateClone = JSON.parse(JSON.stringify(state));
-      console.log(stateClone);
-    }
+    pushToBillsTo: (state, action) => { state.push(action.payload) }
   }
 });
 
@@ -313,7 +320,7 @@ const itemsList = createSlice({
     },
   ],
   reducers: {
-    setNewItemList: (state, action) => { return}
+    pushToItemList: (state, action) => { state.push(action.payload) }
   }
 })
 
@@ -370,9 +377,7 @@ const firstLoadPage = createSlice({
 const rooter = createSlice({
   name: "rooter",
   initialState: "",
-  reducers: {
-    changeRoot: (state, action) => { return action.payload }
-  }
+  reducers: {changeRoot: (state, action) => { return action.payload }}
 })
 
 // Form
@@ -380,7 +385,28 @@ const billFromForm = createSlice({
   name: "billFromForm",
   initialState,
   reducers: {
-    createId: (state, action:PayloadAction<string>) => {state.BillFromForm.id = action.payload}
+    createId: (state, action:PayloadAction<string>) => { state.billFromForm.id = action.payload },
+    setStreetAddress: (state, action:PayloadAction<string>) => { state.billFromForm.streetAddress = action.payload },
+    setCity: (state, action:PayloadAction<string>) => { state.billFromForm.city = action.payload },
+    setPostCode: (state, action:PayloadAction<string>) => { state.billFromForm.postCode = action.payload },
+    setCountry: (state, action:PayloadAction<string>) => { state.billFromForm.country = action.payload }
+  }
+})
+
+const billToFrom = createSlice({
+  name: "billToFrom",
+  initialState,
+  reducers: {
+    setClientId: (state, action:PayloadAction<string>) => {state.billToForm.id = action.payload},
+    setClientName: (state, action:PayloadAction<string>) => {state.billToForm.clientName = action.payload},
+    setClientMail: (state, action:PayloadAction<string>) => {state.billToForm.clientMail = action.payload},
+    setClientAddress:(state, action:PayloadAction<string>) => { state.billToForm.streetAddress = action.payload},
+    setClientCity: (state, action:PayloadAction<string>) => {state.billToForm.city = action.payload},
+    setClientPostCode: (state, action:PayloadAction<string>) => {state.billToForm.postCode = action.payload},
+    setClientCountry: (state, action:PayloadAction<string>) => {state.billToForm.country = action.payload},
+    setInvoiceDate: (state, action:PayloadAction<string>) => {state.billToForm.invoiceDate = action.payload},
+    setPaymentTerms: (state, action:PayloadAction<string>) => {state.billToForm.paymentTerms = action.payload},
+    setPaid: (state, action:PayloadAction<string>) => {state.billToForm.paid = action.payload}
   }
 })
 
@@ -388,26 +414,72 @@ const itemsForm = createSlice({
   name: "itemsForm",
   initialState,
   reducers: {
-    addItemForm: (state, action:PayloadAction<Item>) => {state.itemsForm.push(action.payload)}
+    addItemForm: (state, action:PayloadAction<Item>) => {state.itemsForm.push(action.payload)},
+    setItemNameForm: (state, action) => {
+      const {index, data} = action.payload;
+      const items = state.itemsForm;
+      items[index].itemName = data;
+    },
+    setPriceForm: (state, action) => {
+      const {index, data} = action.payload;
+      const items = state.itemsForm;
+      items[index].price = data;
+    },
+    setQuantityForm: (state, action) => {
+      const {index, data} = action.payload;
+      const items = state.itemsForm;
+      items[index].quantity = data
+    },
+    setTotalPriceForm: (state, action) => {
+      const {index, data} = action.payload;
+      const items = state.itemsForm;
+      items[index].totalPrice = data;
+    },
+    delItemForm: (state, action) => {
+      const {index} = action.payload;
+      const items = state.itemsForm;
+      items.splice(index, 1);
+    }
   }
 });
 
-export const {consoleBillsFrom} = billsFrom.actions;
-export const {consoleBillsTo} = billsTo.actions;
+// Data
+export const {pushToBillsFrom} = billsFrom.actions;
+export const {pushToBillsTo} = billsTo.actions;
+export const {pushToItemList} = itemsList.actions;
+
+// Controlers
 export const {handleOptionChange} = selectedOption.actions;
 export const {changeMode} = isDarkmode.actions;
 export const {changeActive} = disablePage.actions;
 export const {setFirstLoadPage} = firstLoadPage.actions;
 export const {changeRoot} = rooter.actions;
 export const {setFilterInvoice} = filterInvoice.actions;
-export const {createId} = billFromForm.actions;
-export const {addItemForm} = itemsForm.actions;
+
+// Form
+export const {createId, setStreetAddress, setCity, setPostCode, setCountry} = billFromForm.actions;
+export const {
+  setClientId, 
+  setClientName, 
+  setClientMail, 
+  setClientAddress, 
+  setClientCity, 
+  setClientPostCode, 
+  setClientCountry, 
+  setInvoiceDate, 
+  setPaymentTerms, 
+  setPaid
+} = billToFrom.actions;
+export const {addItemForm, setItemNameForm, setPriceForm, setQuantityForm, setTotalPriceForm, delItemForm} = itemsForm.actions;
 
 export const myStore = configureStore({
   reducer: {
+    // Data
     billsFrom: billsFrom.reducer,
     billsTo: billsTo.reducer,
     itemsList: itemsList.reducer,
+
+    // Controlers
     selectedOption: selectedOption.reducer,
     isDarkmode: isDarkmode.reducer,
     disablePage: disablePage.reducer,
@@ -415,8 +487,11 @@ export const myStore = configureStore({
     isOpenForm: isOpenForm.reducer,
     filterInvoice: filterInvoice.reducer,
     rooter: rooter.reducer,
-    itemsForm: itemsForm.reducer,
+
+    // Form
     billFromForm: billFromForm.reducer,
+    billToFrom: billToFrom.reducer,
+    itemsForm: itemsForm.reducer,
   }
 });
 
