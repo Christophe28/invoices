@@ -4,4 +4,5 @@ export type NewInvoiceProps = {
   clickDiscard:(event:React.MouseEvent) => void
   clickSave:(event:React.MouseEvent) => void
   clickSubmit:(event:React.MouseEvent) =>  void
+  totalItems:any
 }

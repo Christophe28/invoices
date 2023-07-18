@@ -2,7 +2,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 // My Redux
-import { Roostate } from "../../../redux";
+import { Roostate, pushToBillsFrom, pushToBillsTo, pushToItemList } from "../../../redux";
 
 //Components
 import SideBarIcone from "./SideBarIcone";
@@ -35,10 +35,10 @@ const SideBar = () => {
   const billsTo = useSelector((state:Roostate) => state.billsTo);
   const items = useSelector((state:Roostate) => state.itemsList);
 
-  const totalItem = {id: billFromForm.id ,items:[...itemsForm], total: 100}
-  console.log("totalItem ==>", totalItem);
-  // console.log("totalItem ==>", totalItem);
   const dispatch = useDispatch();
+  const totalCost = itemsForm.reduce((accumulator, curr) => accumulator + (curr.price * curr.quantity), 0);
+  const totalItem = {id: billFromForm.id ,items:[...itemsForm], total: totalCost}
+
   const bodyItem = {
     id: `${billFromForm.id}-${itemsForm.length}`,
     itemName: "",
@@ -79,35 +79,22 @@ const SideBar = () => {
               type: "itemsForm/addItemForm",
               payload: bodyItem
             });
-            console.log("itemsForm ==>", itemsForm);
+
           }}
           clickDiscard={(e) => {
             controlAnimForm(e, dispatch);
           }}
           clickSave={(e) => {
             controlAnimForm(e, dispatch);
-            dispatch({
-              type: "billsFrom/pushToBillsFrom",
-              payload: billFromForm
-            });
-            dispatch({
-              type: "billsTo/pushToBillsTo",
-              payload: billsToForm
-            });
-            dispatch({
-              type: "newitemList/pushToItemList",
-              payload: totalItem
-            })
+            reduxSetter(dispatch, pushToBillsFrom, billFromForm);
+            reduxSetter(dispatch, pushToBillsTo, billsToForm);
+            reduxSetter(dispatch, pushToItemList, totalItem);
           }}
           clickSubmit={(e) => {
             controlAnimForm(e, dispatch)
           }}
+          totalItems={totalItem}
         />
-        <button onClick={() => {
-          console.log("BillFrom ==> ", billsFrom);
-          console.log("BillsTo ==>", billsTo);
-          console.log("itemsList ==>", items);
-        }}>CLIQUEEEEUH</button>
     </div>
   );
 };

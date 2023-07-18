@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { dateInvoice } from "./functions/date/dateInvoice";
-import { BillFrom, BillTo, Item, ItemList } from './type/typeInvoices';
+import { BillFrom, BillTo, Item, ItemsList } from './type/typeInvoices';
 
 interface InitialState {
   billFromForm:BillFrom
@@ -31,6 +31,7 @@ const initialState:InitialState = {
   itemsForm: [],
 }
 
+// Data
 const billsFrom = createSlice({
   name: "billsFrom",
   initialState: [
@@ -90,7 +91,6 @@ const billsFrom = createSlice({
     }
   }
 });
-
 const billsTo = createSlice({
   name: "billsTo",
   initialState: [
@@ -183,7 +183,6 @@ const billsTo = createSlice({
     pushToBillsTo: (state, action) => { state.push(action.payload) }
   }
 });
-
 const itemsList = createSlice({
   name: "newitemList",
   initialState: [

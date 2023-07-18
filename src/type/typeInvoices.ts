@@ -1,12 +1,10 @@
-// Config state invoices typescript
-// Form invoices
-
 export type BillFrom = {
   id:string
   streetAddress:string
   city:string
   postCode:string
   country:string
+  [key:string | number]:string | number
 }
 
 export type BillTo = {
@@ -20,6 +18,7 @@ export type BillTo = {
   invoiceDate:string
   paymentTerms:string
   paid:string
+  [key:string | number]:string | number
 }
 
 export type Item = {
@@ -28,9 +27,10 @@ export type Item = {
   quantity:number
   price:number
   totalPrice:number
+  [key:string | number]:string | number
 }
 
-export type ItemList = {
+export type ItemsList = {
   id:string
   items:Item[]
   total:number
@@ -41,40 +41,6 @@ export type CompleteInvoice = [
     id:number
     billFrom:BillFrom
     billTo:BillTo
-    itemList:ItemList
+    itemList:ItemsList
   }
 ]
-
-type InvoicesState = {
-  billFrom:BillFrom
-  billTo:BillTo
-  itemList:ItemList
-}
-
-// const initialInvoice:InvoicesState = {
-//   billFrom: {
-//     id: "",
-//     streetAddress: '',
-//     city: '',
-//     postCode: '',
-//     country: '',
-//   },
-//   billTo: {
-//     id: "",
-//     clientName: '',
-//     clientMail: '',
-//     streetAddress: '',
-//     city: '',
-//     postCode: '',
-//     country: '',
-//     invoiceDate: "",
-//     paymentTerms: '',
-//   },
-//   itemList: {
-//     id: "",
-//     itemName: "",
-//     quantity: 1,
-//     price: 1,
-//     totalPrice: 1
-//   },
-// }

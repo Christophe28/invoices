@@ -3,9 +3,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // 2.My Redux
-// 2.A set BillFromForm
+// 2.A type
+import { BillFrom, BillTo, Item, ItemsList } from '../../../../type/typeInvoices';
+import { NewInvoiceProps } from '../../../../type/typeNewInvoice';
+// 2.B set BillFromForm
 import { Roostate, setCountry, setItemNameForm, setPostCode, setCity } from '../../../../redux';
-// 2.B setClientForm
+// 2.C setClientForm
 import { 
   setClientName, 
   setClientAddress, 
@@ -16,23 +19,22 @@ import {
   setPaymentTerms, 
   setInvoiceDate 
 } from '../../../../redux';
-// 2.B set itemsForm
-import { setPriceForm, setQuantityForm, setStreetAddress, delItemForm} from '../../../../redux';
-
-// Type
-import { NewInvoiceProps } from '../../../../type/typeNewInvoice';
+// 2.D set Items Form
+import { setPriceForm, setQuantityForm, setStreetAddress, setTotalPriceForm, delItemForm } from '../../../../redux';
 
 // Functions
 import { dynamicalClass } from '../../../../functions/classe/dynamicalClass';
 import { reduxSetter } from '../../../../functions/form/reduxSetter';
+import { checkObject } from '../../../../functions/form/controlEmpy';
 
 // Components
 import ItemList from './ItemList';
 
-const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard, clickSave, clickSubmit }) => {
+const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard, clickSave, clickSubmit, totalItems }) => {
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
   const items = useSelector((state:Roostate) => state.itemsForm.itemsForm);
   const billFromForm = useSelector((state:Roostate) => state.billFromForm.billFromForm);
+  const billToForm = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const itemsForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
   const dispatch = useDispatch();
 
@@ -49,9 +51,7 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           <label htmlFor="country" className="calibrate">Country</label>
         </section>
         <section>
-          <input type="text" name="city" id="city" onChange={(e) => {
-            dispatch(setCity(e.target.value))
-          }}/>
+          <input type="text" name="city" id="city" onChange={(e) => { dispatch(setCity(e.target.value)) }}/>
           <input type="text" name="postCode" id="postCode" onChange={(e) => reduxSetter(dispatch, setPostCode, e.target.value)}/>
           <input type="text" name="country" id="country" onChange={(e) => reduxSetter(dispatch, setCountry, e.target.value)}/>
         </section>
@@ -114,7 +114,10 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
                   onClick={() => reduxSetter(dispatch, delItemForm, index)}
                   onChangeName={(e) => reduxSetter(dispatch, setItemNameForm , {index: index, data: e.target.value})}
                   onChangeQuantity={(e) => reduxSetter(dispatch, setQuantityForm , {index: index, data: e.target.value})}
-                  onChangePrice={(e) => reduxSetter(dispatch, setPriceForm , {index: index, data: e.target.value})}
+                  onChangePrice={(e) => {
+                    reduxSetter(dispatch, setPriceForm , {index: index, data: e.target.value});
+                    reduxSetter(dispatch, setTotalPriceForm, {index: index, data: itemsForm[index].quantity * e.target.value})
+                  }}
                 />
               </React.Fragment>
             ))
@@ -130,11 +133,22 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
             <input className="defaultButton submit" type="submit" value="Save & Send" onClick={clickSubmit}/>
           </div>
         </section>
-        <button onClick={(e) => {
-          e.preventDefault();
-          console.log("itemsForm ==>", itemsForm)
-        }}>CLICK</button>
       </form>
+      <button onClick={() =>  {
+        console.log("totalItems ==>", totalItems);
+
+        const allAreaIsEmpty = [
+          checkObject<BillFrom>(billFromForm), 
+          checkObject<BillTo>(billToForm), 
+        ];
+        console.log("allArray ==>", allAreaIsEmpty);
+        const greenLigth = allAreaIsEmpty.every(e => e === true);
+        if(greenLigth) {
+          console.log("greenLigth BillFrom ==>",checkObject<BillFrom>(billFromForm));
+          console.log("greenLigth billTo ==>", checkObject<BillTo>(billToForm));
+          console.log("greenLigth items ==>", )
+        }
+        }}>CLICK</button>
     </div>
   );
 };
