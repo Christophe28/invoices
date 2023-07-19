@@ -4,7 +4,6 @@ import { formatNumber } from '../../../../functions/invoices/formatNumber';
 import trash from "../../../../assets/logo/form/Combined Shape.svg";
 
 const ItemList:React.FC<ItemListProps> = ({ price, quantity, onChangeName, onChangeQuantity, onChangePrice, onClick }) => {
-
   return (
     <section className="itemList">
       <input type="text" name="itemName" id="itemName" className="itemList__itemName" onChange={onChangeName}/>

@@ -435,9 +435,9 @@ const itemsForm = createSlice({
       items[index].totalPrice = data;
     },
     delItemForm: (state, action) => {
-      const {index} = action.payload;
-      const items = state.itemsForm;
-      items.splice(index, 1);
+      // const {index} = action.payload;
+      state.itemsForm = state.itemsForm.filter(e => e.id !== action.payload);
+      // console.log("itemsForm depuis le state ==>", state.itemsForm);
     }
   }
 });

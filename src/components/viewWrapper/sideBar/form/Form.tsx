@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // 2.My Redux
 // 2.A type
-import { BillFrom, BillTo, Item, ItemsList } from '../../../../type/typeInvoices';
+import { BillFrom, BillTo, Item } from '../../../../type/typeInvoices';
 import { NewInvoiceProps } from '../../../../type/typeNewInvoice';
 // 2.B set BillFromForm
 import { Roostate, setCountry, setItemNameForm, setPostCode, setCity } from '../../../../redux';
@@ -25,18 +25,20 @@ import { setPriceForm, setQuantityForm, setStreetAddress, setTotalPriceForm, del
 // Functions
 import { dynamicalClass } from '../../../../functions/classe/dynamicalClass';
 import { reduxSetter } from '../../../../functions/form/reduxSetter';
-import { checkObject } from '../../../../functions/form/controlEmpy';
 
 // Components
 import ItemList from './ItemList';
 
-const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard, clickSave, clickSubmit, totalItems }) => {
+const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard, clickSave, clickSubmit }) => {
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
   const items = useSelector((state:Roostate) => state.itemsForm.itemsForm);
   const billFromForm = useSelector((state:Roostate) => state.billFromForm.billFromForm);
-  const billToForm = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const itemsForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
+
   const dispatch = useDispatch();
+
+
+  const test = [{name:1},{name:2},{name:3},{name:4}];
 
   return (
     <div className={className}>
@@ -106,12 +108,18 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
 
         {
           items.length > 0 ? (
-            items.map((item, index) => (
-              <React.Fragment key={`${billFromForm.id}-${index}`}>
+            items.map((item, index) => {
+              return (
+                <React.Fragment key={`${billFromForm.id}-${index}`}>
                 <ItemList 
                   price={item.price}
                   quantity={item.quantity}
-                  onClick={() => reduxSetter(dispatch, delItemForm, index)}
+                  onClick={() => {
+                    console.log("id Trash ==>", itemsForm[index].id);
+                    reduxSetter(dispatch, delItemForm, itemsForm[index].id); 
+                    console.log("tableau après suppression ==>", itemsForm);
+                    // console.log("itemsForm ==>", itemsForm);
+                  }}
                   onChangeName={(e) => reduxSetter(dispatch, setItemNameForm , {index: index, data: e.target.value})}
                   onChangeQuantity={(e) => reduxSetter(dispatch, setQuantityForm , {index: index, data: e.target.value})}
                   onChangePrice={(e) => {
@@ -120,7 +128,8 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
                   }}
                 />
               </React.Fragment>
-            ))
+              )
+            })
           ) : ""
         }
     
@@ -134,21 +143,11 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           </div>
         </section>
       </form>
-      <button onClick={() =>  {
-        console.log("totalItems ==>", totalItems);
-
-        const allAreaIsEmpty = [
-          checkObject<BillFrom>(billFromForm), 
-          checkObject<BillTo>(billToForm), 
-        ];
-        console.log("allArray ==>", allAreaIsEmpty);
-        const greenLigth = allAreaIsEmpty.every(e => e === true);
-        if(greenLigth) {
-          console.log("greenLigth BillFrom ==>",checkObject<BillFrom>(billFromForm));
-          console.log("greenLigth billTo ==>", checkObject<BillTo>(billToForm));
-          console.log("greenLigth items ==>", )
-        }
-        }}>CLICK</button>
+      <button
+      onClick={() => {
+        console.log("items quand je le décide ==>", items);
+      }}
+      >CLIQUE</button>
     </div>
   );
 };

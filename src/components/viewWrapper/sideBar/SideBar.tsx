@@ -1,25 +1,27 @@
-// React / redux
+// 1.React / redux
 import { useSelector, useDispatch } from "react-redux";
 
-// My Redux
-import { Roostate, pushToBillsFrom, pushToBillsTo, pushToItemList } from "../../../redux";
+// 2.My Redux
+import { Roostate } from "../../../redux";
+import { pushToBillsFrom, pushToBillsTo, pushToItemList } from "../../../redux";
+// 2.A Type
+import { BillFrom, BillTo, Item } from "../../../type/typeInvoices";
 
-//Components
+// 3.Components
 import SideBarIcone from "./SideBarIcone";
 import Form from "./form/Form";
 
-//Functions
+// 4.Functions
 import { dynamicalClass } from "../../../functions/classe/dynamicalClass";
 import { controlAnimForm } from "../../../functions/form/controlAnimForm";
 import { reduxSetter } from "../../../functions/form/reduxSetter";
-
-//Img
+import { checkItems, checkObject } from "../../../functions/form/controlEmpy";
+// 5.Img
 import iconPacman from "../../../assets/logo/sideBar/pacman.svg";
 import iconMoon from "../../../assets/logo/sideBar/moon.svg";
 import iconSun from "../../../assets/logo/sideBar/sun.svg";
 import iconPp from "../../../assets/logo/sideBar/pp.svg";
-
-
+import { uniqueId } from "../../../functions/form/uniqueId";
 
 const SideBar = () => {
   // Controllers
@@ -40,7 +42,7 @@ const SideBar = () => {
   const totalItem = {id: billFromForm.id ,items:[...itemsForm], total: totalCost}
 
   const bodyItem = {
-    id: `${billFromForm.id}-${itemsForm.length}`,
+    id: `${billFromForm.id}-${uniqueId()}`,
     itemName: "",
     quantity: 0,
     price: 0,
@@ -91,9 +93,24 @@ const SideBar = () => {
             reduxSetter(dispatch, pushToItemList, totalItem);
           }}
           clickSubmit={(e) => {
-            controlAnimForm(e, dispatch)
+            e.preventDefault();
+            const allAreaIsEmpty = [
+              checkObject<BillFrom>(billFromForm), 
+              checkObject<BillTo>(billsToForm), 
+              checkItems<Item>(totalItem.items)
+            ];
+            console.log("allArray ==>", allAreaIsEmpty);
+            const greenLigth = allAreaIsEmpty.every(e => e === true);
+            if(greenLigth) {
+              reduxSetter(dispatch, pushToBillsFrom, billFromForm);
+              reduxSetter(dispatch, pushToBillsTo, billsToForm);
+              reduxSetter(dispatch, pushToItemList, totalItem);
+              console.log("billsFrom ==>", billsFrom)
+              console.log("billsTo ==>", billsTo)
+              console.log("items ==>", items)
+              setTimeout(() => { controlAnimForm(e, dispatch)}, 2000);
+            }
           }}
-          totalItems={totalItem}
         />
     </div>
   );
