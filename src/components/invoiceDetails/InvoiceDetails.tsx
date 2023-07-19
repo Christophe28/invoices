@@ -48,7 +48,7 @@ const InvoiceDetails = () => {
     paid
   } = fCbillsTo[0];
   //ItemsList
-  const {itemName, quantity, price, totalPrice} = fCitemsList[0].items[0];
+  const {totalPrice} = fCitemsList[0].items[0];
   console.log(filterItemsList[0].items);
   const items = filterItemsList[0].items;
 

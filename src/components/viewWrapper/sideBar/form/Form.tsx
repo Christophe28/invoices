@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // 2.My Redux
 // 2.A type
-import { BillFrom, BillTo, Item } from '../../../../type/typeInvoices';
 import { NewInvoiceProps } from '../../../../type/typeNewInvoice';
 // 2.B set BillFromForm
 import { Roostate, setCountry, setItemNameForm, setPostCode, setCity } from '../../../../redux';
@@ -28,17 +27,19 @@ import { reduxSetter } from '../../../../functions/form/reduxSetter';
 
 // Components
 import ItemList from './ItemList';
+import Select from './Select';
 
 const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard, clickSave, clickSubmit }) => {
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
   const items = useSelector((state:Roostate) => state.itemsForm.itemsForm);
   const billFromForm = useSelector((state:Roostate) => state.billFromForm.billFromForm);
+  const billToFrom = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const itemsForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
 
+  const {streetAddress, city, postCode, country} = billFromForm;
+  const {clientName, clientMail, streetAddress:clientAddress, city:clientCity, country:clientCountry, postCode:clientPostCode} = billToFrom;
+
   const dispatch = useDispatch();
-
-
-  const test = [{name:1},{name:2},{name:3},{name:4}];
 
   return (
     <div className={className}>
@@ -46,27 +47,27 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
       <form action="URL_DE_L_ACTION" method="POST">
         <h3>Bill From</h3>
         <label htmlFor="streetAddress">Street Address</label>
-        <input type="text" name="streetAddress" id="streetAddress" onChange={(e) => reduxSetter(dispatch, setStreetAddress, e.target.value)}/>   
+        <input type="text" name="streetAddress" id="streetAddress" value={streetAddress} onChange={(e) => reduxSetter(dispatch, setStreetAddress, e.target.value)}/>   
         <section>
           <label htmlFor="city" className="calibrate">City</label>
           <label htmlFor="postCode" className="calibrate">Post Code</label>
           <label htmlFor="country" className="calibrate">Country</label>
         </section>
         <section>
-          <input type="text" name="city" id="city" onChange={(e) => { dispatch(setCity(e.target.value)) }}/>
-          <input type="text" name="postCode" id="postCode" onChange={(e) => reduxSetter(dispatch, setPostCode, e.target.value)}/>
-          <input type="text" name="country" id="country" onChange={(e) => reduxSetter(dispatch, setCountry, e.target.value)}/>
+          <input type="text" name="city" id="city" value={city} onChange={(e) => { dispatch(setCity(e.target.value)) }}/>
+          <input type="text" name="postCode" id="postCode" value={postCode} onChange={(e) => reduxSetter(dispatch, setPostCode, e.target.value)}/>
+          <input type="text" name="country" id="country" value={country} onChange={(e) => reduxSetter(dispatch, setCountry, e.target.value)}/>
         </section>
         
         <h3>Bill To</h3>
         <label htmlFor="clientName">Client Name</label>
-        <input type="text" name="clientName" id="clientName" onChange={(e) => {reduxSetter(dispatch, setClientName ,e.target.value)}}/>
+        <input type="text" name="clientName" id="clientName" value={clientName} onChange={(e) => {reduxSetter(dispatch, setClientName ,e.target.value)}}/>
 
         <label htmlFor="clientMail">Client's Email</label>
-        <input type="text" name="clientMail" id="clientMail" placeholder="e.g email@gmail.com"onChange={(e) => {reduxSetter(dispatch, setClientMail, e.target.value)}}/>
+        <input type="text" name="clientMail" id="clientMail" placeholder="e.g email@gmail.com" value={clientMail} onChange={(e) => {reduxSetter(dispatch, setClientMail, e.target.value)}}/>
         
         <label htmlFor="clientStreetAddress">Street Address</label>
-        <input type="text" name="clientStreetAddress" id="clientStreetAddress" onChange={(e) => {reduxSetter(dispatch, setClientAddress, e.target.value)}}/>
+        <input type="text" name="clientStreetAddress" id="clientStreetAddress" value={clientAddress} onChange={(e) => {reduxSetter(dispatch, setClientAddress, e.target.value)}}/>
         
         <section>
           <label htmlFor="clientCity" className="calibrate">City</label>
@@ -74,9 +75,9 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           <label htmlFor="clientCountry" className="calibrate">Country</label>
         </section>
         <section>
-          <input type="text" name="clientCity" id="clientCity" onChange={(e) => {reduxSetter(dispatch, setClientCity, e.target.value)}}/>
-          <input type="text" name="clientPostCode" id="clientPostCode" onChange={(e) => {reduxSetter(dispatch, setClientPostCode, e.target.value)}}/>
-          <input type="text" name="clientCountry" id="clientCountry" onChange={(e) => {reduxSetter(dispatch, setClientCountry, e.target.value)}}/>
+          <input type="text" name="clientCity" id="clientCity" value={clientCity} onChange={(e) => {reduxSetter(dispatch, setClientCity, e.target.value)}}/>
+          <input type="text" name="clientPostCode" id="clientPostCode" value={clientPostCode} onChange={(e) => {reduxSetter(dispatch, setClientPostCode, e.target.value)}}/>
+          <input type="text" name="clientCountry" id="clientCountry" value={clientCountry} onChange={(e) => {reduxSetter(dispatch, setClientCountry, e.target.value)}}/>
         </section>
         
         <section>
@@ -86,12 +87,9 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           </div>
           <div>
             <label htmlFor="paymentTerms">Payment Terms</label>
-            <input type="text" name="paymentTerms" id="paymentTerms" onChange={(e) => {reduxSetter(dispatch, setPaymentTerms, e.target.value)}}/>
+            {/* <input type="text" name="paymentTerms" id="paymentTerms" onChange={(e) => {reduxSetter(dispatch, setPaymentTerms, e.target.value)}}/> */}
+            <Select />
           </div>
-          {/* Soon option with div for free css */}
-          {/* <select name="" id="">disabled
-            <option value="">lol</option>
-          </select> */}
         </section>
         
         <label htmlFor="projectDescription">Project Description</label>
@@ -105,7 +103,6 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           <label className="itemList__total--calibrate">Total</label>
           <div style={{width:"13px"}}></div>
         </section>
-
         {
           items.length > 0 ? (
             items.map((item, index) => {
@@ -114,12 +111,7 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
                 <ItemList 
                   price={item.price}
                   quantity={item.quantity}
-                  onClick={() => {
-                    console.log("id Trash ==>", itemsForm[index].id);
-                    reduxSetter(dispatch, delItemForm, itemsForm[index].id); 
-                    console.log("tableau après suppression ==>", itemsForm);
-                    // console.log("itemsForm ==>", itemsForm);
-                  }}
+                  onClick={() => reduxSetter(dispatch, delItemForm, itemsForm[index].id) }
                   onChangeName={(e) => reduxSetter(dispatch, setItemNameForm , {index: index, data: e.target.value})}
                   onChangeQuantity={(e) => reduxSetter(dispatch, setQuantityForm , {index: index, data: e.target.value})}
                   onChangePrice={(e) => {
@@ -132,14 +124,13 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
             })
           ) : ""
         }
-    
         <button className="defaultButton addNewItem" onClick={clickNewItem}>+ Add New Item</button>
-
         <section>
           <button className="defaultButton discard" onClick={clickDiscard}>Discard</button>
           <div className="form__endButtons">
             <button className="defaultButton saveAsDraft" onClick={clickSave}>Save as Draft</button>
-            <input className="defaultButton submit" type="submit" value="Save & Send" onClick={clickSubmit}/>
+            {/* <input className="defaultButton submit" type="submit" value="Save & Send" onClick={clickSubmit}/> */}
+            <button type='submit' className='defaultButton submit' onClick={clickSubmit}>Save & Send</button>
           </div>
         </section>
       </form>

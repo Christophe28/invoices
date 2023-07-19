@@ -1,3 +1,1 @@
-Si on clique sur envoyer par mail il faut faire une vérification de la facture.
-
 Faire les <Select> <Option> pour déterminer les temps de paiements.

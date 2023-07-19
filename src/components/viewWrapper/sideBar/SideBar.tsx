@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 // 2.My Redux
 import { Roostate } from "../../../redux";
-import { pushToBillsFrom, pushToBillsTo, pushToItemList } from "../../../redux";
-// 2.A Type
-import { BillFrom, BillTo, Item } from "../../../type/typeInvoices";
 
 // 3.Components
 import SideBarIcone from "./SideBarIcone";
@@ -14,8 +11,8 @@ import Form from "./form/Form";
 // 4.Functions
 import { dynamicalClass } from "../../../functions/classe/dynamicalClass";
 import { controlAnimForm } from "../../../functions/form/controlAnimForm";
-import { reduxSetter } from "../../../functions/form/reduxSetter";
-import { checkItems, checkObject } from "../../../functions/form/controlEmpy";
+import { greenLigther } from "../../../functions/form/saveData";
+
 // 5.Img
 import iconPacman from "../../../assets/logo/sideBar/pacman.svg";
 import iconMoon from "../../../assets/logo/sideBar/moon.svg";
@@ -32,10 +29,6 @@ const SideBar = () => {
   const billFromForm = useSelector((state:Roostate) => state.billFromForm.billFromForm);
   const billsToForm = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const itemsForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
-  // Data
-  const billsFrom = useSelector((state:Roostate) => state.billsFrom);
-  const billsTo = useSelector((state:Roostate) => state.billsTo);
-  const items = useSelector((state:Roostate) => state.itemsList);
 
   const dispatch = useDispatch();
   const totalCost = itemsForm.reduce((accumulator, curr) => accumulator + (curr.price * curr.quantity), 0);
@@ -87,29 +80,12 @@ const SideBar = () => {
             controlAnimForm(e, dispatch);
           }}
           clickSave={(e) => {
-            controlAnimForm(e, dispatch);
-            reduxSetter(dispatch, pushToBillsFrom, billFromForm);
-            reduxSetter(dispatch, pushToBillsTo, billsToForm);
-            reduxSetter(dispatch, pushToItemList, totalItem);
+            e.preventDefault();
+            greenLigther(e, dispatch, billFromForm, billsToForm, totalItem);
           }}
           clickSubmit={(e) => {
             e.preventDefault();
-            const allAreaIsEmpty = [
-              checkObject<BillFrom>(billFromForm), 
-              checkObject<BillTo>(billsToForm), 
-              checkItems<Item>(totalItem.items)
-            ];
-            console.log("allArray ==>", allAreaIsEmpty);
-            const greenLigth = allAreaIsEmpty.every(e => e === true);
-            if(greenLigth) {
-              reduxSetter(dispatch, pushToBillsFrom, billFromForm);
-              reduxSetter(dispatch, pushToBillsTo, billsToForm);
-              reduxSetter(dispatch, pushToItemList, totalItem);
-              console.log("billsFrom ==>", billsFrom)
-              console.log("billsTo ==>", billsTo)
-              console.log("items ==>", items)
-              setTimeout(() => { controlAnimForm(e, dispatch)}, 2000);
-            }
+            greenLigther(e, dispatch, billFromForm, billsToForm, totalItem);
           }}
         />
     </div>
