@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // My Redux
-import { Roostate, createId, setClientId, setPaid } from '../../redux';
+import { Roostate, createId, setClientId } from '../../redux';
 
 // Functions
 import { dynamicalClass } from '../../functions/classe/dynamicalClass';
@@ -90,6 +90,7 @@ const Invoices = () => {
           }
         </section>
       </div>
+
     </div>
   );
 };

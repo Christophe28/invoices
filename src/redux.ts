@@ -89,8 +89,10 @@ const billsFrom = createSlice({
     },
   ],
   reducers: {
-    pushToBillsFrom: (state, action) => {
-      state.push(action.payload)
+    pushToBillsFrom: (state, action) => {state.push(action.payload)},
+    removeBillFrom: (state, action) => {
+      state = action.payload;
+      return state;
     }
   }
 });
@@ -191,6 +193,10 @@ const billsTo = createSlice({
           elem.paid = value
         }
       }
+    },
+    removeBillTo: (state, action) => {
+      state = action.payload; 
+      return state
     }
   }
 });
@@ -330,7 +336,11 @@ const itemsList = createSlice({
     },
   ],
   reducers: {
-    pushToItemList: (state, action) => { state.push(action.payload) }
+    pushToItemList: (state, action) => {state.push(action.payload)},
+    removeItemList: (state, action) => {
+      state = action.payload;
+      return state
+    }
   }
 })
 
@@ -452,10 +462,11 @@ const itemsForm = createSlice({
   }
 });
 
+// Export reducers
 // Data
-export const {pushToBillsFrom} = billsFrom.actions;
-export const {pushToBillsTo, updatePaid} = billsTo.actions;
-export const {pushToItemList} = itemsList.actions;
+export const {pushToBillsFrom, removeBillFrom} = billsFrom.actions;
+export const {pushToBillsTo, updatePaid, removeBillTo} = billsTo.actions;
+export const {pushToItemList, removeItemList} = itemsList.actions;
 
 // Controlers
 export const {handleOptionChange} = selectedOption.actions;
