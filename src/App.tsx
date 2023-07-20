@@ -25,7 +25,7 @@ function App() {
         payload: location.pathname.split("/")[2]
       });
     }
-  }, [location, dispatch]);
+  }, [location]);
 
   return (
     <>

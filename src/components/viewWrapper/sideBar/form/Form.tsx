@@ -37,7 +37,7 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
 
   const {streetAddress, city, postCode, country} = billFromForm;
   const {clientName, clientMail, streetAddress:clientAddress, city:clientCity, country:clientCountry, postCode:clientPostCode} = billToFrom;
-
+  console.log("itemsForm ==>", itemsForm);
   const dispatch = useDispatch();
 
   return (
@@ -107,6 +107,7 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
               return (
                 <React.Fragment key={`${billFromForm.id}-${index}`}>
                 <ItemList 
+                  itemName={item.itemName}
                   price={item.price}
                   quantity={item.quantity}
                   onClick={() => reduxSetter(dispatch, delItemForm, itemsForm[index].id) }

@@ -1,4 +1,5 @@
 export type ItemListProps = { 
+  itemName:string
   price:number 
   quantity:number
   onChangeName:(e:any) => void

@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { dateInvoice } from "./functions/date/dateInvoice";
-import { BillFrom, BillTo, Item, ItemsList } from './type/typeInvoices';
+import { BillFrom, BillTo, Item } from './type/typeInvoices';
 
 const billToForm = {
   id: "",
@@ -207,53 +207,12 @@ const itemsList = createSlice({
       id: "0000AA",
       items: [
         {
+          id: "0000AA-1",
           itemName: "Konoha headband",
           quantity: 10,
           price: 12.99,
           totalPrice: 10 * 12.99
         },
-        {
-          itemName: "TestItem",
-          quantity: 1,
-          price: 1,
-          totalPrice: 1 * 1
-        },
-        {
-          itemName: "Konoha headband",
-          quantity: 10,
-          price: 12.99,
-          totalPrice: 10 * 12.99
-        },
-        {
-          itemName: "TestItem",
-          quantity: 1,
-          price: 1,
-          totalPrice: 1 * 1
-        },
-        {
-          itemName: "Konoha headband",
-          quantity: 10,
-          price: 12.99,
-          totalPrice: 10
-        },
-        {
-          itemName: "TestItem",
-          quantity: 1,
-          price: 1,
-          totalPrice: 1 * 1
-        },
-        {
-          itemName: "Konoha headband",
-          quantity: 10,
-          price: 12.99,
-          totalPrice: 10 * 12.99
-        },
-        {
-          itemName: "TestItem",
-          quantity: 1,
-          price: 1,
-          totalPrice: 1 * 1
-        }
       ],
       total: 1 * 129.9
     },
@@ -261,6 +220,7 @@ const itemsList = createSlice({
       id: "0001AA",
       items: [
         {
+          id: "0001AA-1",
           itemName: "Ramen",
           quantity: 100,
           price: 5,
@@ -268,12 +228,12 @@ const itemsList = createSlice({
         }
       ],
       total: 100 * 5
-
     },
     {
       id: "0002AA",
       items: [
         {
+          id: "0002AA-1",
           itemName: "Wood",
           quantity: 100,
           price: 500,
@@ -281,12 +241,12 @@ const itemsList = createSlice({
         }
       ],
       total: 100 * 500
-
     },
     {
       id: "0003AA",
       items: [
         {
+          id: "0003AA-1",
           itemName: "Flowers kit",
           quantity: 10,
           price: 20,
@@ -294,12 +254,12 @@ const itemsList = createSlice({
         }
       ],
       total: 10 * 20
-
     },
     {
       id: "0004AA",
       items: [
         {
+          id: "0004AA-1",
           itemName: "Pencil",
           quantity: 1000,
           price: 1,
@@ -307,12 +267,12 @@ const itemsList = createSlice({
         }
       ],
       total: 1 * 1000
-
     },
     {
       id: "0005AA",
       items: [
         {
+          id: "0005AA-1",
           itemName: "Taho bottle",
           quantity: 1,
           price: 10000000,
@@ -320,12 +280,12 @@ const itemsList = createSlice({
         }
       ],
       total: 1 * 10000000
-
     },
     {
       id: "0006AA",
       items: [
         {
+          id: "0006AA-1",
           itemName: "Scissors",
           quantity: 4,
           price: 14,
@@ -405,19 +365,26 @@ const billFromForm = createSlice({
   name: "billFromForm",
   initialState,
   reducers: {
+    setBillFromForm: (state, action) => {
+      state.billFromForm = action.payload;
+    },
+    restartBillFromForm: (state, action) => {state.billFromForm = initialState.billFromForm},
     createId: (state, action:PayloadAction<string>) => { state.billFromForm.id = action.payload },
     setStreetAddress: (state, action:PayloadAction<string>) => { state.billFromForm.streetAddress = action.payload },
     setCity: (state, action:PayloadAction<string>) => { state.billFromForm.city = action.payload },
     setPostCode: (state, action:PayloadAction<string>) => { state.billFromForm.postCode = action.payload },
     setCountry: (state, action:PayloadAction<string>) => { state.billFromForm.country = action.payload },
-    removeBillFromForm: (state, action) => { state.billFromForm = invoiceFromForm}
+    removeBillFromForm: (state, action) => { state.billFromForm = action.payload}
   }
 })
-
 const billToFrom = createSlice({
   name: "billToFrom",
   initialState,
   reducers: {
+    setBillToFrom: (state, action) => {
+      state.billToForm = action.payload;
+    },
+    restatBillToForm: (state, action) => {state.billToForm = initialState.billToForm},
     setClientId: (state, action:PayloadAction<string>) => {state.billToForm.id = action.payload},
     setClientName: (state, action:PayloadAction<string>) => {state.billToForm.clientName = action.payload},
     setClientMail: (state, action:PayloadAction<string>) => {state.billToForm.clientMail = action.payload},
@@ -428,15 +395,20 @@ const billToFrom = createSlice({
     setInvoiceDate: (state, action:PayloadAction<string>) => {state.billToForm.invoiceDate = action.payload},
     setPaymentTerms: (state, action:PayloadAction<string>) => {state.billToForm.paymentTerms = action.payload},
     setPaid: (state, action:PayloadAction<string>) => {state.billToForm.paid = action.payload},
-    removeBillToFrom: (state, action) => {state.billToForm = billToForm}
+    removeBillToFrom: (state, action) => {state.billToForm = action.payload}
   }
 })
-
 const itemsForm = createSlice({
   name: "itemsForm",
   initialState,
   reducers: {
+    setItemsForm: (state, action) => {
+      state.itemsForm = action.payload;
+    },
     addItemForm: (state, action:PayloadAction<Item>) => {state.itemsForm.push(action.payload)},
+    restartItemsForm: (state, action) => {
+      state.itemsForm = initialState.itemsForm
+    },
     setItemNameForm: (state, action) => {
       const {index, data} = action.payload;
       const items = state.itemsForm;
@@ -477,8 +449,10 @@ export const {changeRoot} = rooter.actions;
 export const {setFilterInvoice} = filterInvoice.actions;
 
 // Form
-export const {createId, setStreetAddress, setCity, setPostCode, setCountry, removeBillFromForm} = billFromForm.actions;
+export const {setBillFromForm, restartBillFromForm ,createId, setStreetAddress, setCity, setPostCode, setCountry, removeBillFromForm} = billFromForm.actions;
 export const {
+  setBillToFrom,
+  restatBillToForm,
   setClientId, 
   setClientName, 
   setClientMail, 
@@ -491,7 +465,8 @@ export const {
   setPaid,
   removeBillToFrom
 } = billToFrom.actions;
-export const {addItemForm, setItemNameForm, setPriceForm, setQuantityForm, setTotalPriceForm, delItemForm, removeItemsForm} = itemsForm.actions;
+
+export const {setItemsForm, addItemForm, restartItemsForm, setItemNameForm, setPriceForm, setQuantityForm, setTotalPriceForm, delItemForm, removeItemsForm} = itemsForm.actions;
 
 export const myStore = configureStore({
   reducer: {

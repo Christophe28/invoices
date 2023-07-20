@@ -14,4 +14,5 @@ Objectif aux choix ==>
 
 
 +++++++++++++++=================================+++++++++++++++++++++++++++++++++
-- Appliquer la logique sur les boutons, edit, delete, markasPaid dans la page details invoice
+- Appliquer la logique sur les boutons, edit, dans la page details invoice
+- Demander une confirmation pour delete
