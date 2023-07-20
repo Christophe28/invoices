@@ -44,7 +44,6 @@ const Invoices = () => {
       const id = uniqueId();
       reduxSetter(dispatch, createId, id);
       reduxSetter(dispatch, setClientId, id);
-      reduxSetter(dispatch, setPaid, "Draft");
       return;
     }
   }, [isOpenForm])

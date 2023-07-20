@@ -15,7 +15,6 @@ import {
   setClientPostCode, 
   setClientCity, 
   setClientCountry,  
-  setPaymentTerms, 
   setInvoiceDate 
 } from '../../../../redux';
 // 2.D set Items Form
@@ -44,7 +43,7 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
   return (
     <div className={className}>
       <h1>New invoice</h1>
-      <form action="URL_DE_L_ACTION" method="POST">
+      <form action="URL_DE_L_ACTION" method="POST" onSubmit={(e) => e.preventDefault()}>
         <h3>Bill From</h3>
         <label htmlFor="streetAddress">Street Address</label>
         <input type="text" name="streetAddress" id="streetAddress" value={streetAddress} onChange={(e) => reduxSetter(dispatch, setStreetAddress, e.target.value)}/>   
@@ -87,7 +86,6 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           </div>
           <div>
             <label htmlFor="paymentTerms">Payment Terms</label>
-            {/* <input type="text" name="paymentTerms" id="paymentTerms" onChange={(e) => {reduxSetter(dispatch, setPaymentTerms, e.target.value)}}/> */}
             <Select />
           </div>
         </section>
@@ -129,16 +127,10 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
           <button className="defaultButton discard" onClick={clickDiscard}>Discard</button>
           <div className="form__endButtons">
             <button className="defaultButton saveAsDraft" onClick={clickSave}>Save as Draft</button>
-            {/* <input className="defaultButton submit" type="submit" value="Save & Send" onClick={clickSubmit}/> */}
             <button type='submit' className='defaultButton submit' onClick={clickSubmit}>Save & Send</button>
           </div>
         </section>
       </form>
-      <button
-      onClick={() => {
-        console.log("items quand je le décide ==>", items);
-      }}
-      >CLIQUE</button>
     </div>
   );
 };

@@ -183,7 +183,15 @@ const billsTo = createSlice({
     },
   ],
   reducers: {
-    pushToBillsTo: (state, action) => { state.push(action.payload) }
+    pushToBillsTo: (state, action) => { state.push(action.payload) },
+    updatePaid: (state, action) => { 
+      const {id, value} = action.payload;
+      for(const elem of state) {
+        if(elem.id === id) {
+          elem.paid = value
+        }
+      }
+    }
   }
 });
 const itemsList = createSlice({
@@ -446,7 +454,7 @@ const itemsForm = createSlice({
 
 // Data
 export const {pushToBillsFrom} = billsFrom.actions;
-export const {pushToBillsTo} = billsTo.actions;
+export const {pushToBillsTo, updatePaid} = billsTo.actions;
 export const {pushToItemList} = itemsList.actions;
 
 // Controlers

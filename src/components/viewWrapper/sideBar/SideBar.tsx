@@ -1,8 +1,9 @@
 // 1.React / redux
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // 2.My Redux
-import { Roostate } from "../../../redux";
+import { Roostate, addItemForm, setPaid } from "../../../redux";
 
 // 3.Components
 import SideBarIcone from "./SideBarIcone";
@@ -12,13 +13,15 @@ import Form from "./form/Form";
 import { dynamicalClass } from "../../../functions/classe/dynamicalClass";
 import { controlAnimForm } from "../../../functions/form/controlAnimForm";
 import { greenLigther } from "../../../functions/form/saveData";
+import { uniqueId } from "../../../functions/form/uniqueId";
+import { reduxSetter } from "../../../functions/form/reduxSetter";
 
 // 5.Img
 import iconPacman from "../../../assets/logo/sideBar/pacman.svg";
 import iconMoon from "../../../assets/logo/sideBar/moon.svg";
 import iconSun from "../../../assets/logo/sideBar/sun.svg";
 import iconPp from "../../../assets/logo/sideBar/pp.svg";
-import { uniqueId } from "../../../functions/form/uniqueId";
+
 
 const SideBar = () => {
   // Controllers
@@ -41,6 +44,12 @@ const SideBar = () => {
     price: 0,
     totalPrice: 0
   }
+
+  // Listen status paid (paid is active by form buttons), and trigger save data with greenLigther
+  useEffect(() => {
+    greenLigther(dispatch, billFromForm, billsToForm, totalItem);
+  }, [billsToForm.paid]);
+
   return (
     <div className={dynamicalClass(isDarkmode, "darkmode", "sideBar")}>
       <SideBarIcone 
@@ -68,25 +77,10 @@ const SideBar = () => {
       </section>
       <Form
           className={`${dynamicalClass(isDarkmode, "darkmode", "newInvoice")} ${dynamicalClass(isOpenForm, "moveTo", firstLoadPage ? "" : "leaveTo")}`}
-          clickNewItem={(e) => {
-            e.preventDefault();
-            dispatch({
-              type: "itemsForm/addItemForm",
-              payload: bodyItem
-            });
-
-          }}
-          clickDiscard={(e) => {
-            controlAnimForm(e, dispatch);
-          }}
-          clickSave={(e) => {
-            e.preventDefault();
-            greenLigther(e, dispatch, billFromForm, billsToForm, totalItem);
-          }}
-          clickSubmit={(e) => {
-            e.preventDefault();
-            greenLigther(e, dispatch, billFromForm, billsToForm, totalItem);
-          }}
+          clickNewItem={() => reduxSetter(dispatch, addItemForm, bodyItem) }
+          clickDiscard={() => controlAnimForm(dispatch) }
+          clickSave={() => reduxSetter(dispatch, setPaid, "Draft") }
+          clickSubmit={() => reduxSetter(dispatch, setPaid, "Pending") }
         />
     </div>
   );

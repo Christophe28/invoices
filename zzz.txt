@@ -1,1 +1,17 @@
-Faire les <Select> <Option> pour déterminer les temps de paiements.
+Objectif aux choix ==>
+- dynamiser le calcul du total
+- Mettre dans les data le nom du projet 
+- Sauvegarder le nom du projet quand on utilise le formulaire
+- Demander uniquement des chiffres dans les input de quantité et de prix.
+
+
+
+
+
+
+
+
+
+
++++++++++++++++=================================+++++++++++++++++++++++++++++++++
+- Appliquer la logique sur les boutons, edit, delete, markasPaid dans la page details invoice

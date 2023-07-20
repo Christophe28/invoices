@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Roostate } from "../../redux";
+import { Roostate, updatePaid } from "../../redux";
 import { NavLink } from "react-router-dom";
 
 // Functions
 import { filters } from '../../functions/array/filters';
 import { dynamicalClass } from "../../functions/classe/dynamicalClass";
 import { formatNumber } from "../../functions/invoices/formatNumber";
+import { reduxSetter } from "../../functions/form/reduxSetter";
 
 // Components
 import Status from "../buttons/Status";
@@ -49,8 +50,19 @@ const InvoiceDetails = () => {
   } = fCbillsTo[0];
   //ItemsList
   const {totalPrice} = fCitemsList[0].items[0];
-  console.log(filterItemsList[0].items);
   const items = filterItemsList[0].items;
+
+  const test = [
+    {id: "0001AA", paid: "Pending"},
+    {id: "0000AA", paid: "Draft"}
+  ]
+
+  for(const elem of test) {
+    if(elem.id === "0001AA") {
+      elem.paid = "Paid"
+    }
+  }
+  console.log(test);
 
   return (
     // "invoiceDetails"
@@ -81,7 +93,9 @@ const InvoiceDetails = () => {
             }}
           >Edit</button>
           <button className="defaultButton delete">Delete</button>
-          <button className="defaultButton markAsPaid">Mark as Paid</button>
+          <button className="defaultButton markAsPaid" onClick={() => {
+            reduxSetter(dispatch, updatePaid, {id:id, value:"Paid"})
+          }}>Mark as Paid</button>
         </div>
       </section>
 

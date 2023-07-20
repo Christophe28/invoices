@@ -1,6 +1,5 @@
 
-export const controlAnimForm = (event:React.MouseEvent, dispatch:any) => {
-  event.preventDefault();
+export const controlAnimForm = (dispatch:any) => {
   dispatch({
     type: "isOpenForm/moveForm",
     payload: false

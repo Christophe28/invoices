@@ -11,15 +11,14 @@ import arrow from '../../../../assets/logo/filter/arrow.svg';
 
 const Select = () => {
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
-  const test = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const options = [
-    { value: '1', label: 'Option 1' },
-    { value: '2', label: 'Option 2' },
-    { value: '3', label: 'Option 3' },
-    { value: '4', label: 'Option 4' },
+    { value: "net 1 day", label: "net 1 day" },
+    { value: "net 10 day", label: "net 10 day" },
+    { value: "net 20 day", label: "net 20 day" },
+    { value: "net 30 day", label: "net 30 day" },
   ];
   // État pour gérer la valeur sélectionnée
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState('Payment Therms');
   const [openOptions, setOpenOptions] = useState(false);
   const dispatch = useDispatch();
   return (
@@ -29,7 +28,7 @@ const Select = () => {
         className={dynamicalClass(isDarkmode, "darkmode", "")}
         onClick={() => { setOpenOptions(!openOptions) }}
       >
-        Selected Option: {selectedValue}
+        {selectedValue}
         <img src={arrow} alt="arrow" />
       </div>
 
@@ -42,8 +41,8 @@ const Select = () => {
             className={dynamicalClass(isDarkmode, "darkmode", openOptions ? "select__option--open" : "select__option--close")}
             onClick={() => {
               setSelectedValue(option.value);
+              setOpenOptions(false);
               reduxSetter(dispatch, setPaymentTerms, option.value);
-              console.log("billsToFrom ==>", test);
             }}
           >
             {option.label}
