@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { dateInvoice } from "./functions/date/dateInvoice";
-import { BillFrom, BillTo, Item } from './type/typeInvoices';
+import { BillFrom, BillTo, Item, ItemsList } from './type/typeInvoices';
 
 const billToForm = {
   id: "",
@@ -93,6 +93,13 @@ const billsFrom = createSlice({
     removeBillFrom: (state, action) => {
       state = action.payload;
       return state;
+    },
+    updateBillsFrom: (state:BillFrom[], action) => {
+      const updateBill = action.payload;
+      const index = state.findIndex(bill => bill.id === updateBill.id);
+      if(index !== -1) {
+        state[index] = updateBill
+      }
     }
   }
 });
@@ -197,6 +204,13 @@ const billsTo = createSlice({
     removeBillTo: (state, action) => {
       state = action.payload; 
       return state
+    },
+    updateBillsTo: (state:BillTo[], action) => {
+      const updateBill = action.payload;
+      const index = state.findIndex(bill => bill.id === updateBill.id);
+      if(index !== -1) {
+        state[index] = updateBill
+      }
     }
   }
 });
@@ -300,8 +314,15 @@ const itemsList = createSlice({
     removeItemList: (state, action) => {
       state = action.payload;
       return state
+    },
+    updateItemsList: (state:ItemsList[], action) => {
+      const updateBill = action.payload;
+      const index = state.findIndex(bill => bill.id === updateBill.id);
+      if(index !== -1) {
+        state[index] = updateBill
+      }
     }
-  }
+  },
 })
 
 // Update options to filter
@@ -431,9 +452,9 @@ const itemsForm = createSlice({
 
 // Export reducers
 // Data
-export const {pushToBillsFrom, removeBillFrom} = billsFrom.actions;
-export const {pushToBillsTo, updatePaid, removeBillTo} = billsTo.actions;
-export const {pushToItemList, removeItemList} = itemsList.actions;
+export const {pushToBillsFrom, removeBillFrom, updateBillsFrom} = billsFrom.actions;
+export const {pushToBillsTo, updatePaid, removeBillTo, updateBillsTo} = billsTo.actions;
+export const {pushToItemList, removeItemList, updateItemsList} = itemsList.actions;
 
 // Controlers
 export const {handleOptionChange} = selectedOption.actions;
@@ -444,7 +465,16 @@ export const {changeRoot} = rooter.actions;
 export const {setFilterInvoice} = filterInvoice.actions;
 
 // Form
-export const {setBillFromForm, createId, setStreetAddress, setCity, setPostCode, setCountry, removeBillFromForm} = billFromForm.actions;
+export const {
+  setBillFromForm, 
+  createId, 
+  setStreetAddress, 
+  setCity, 
+  setPostCode, 
+  setCountry, 
+  removeBillFromForm
+} = billFromForm.actions;
+
 export const {
   setBillToFrom,
   setClientId, 

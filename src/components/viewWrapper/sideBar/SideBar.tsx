@@ -48,41 +48,14 @@ const SideBar = () => {
     totalPrice: 0
   }
 
-  const billToForm = {
-    id: "",
-    clientName: "",
-    clientMail: "",
-    streetAddress: "",
-    city: "",
-    postCode: "",
-    country: "",
-    invoiceDate: "",
-    paymentTerms: "",
-    paid: ""
-  }
-  const invoiceFromForm = {
-    id: "",
-    streetAddress: "",
-    city: "",
-    postCode: "",
-    country: ""
-  }
-
+  
   useEffect(() => {
     if(!sendData) {return}
     if(sendData) {
       greenLigther(dispatch, billFromForm, billsToForm, totalItem); 
-      reduxSetter(dispatch, setBillFromForm, invoiceFromForm);
-      reduxSetter(dispatch, setBillToFrom, billToForm);
-      reduxSetter(dispatch, setItemsForm, []);
       setSendData(false);
     }
   }, [sendData])
-
-  // Listen status paid (paid is active by form buttons), and trigger save data with greenLigther
-  // useEffect(() => {
-  //   greenLigther(dispatch, billFromForm, billsToForm, totalItem);
-  // }, [billsToForm.paid]);
 
   return (
     <div className={dynamicalClass(isDarkmode, "darkmode", "sideBar")}>
