@@ -37,7 +37,6 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
 
   const {streetAddress, city, postCode, country} = billFromForm;
   const {clientName, clientMail, streetAddress:clientAddress, city:clientCity, country:clientCountry, postCode:clientPostCode} = billToFrom;
-  console.log("itemsForm ==>", itemsForm);
   const dispatch = useDispatch();
 
   return (
@@ -85,7 +84,7 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
             <input type="date" className={dynamicalClass(isDarkmode, "darkmode", "")} name="invoiceDate" id="invoiceDate" placeholder={"La date du jour"} onChange={(e) => {reduxSetter(dispatch, setInvoiceDate, e.target.value)}}/>
           </div>
           <div>
-            <label htmlFor="paymentTerms">Payment Terms</label>
+            <label>Payment Terms</label>
             <Select />
           </div>
         </section>
@@ -106,19 +105,19 @@ const Form:React.FC<NewInvoiceProps> = ({ className, clickNewItem, clickDiscard,
             items.map((item, index) => {
               return (
                 <React.Fragment key={`${billFromForm.id}-${index}`}>
-                <ItemList 
-                  itemName={item.itemName}
-                  price={item.price}
-                  quantity={item.quantity}
-                  onClick={() => reduxSetter(dispatch, delItemForm, itemsForm[index].id) }
-                  onChangeName={(e) => reduxSetter(dispatch, setItemNameForm , {index: index, data: e.target.value})}
-                  onChangeQuantity={(e) => reduxSetter(dispatch, setQuantityForm , {index: index, data: e.target.value})}
-                  onChangePrice={(e) => {
-                    reduxSetter(dispatch, setPriceForm , {index: index, data: e.target.value});
-                    reduxSetter(dispatch, setTotalPriceForm, {index: index, data: itemsForm[index].quantity * e.target.value})
-                  }}
-                />
-              </React.Fragment>
+                  <ItemList 
+                    itemName={item.itemName}
+                    price={item.price}
+                    quantity={item.quantity}
+                    onClick={() => reduxSetter(dispatch, delItemForm, itemsForm[index].id) }
+                    onChangeName={(e) => reduxSetter(dispatch, setItemNameForm , {index: index, data: e.target.value})}
+                    onChangeQuantity={(e) => reduxSetter(dispatch, setQuantityForm , {index: index, data: e.target.value})}
+                    onChangePrice={(e) => {
+                      reduxSetter(dispatch, setPriceForm , {index: index, data: e.target.value});
+                      reduxSetter(dispatch, setTotalPriceForm, {index: index, data: itemsForm[index].quantity * e.target.value})
+                    }}
+                  />
+                </React.Fragment>
               )
             })
           ) : ""

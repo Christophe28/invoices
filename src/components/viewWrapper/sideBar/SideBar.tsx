@@ -1,9 +1,10 @@
 // 1.React / redux
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // 2.My Redux
 import { Roostate, addItemForm, setPaid } from "../../../redux";
+import { setBillFromForm, setBillToFrom, setItemsForm } from "../../../redux";
 
 // 3.Components
 import SideBarIcone from "./SideBarIcone";
@@ -33,6 +34,8 @@ const SideBar = () => {
   const billsToForm = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const itemsForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
 
+  const [sendData, setSendData] = useState(false);
+
   const dispatch = useDispatch();
   const totalCost = itemsForm.reduce((accumulator, curr) => accumulator + (curr.price * curr.quantity), 0);
   const totalItem = {id: billFromForm.id ,items:[...itemsForm], total: totalCost}
@@ -45,10 +48,41 @@ const SideBar = () => {
     totalPrice: 0
   }
 
-  // Listen status paid (paid is active by form buttons), and trigger save data with greenLigther
+  const billToForm = {
+    id: "",
+    clientName: "",
+    clientMail: "",
+    streetAddress: "",
+    city: "",
+    postCode: "",
+    country: "",
+    invoiceDate: "",
+    paymentTerms: "",
+    paid: ""
+  }
+  const invoiceFromForm = {
+    id: "",
+    streetAddress: "",
+    city: "",
+    postCode: "",
+    country: ""
+  }
+
   useEffect(() => {
-    greenLigther(dispatch, billFromForm, billsToForm, totalItem);
-  }, [billsToForm.paid]);
+    if(!sendData) {return}
+    if(sendData) {
+      greenLigther(dispatch, billFromForm, billsToForm, totalItem); 
+      reduxSetter(dispatch, setBillFromForm, invoiceFromForm);
+      reduxSetter(dispatch, setBillToFrom, billToForm);
+      reduxSetter(dispatch, setItemsForm, []);
+      setSendData(false);
+    }
+  }, [sendData])
+
+  // Listen status paid (paid is active by form buttons), and trigger save data with greenLigther
+  // useEffect(() => {
+  //   greenLigther(dispatch, billFromForm, billsToForm, totalItem);
+  // }, [billsToForm.paid]);
 
   return (
     <div className={dynamicalClass(isDarkmode, "darkmode", "sideBar")}>
@@ -79,8 +113,8 @@ const SideBar = () => {
           className={`${dynamicalClass(isDarkmode, "darkmode", "newInvoice")} ${dynamicalClass(isOpenForm, "moveTo", firstLoadPage ? "" : "leaveTo")}`}
           clickNewItem={() => reduxSetter(dispatch, addItemForm, bodyItem) }
           clickDiscard={() => controlAnimForm(dispatch) }
-          clickSave={() => reduxSetter(dispatch, setPaid, "Draft") }
-          clickSubmit={() => reduxSetter(dispatch, setPaid, "Pending") }
+          clickSave={() => {reduxSetter(dispatch, setPaid, "Draft"); setSendData(true)}}
+          clickSubmit={() => {reduxSetter(dispatch, setPaid, "Pending"); setSendData(true)}}
         />
     </div>
   );

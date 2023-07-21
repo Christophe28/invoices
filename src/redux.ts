@@ -108,7 +108,7 @@ const billsTo = createSlice({
       postCode: "5000",
       country: "China",
       invoiceDate: dateInvoice("01 January 2023", "DD MMM YYYY"),
-      paymentTerms: dateInvoice("01 April 2023", "DD MMM YYY"),
+      paymentTerms: dateInvoice("01 April 2023", "DD MMM YYYY"),
       paid: "Paid"
     },
     {    
@@ -171,7 +171,7 @@ const billsTo = createSlice({
       paymentTerms: dateInvoice("01 September 2023", "DD MMM YYYY"),
       paid: "Paid"
     },
-    {
+    {    
       id: "0006AA",
       clientName: "Wu Lio Qui",
       clientMail: "wulioqui@gmail.com",
@@ -225,7 +225,7 @@ const itemsList = createSlice({
           quantity: 100,
           price: 5,
           totalPrice: 100 * 5
-        }
+        },
       ],
       total: 100 * 5
     },
@@ -238,7 +238,7 @@ const itemsList = createSlice({
           quantity: 100,
           price: 500,
           totalPrice: 100 * 500
-        }
+        },
       ],
       total: 100 * 500
     },
@@ -251,7 +251,7 @@ const itemsList = createSlice({
           quantity: 10,
           price: 20,
           totalPrice: 10 * 20
-        }
+        },
       ],
       total: 10 * 20
     },
@@ -277,7 +277,7 @@ const itemsList = createSlice({
           quantity: 1,
           price: 10000000,
           totalPrice: 1 * 10000000
-        }
+        },
       ],
       total: 1 * 10000000
     },
@@ -286,13 +286,13 @@ const itemsList = createSlice({
       items: [
         {
           id: "0006AA-1",
-          itemName: "Scissors",
-          quantity: 4,
-          price: 14,
-          totalPrice: 4 * 14
-        }
+          itemName: "Konoha headband",
+          quantity: 10,
+          price: 12.99,
+          totalPrice: 10 * 12.99
+        },
       ],
-      total: 4 * 14
+      total: 1 * 129.9
     },
   ],
   reducers: {
@@ -368,7 +368,6 @@ const billFromForm = createSlice({
     setBillFromForm: (state, action) => {
       state.billFromForm = action.payload;
     },
-    restartBillFromForm: (state, action) => {state.billFromForm = initialState.billFromForm},
     createId: (state, action:PayloadAction<string>) => { state.billFromForm.id = action.payload },
     setStreetAddress: (state, action:PayloadAction<string>) => { state.billFromForm.streetAddress = action.payload },
     setCity: (state, action:PayloadAction<string>) => { state.billFromForm.city = action.payload },
@@ -384,7 +383,6 @@ const billToFrom = createSlice({
     setBillToFrom: (state, action) => {
       state.billToForm = action.payload;
     },
-    restatBillToForm: (state, action) => {state.billToForm = initialState.billToForm},
     setClientId: (state, action:PayloadAction<string>) => {state.billToForm.id = action.payload},
     setClientName: (state, action:PayloadAction<string>) => {state.billToForm.clientName = action.payload},
     setClientMail: (state, action:PayloadAction<string>) => {state.billToForm.clientMail = action.payload},
@@ -406,9 +404,6 @@ const itemsForm = createSlice({
       state.itemsForm = action.payload;
     },
     addItemForm: (state, action:PayloadAction<Item>) => {state.itemsForm.push(action.payload)},
-    restartItemsForm: (state, action) => {
-      state.itemsForm = initialState.itemsForm
-    },
     setItemNameForm: (state, action) => {
       const {index, data} = action.payload;
       const items = state.itemsForm;
@@ -449,10 +444,9 @@ export const {changeRoot} = rooter.actions;
 export const {setFilterInvoice} = filterInvoice.actions;
 
 // Form
-export const {setBillFromForm, restartBillFromForm ,createId, setStreetAddress, setCity, setPostCode, setCountry, removeBillFromForm} = billFromForm.actions;
+export const {setBillFromForm, createId, setStreetAddress, setCity, setPostCode, setCountry, removeBillFromForm} = billFromForm.actions;
 export const {
   setBillToFrom,
-  restatBillToForm,
   setClientId, 
   setClientName, 
   setClientMail, 
@@ -466,7 +460,7 @@ export const {
   removeBillToFrom
 } = billToFrom.actions;
 
-export const {setItemsForm, addItemForm, restartItemsForm, setItemNameForm, setPriceForm, setQuantityForm, setTotalPriceForm, delItemForm, removeItemsForm} = itemsForm.actions;
+export const {setItemsForm, addItemForm, setItemNameForm, setPriceForm, setQuantityForm, setTotalPriceForm, delItemForm, removeItemsForm} = itemsForm.actions;
 
 export const myStore = configureStore({
   reducer: {

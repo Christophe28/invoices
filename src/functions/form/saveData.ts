@@ -24,4 +24,5 @@ export const greenLigther = (dispatch:any, billFromForm:BillFrom, billsToForm:Bi
     reduxSetter(dispatch, removeItemsForm, "");
     controlAnimForm(dispatch);
   }
+  console.log("greenligther ok ==>", greenLigth)
 }

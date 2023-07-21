@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Roostate, addItemForm, removeBillFrom, removeBillTo, removeItemList, setBillFromForm, setBillToFrom, setItemsForm, restartBillFromForm, restatBillToForm, restartItemsForm, updatePaid } from "../../redux";
+import { Roostate, addItemForm, removeBillFrom, removeBillTo, removeItemList, setBillFromForm, setBillToFrom, setItemsForm, updatePaid } from "../../redux";
 
 // Functions
 import { filters } from '../../functions/array/filters';
@@ -19,6 +19,7 @@ import imgEmptyInvoiceDarkmode from "../../assets/logo/globalInvoices/empty_invo
 import imgEmptyInvoice from "../../assets/logo/globalInvoices/empty_invoice.svg";
 
 const InvoiceDetails = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const billsFrom = useSelector((state:Roostate) => state.billsFrom);
   const billsTo = useSelector((state:Roostate) => state.billsTo);
@@ -26,11 +27,14 @@ const InvoiceDetails = () => {
   const root = useSelector((state:Roostate) => state.rooter);
   const isDarkmode = useSelector((state:Roostate) => state.isDarkmode);
   const isOpenForm = useSelector((state:Roostate) => state.isOpenForm);
-
+  // Pour vérifier
+  const billsFromForm = useSelector((state:Roostate) => state.billFromForm.billFromForm);
+  const itemsListForm = useSelector((state:Roostate) => state.itemsForm.itemsForm);
+  const billsToForm = useSelector((state:Roostate) => state.billToFrom.billToForm);
   const filterBillsFrom = filters(billsFrom, "id", root);
   const filterBillsTo = filters(billsTo, "id", root);
   const filterItemsList = filters(itemsList, "id", root);
-  
+
   // Model
   const billToForm = {
     id: "",
@@ -57,10 +61,11 @@ const InvoiceDetails = () => {
     fCbillsTo: Object.assign({}, filterBillsTo),
     fCitemsList: Object.assign({}, filterItemsList)
   };
+
   const [invoice, setInvoice] = useState([completeInvoice]);
   const {fCbillsFrom, fCbillsTo, fCitemsList} = completeInvoice;
 
-  const navigate = useNavigate();
+  
   const removeInvoice = () => {
     reduxSetter(dispatch, removeBillFrom, billsFrom.filter(e => e.id != completeInvoice.fCbillsFrom[0].id))
     reduxSetter(dispatch, removeBillTo, billsTo.filter(e => e.id !== completeInvoice.fCbillsFrom[0].id))
@@ -77,13 +82,14 @@ const InvoiceDetails = () => {
   }, [invoice])
   // Logique pour les valeurs du formulaire
   useEffect(() => {
-    console.log(isOpenForm);
     if(isOpenForm) {
-      reduxSetter(dispatch, setItemsForm, fCitemsList[0].items);
+      console.log("open form ==>", isOpenForm);
       reduxSetter(dispatch, setBillFromForm, fCbillsFrom[0]);
-      reduxSetter(dispatch, setBillToFrom, fCbillsTo[0]);
+      reduxSetter(dispatch, setBillToFrom, fCbillsTo[0]); 
+      reduxSetter(dispatch, setItemsForm, fCitemsList[0].items);
     }
     if(!isOpenForm) {
+      console.log("open form ==>", isOpenForm);
       reduxSetter(dispatch, setBillFromForm, invoiceFromForm);
       reduxSetter(dispatch, setBillToFrom, billToForm);
       reduxSetter(dispatch, setItemsForm, []);
@@ -93,6 +99,12 @@ const InvoiceDetails = () => {
   return (
     // "invoiceDetails"
     <div className={dynamicalClass(isOpenForm, "desactive", "invoiceDetails")}>
+      <button style={{position:"absolute", left:"800px", zIndex: "3"}} onClick={() => {
+        console.log("=================Formulaire=======================")
+        console.log("billFrom ==>", billsFromForm);
+        console.log("billTo ==>", billsToForm);
+        console.log("items ==>", itemsListForm);
+      }}>CLICK</button>
       <div className="invoiceDetails__navlink">
         <NavLink to="/">
           <div className={dynamicalClass(isDarkmode, "darkmode", "invoiceDetails__goBack fwbold")}>
