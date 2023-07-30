@@ -42,11 +42,10 @@ project
 
 ## Screenshots
 
-![Home Screen](./src/assets/readme/screenInvoice1.png) Insérer image
-![Choose color](./src/assets/readme/screenInvoice2.png) Insérer image
-![multi color](./src/assets/readme/screenInvoice3.png) Insérer image
-![choose panel](./src/assets/readme/screenInvoice4.png) Insérer image
-![display panel](./src/assets/readme/screenInvoice5.png) Insérer image
+![Home Screen](./src/assets/readme/screenInvoice1.png)
+![Choose color](./src/assets/readme/screenInvoice2.png)
+![multi color](./src/assets/readme/screenInvoice3.png)
+![choose panel](./src/assets/readme/screenInvoice4.png)
 
 ## Authors
 
