@@ -19,7 +19,7 @@ Invoices permet de gérer ses factures (suppression, ajout, modification).
 Pour utiliser l'application, rien de plus simple. Rendez-vous sur le "site" [url soon].
 
 ## Project Structure
-
+```
 project
 |── public
 |── src
@@ -32,6 +32,7 @@ project
 |── redux.ts
 |── package.json
 └── README.md
+```
 ## Features
 
 - **Feature 1:** Utiliser le formulaire pour créer une facture.
