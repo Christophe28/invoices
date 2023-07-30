@@ -16,7 +16,7 @@ Invoices permet de gérer ses factures (suppression, ajout, modification).
 
 ## How to used it ?
 
-Pour utiliser l'application, rien de plus simple. Rendez-vous sur le "site" [Insérer l'url].
+Pour utiliser l'application, rien de plus simple. Rendez-vous sur le "site" [url soon].
 
 ## Project Structure
 
@@ -41,11 +41,11 @@ project
 
 ## Screenshots
 
-![Home Screen](./mdPicture/step_1.png) Insérer image
-![Choose color](./mdPicture/step_2.png) Insérer image
-![multi color](./mdPicture/step3.png) Insérer image
-![choose panel](./mdPicture/step_4.png) Insérer image
-![display panel](./mdPicture/step_5.png) Insérer image
+![Home Screen](./src/assets/readme/screenInvoice1.png) Insérer image
+![Choose color](./src/assets/readme/screenInvoice2.png) Insérer image
+![multi color](./src/assets/readme/screenInvoice3.png) Insérer image
+![choose panel](./src/assets/readme/screenInvoice4.png) Insérer image
+![display panel](./src/assets/readme/screenInvoice5.png) Insérer image
 
 ## Authors
 
