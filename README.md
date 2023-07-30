@@ -5,7 +5,7 @@ Voici le lien du figma:
 [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
 ## Technology
-<img src="./src/assets/readme/react_readme.png" alt="react icon" width="45px" height="45px" />
+<img src="./src/assets/readme/react_readme.png" style={background: transparent} alt="react icon" width="45px" height="45px" />
 <img src="./src/assets/readme/typescript_readME.png" alt="react icon" width="45px" height="45px" />
 <img src="./src/assets/readme/reduxToolkit_readME.png" alt="react icon" width="45px" height="45px" />
 <img src="./src/assets/readme/sass_readME.png" alt="react icon" width="45px" height="45px" />
