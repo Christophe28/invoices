@@ -1,6 +1,7 @@
 # Invoices
 
 Dans le but d'apprendre les bases de Typescripet et Redux toolkit j'ai décidé de suivre un modèle sur figma proposé par un mentor. Le défi principal était de manipuler Typescript et Redux toolkit et ensuite l'utiliser au mieux. Le projet est actuellement "viable" pour une démonstration mais il reste quelques détails à règlé tel que le refracto (en cours), ainsi que corriger les valeurs indiqué dans les premières facture dé démonstration.
+<br />
 Voici le lien du figma:
 [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
