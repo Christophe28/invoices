@@ -1,14 +1,14 @@
 # Invoices
 
-Dans le but d'apprendre les bases de Typescripet et Redux Toolkit j'ai décidé de suivre un modèle sur figma proposé par un mentor. Le défi principal était de manipuler Typescript et Redux Toolkit et ensuite l'utiliser au mieux. Le projet est actuellement "viable" pour une démonstration mais il reste quelques détails à règlé tel que le refracto (en cours), ainsi que corriger les valeurs indiqué dans les premières facture dé démonstration.
+Dans le but d'apprendre les bases de Typescripet et Redux toolkit j'ai décidé de suivre un modèle sur figma proposé par un mentor. Le défi principal était de manipuler Typescript et Redux toolkit et ensuite l'utiliser au mieux. Le projet est actuellement "viable" pour une démonstration mais il reste quelques détails à règlé tel que le refracto (en cours), ainsi que corriger les valeurs indiqué dans les premières facture dé démonstration.
 Voici le lien du figma:
 [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
 ## Technology
-<img src="./src/assets/readme/react_readme.png" alt="react icon" width="45px" height="45px" />
-<img src="./src/assets/readme/typescript_readME.png" alt="react icon" width="45px" height="45px" />
-<img src="./src/assets/readme/reduxToolkit_readME.png" alt="react icon" width="45px" height="45px" />
-<img src="./src/assets/readme/sass_readME.png" alt="react icon" width="45px" height="45px" />
+React ==> <img src="./src/assets/readme/react_readme.png" alt="react icon" width="45px" height="45px" />
+Typescript ==> <img src="./src/assets/readme/typescript_readME.png" alt="react icon" width="45px" height="45px" />
+Redux toolkit ==> <img src="./src/assets/readme/reduxToolkit_readME.png" alt="react icon" width="45px" height="45px" />
+Sass ==> <img src="./src/assets/readme/sass_readME.png" alt="react icon" width="45px" height="45px" />
 
 ## Description
 
