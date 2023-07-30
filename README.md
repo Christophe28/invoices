@@ -5,10 +5,10 @@ Voici le lien du figma:
 [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
 ## Technology
-React ==> <img src="./src/assets/readme/react_readme.png" alt="react icon" width="45px" height="45px" />
-Typescript ==> <img src="./src/assets/readme/typescript_readME.png" alt="react icon" width="45px" height="45px" />
-Redux toolkit ==> <img src="./src/assets/readme/reduxToolkit_readME.png" alt="react icon" width="45px" height="45px" />
-Sass ==> <img src="./src/assets/readme/sass_readME.png" alt="react icon" width="45px" height="45px" />
+React ==> <img src="./src/assets/readme/react_readme.png" alt="react icon" width="80px" height="80px" />
+Typescript ==> <img src="./src/assets/readme/typescript_readME.png" alt="react icon" width="80px" height="80px" />
+Redux toolkit ==> <img src="./src/assets/readme/reduxToolkit_readME.png" alt="react icon" width="80px" height="80px" />
+Sass ==> <img src="./src/assets/readme/sass_readME.png" alt="react icon" width="80px" height="80px" />
 
 ## Description
 
