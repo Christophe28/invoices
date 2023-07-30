@@ -1,18 +1,6 @@
-Objectif aux choix ==>
-- dynamiser le calcul du total
-- Mettre dans les data le nom du projet 
-- Sauvegarder le nom du projet quand on utilise le formulaire
-- Demander uniquement des chiffres dans les input de quantité et de prix.
-
-
-
-
-
-
-
-
-
-
-+++++++++++++++=================================+++++++++++++++++++++++++++++++++
-- Appliquer la logique sur les boutons, edit, dans la page details invoice
-- Demander une confirmation pour delete
+Dernières étapes : 
+1. Faire le responsive
+2. Refracto
+3. Choisirs de meilleurs images pour le README.md
+4. Revoir la gestion de redux
+5. Renommer certains fichiers et certaines variables
