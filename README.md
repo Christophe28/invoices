@@ -5,11 +5,10 @@ Voici le lien du figma:
 [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
 ## Technology
-<!-- // Ajouter image React![React](./src/assets/readme/react_readme.png) -->
 <img src="./src/assets/readme/react_readme.png" alt="react icon" width="45px" height="45px" />
-// Ajouter image Typescript![Typescript](./src/assets/readme/typescript_readME.png)
-// Ajouter image reduxe ![Redux](./src/assets/readme/reduxToolkit_readME.png)
-// Ajouter image sass ![sass](./src/assets/readme/sass_readME.png)
+<img src="./src/assets/readme/typescript_readME.png" alt="react icon" width="45px" height="45px" />
+<img src="./src/assets/readme/reduxToolkit_readME.png" alt="react icon" width="45px" height="45px" />
+<img src="./src/assets/readme/sass_readME.png" alt="react icon" width="45px" height="45px" />
 
 ## Description
 
