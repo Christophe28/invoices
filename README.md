@@ -20,7 +20,20 @@ Pour utiliser l'application, rien de plus simple. Rendez-vous sur le "site" [url
 
 ## Project Structure
 
-project
+projet
+|--public
+|--src
+|   |-- components
+|   |-- functions
+|   |-- style
+|   |-- types
+|-- App.tsx
+|-- main.tsx
+|-- redux.ts
+|-- package.json
+|-- README.md
+
+<!-- project
 ├── public
 ├── src
 │   ├── components
@@ -31,7 +44,7 @@ project
 ├── main.tsx
 ├── redux.ts
 ├── package.json
-└── README.md
+└── README.md -->
 ## Features
 
 - **Feature 1:** Utiliser le formulaire pour créer une facture.
