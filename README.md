@@ -1,15 +1,14 @@
 # Invoices
 
-Le projet invoices à vu le jour car je devais exposer un projet plus concret que le reste de mon Github. En ce qui concerne le visuel, je le dois à ce figma proposé par un compère [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]. Je suis partie sur une structure BEM pour le css et j'ai fais le projet en react typescript et redux. Le challenge était d'apprendre les bases de typescript et de redux.
+Dans le but d'apprendre les bases de Typescripet et Redux Toolkit j'ai décidé de suivre un modèle sur figma proposé par un mentor. Le défi principal était de manipuler Typescript et Redux Toolkit et ensuite l'utiliser au mieux. Le projet est actuellement "viable" pour une démonstration mais il reste quelques détails à règlé tel que le refracto (en cours), ainsi que corriger les valeurs indiqué dans les premières facture dé démonstration.
+Voici le lien du figma:
+[https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
 ## Technology
-// AJouter image VueJs
-// Ajouter image React
-// Ajouter image Typescript
-// Ajouter image reduxe
-// Ajouter image gh-pages
-// Ajouter image sass
-// Ajouter image Date object
+// Ajouter image React![React](./src/assets/readme/react_readme.png)
+// Ajouter image Typescript![Typescript](./src/assets/readme/typescript_readME.png)
+// Ajouter image reduxe ![Redux](./src/assets/readme/reduxToolkit_readME.png)
+// Ajouter image sass ![sass](./src/assets/readme/sass_readME.png)
 
 ## Description
 
