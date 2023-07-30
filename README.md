@@ -1,8 +1,8 @@
 # Invoices
 
-Dans le but d'apprendre les bases de Typescripet et Redux toolkit j'ai décidé de suivre un modèle sur figma proposé par un mentor. Le défi principal était de manipuler Typescript et Redux toolkit et ensuite l'utiliser au mieux. Le projet est actuellement "viable" pour une démonstration mais il reste quelques détails à règlé tel que le refracto (en cours), ainsi que corriger les valeurs indiqué dans les premières facture dé démonstration.
+With the aim of learning the basics of Typescript and Redux Toolkit, I decided to follow a template on Figma proposed by a mentor. The main challenge was to work with Typescript and Redux Toolkit and then utilize them effectively. The project is currently 'viable' for a demonstration, but there are still some details to be addressed, such as refactoring (in progress), as well as correcting the values indicated in the initial demonstration invoices.
 <br />
-Voici le lien du figma:
+Here is the link to the Figma:
 [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
 ## Technology
@@ -13,11 +13,11 @@ Sass ==> <img src="./src/assets/readme/sass_readME.png" alt="react icon" max-wid
 
 ## Description
 
-Invoices permet de gérer ses factures (suppression, ajout, modification).
+Invoices allows you to manage your invoices (delete, add, modify).
 
 ## How to used it ?
 
-Pour utiliser l'application, rien de plus simple. Rendez-vous sur le "site" [url soon].
+To use the application, it's very simple. Just go to the website. [url soon].
 
 ## Project Structure
 ```
@@ -36,10 +36,10 @@ project
 ```
 ## Features
 
-- **Feature 1:** Utiliser le formulaire pour créer une facture.
-- **Feature 2:** Enregistrer la facture ou l'envoyer.
-- **Feature 3:** Naviguer sur le détails des factures en cliquant sur une des factures présentes sur la page d'accueil.
-- **Feature 4:** modifier/supprimer la facture ciblé.
+- **Feature 1:** Use the form to create an invoice.
+- **Feature 2:** Save or send the invoice.
+- **Feature 3:** Navigate to the details of invoices by clicking on one of the invoices on the home page.
+- **Feature 4:** Edit/delete the targeted invoice.
 
 ## Screenshots
 
