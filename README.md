@@ -14,7 +14,7 @@ Here is the link to the Figma:
 
 ## Description
 
-Invoices allows you to manage your invoices (delete, add, modify).
+The appli "Invoices" allows you to manage your invoices (delete, add, modify).
 
 ## How to used it ?
 
