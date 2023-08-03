@@ -6,15 +6,6 @@ Here is the link to the Figma:
 [https://www.figma.com/file/IkQoU1ZASKOlBnjYm7uyi8/invoice-app?type=design&node-id=0-1&mode=design&t=fq5AGdBGWyeaQKhv-0]
 
 ## Technology
-<<<<<<< HEAD
-
-=======
-![Amazon Alexa](https://img.shields.io/badge/amazon%20alexa-52b5f7?style=for-the-badge&logo=amazon%20alexa&logoColor=white)
-React ==> <img src="./src/assets/readme/react_readme.png" alt="react icon" max-width="80px" height="80px" />
-Typescript ==> <img src="./src/assets/readme/typescript_readME.png" alt="react icon" max-width="80px" height="80px" />
-Redux toolkit ==> <img src="./src/assets/readme/reduxToolkit_readME.png" alt="react icon" max-width="80px" height="80px" />
-Sass ==> <img src="./src/assets/readme/sass_readME.png" alt="react icon" max-width="80px" height="80px" />
->>>>>>> 1c5af43adb1ab7a5f82cd6639d482dd1f2ee12e9
 
 ## Description
 
