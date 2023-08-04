@@ -19,7 +19,7 @@ The appli "Invoices" allows you to manage your invoices (delete, add, modify).
 
 ## How to used it ?
 
-To use the application, it's very simple. Just go to the website. [url soon].
+To use the application, it's very simple. Just go to the website. [https://christophe28.github.io/invoices].
 
 ## Project Structure
 ```
