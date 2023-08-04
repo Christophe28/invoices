@@ -4,3 +4,4 @@ Dernières étapes :
 3. Choisirs de meilleurs images pour le README.md
 4. Revoir la gestion de redux
 5. Renommer certains fichiers et certaines variables
+https://github.com/Ileriayo/markdown-badges/blob/master/README.md#-cd
