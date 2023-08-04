@@ -1,6 +1,7 @@
 {
   "name": "invoices",
   "private": true,
+  "homepage": "https://christophe28.github.io/invoices",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
