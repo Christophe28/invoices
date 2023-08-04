@@ -54,6 +54,7 @@ const SideBar = () => {
     if(sendData) {
       greenLigther(dispatch, billFromForm, billsToForm, totalItem); 
       setSendData(false);
+      console.log("on fait l'action");
     }
   }, [sendData])
 

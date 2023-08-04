@@ -37,8 +37,7 @@ export const greenLigther = (dispatch:any, billFromForm:BillFrom, billsToForm:Bi
   const greenLigth = allAreaIsEmpty.every(e => e === true);
 
   if(greenLigth) { 
-    if(location.pathname === "/") {
-      console.log("si /");
+    if(location.pathname === "/invoices") {
       reduxSetter(dispatch, pushToBillsFrom, billFromForm);
       reduxSetter(dispatch, pushToBillsTo, billsToForm);
       reduxSetter(dispatch, pushToItemList, totalItem);
