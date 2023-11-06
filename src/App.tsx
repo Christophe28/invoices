@@ -26,12 +26,10 @@ function App() {
       });
     }
   }, [location]);
-  console.log("new push 1");
 
   return (
     <>
       <Wrapper>
-        <h1>Yooooooooo</h1>
         <div className={`${dynamicalClass(isOpenForm, "flooter", "")} ${dynamicalClass(isDarkmode, "darkmode", "")}`}></div>
         <SideBar />      
         <Routes>
