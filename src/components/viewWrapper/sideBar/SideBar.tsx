@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 // 2.My Redux
 import { Roostate, addItemForm, setPaid } from "../../../redux";
-import { setBillFromForm, setBillToFrom, setItemsForm } from "../../../redux";
 
 // 3.Components
 import SideBarIcone from "./SideBarIcone";
@@ -48,7 +47,6 @@ const SideBar = () => {
     totalPrice: 0
   }
 
-  
   useEffect(() => {
     if(!sendData) {return}
     if(sendData) {
