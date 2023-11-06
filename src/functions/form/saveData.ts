@@ -41,14 +41,17 @@ export const greenLigther = (dispatch:any, billFromForm:BillFrom, billsToForm:Bi
       reduxSetter(dispatch, pushToBillsFrom, billFromForm);
       reduxSetter(dispatch, pushToBillsTo, billsToForm);
       reduxSetter(dispatch, pushToItemList, totalItem);
+      console.log("On créer un nouveau client")
     } else {
       reduxSetter(dispatch, updateBillsFrom, billFromForm);
       reduxSetter(dispatch, updateBillsTo, billsToForm);
-      reduxSetter(dispatch, updateItemsList, totalItem)
+      reduxSetter(dispatch, updateItemsList, totalItem);
+      console.log("On update un client")
     }
     reduxSetter(dispatch, removeBillFromForm, invoiceFromForm);
     reduxSetter(dispatch, removeBillToFrom, billToForm);
     reduxSetter(dispatch, removeItemsForm, "");
     controlAnimForm(dispatch);
+    console.log("tout est finit");
   }
 }
