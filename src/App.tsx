@@ -31,6 +31,7 @@ function App() {
   return (
     <>
       <Wrapper>
+        <h1>Yooooooooo</h1>
         <div className={`${dynamicalClass(isOpenForm, "flooter", "")} ${dynamicalClass(isDarkmode, "darkmode", "")}`}></div>
         <SideBar />      
         <Routes>
