@@ -26,6 +26,7 @@ function App() {
       });
     }
   }, [location]);
+  console.log("new push 1");
 
   return (
     <>
